@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germanedge | DCE Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/germanedge.css">
+    <!-- Note: Ensure you appended the Flashcard CSS to germanedge.css -->
+</head>
+<body class="antialiased bg-gray-50 flex flex-col h-screen overflow-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="ge-nav flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="text-white text-2xl font-bold tracking-tight flex items-center gap-2">
+                    <span class="text-3xl text-ge-yellow">∞</span> Germanedge
+                </div>
+                <div class="hidden md:block w-px h-6 bg-gray-700 mx-2"></div>
+                <span class="text-gray-400 text-xs font-bold uppercase tracking-widest">DCE Academy</span>
+            </div>
+            <div>
+                <span class="text-white text-sm font-bold mr-4">Module Progress:</span>
+                <span id="total-progress" class="text-ge-yellow font-bold text-lg">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN APP LAYOUT -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- SIDEBAR: MODULE SELECTOR -->
+        <aside class="w-64 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0 z-10">
+            <div class="p-6">
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Curriculum</h3>
+                <nav class="space-y-2" id="module-list">
+                    <!-- Modules injected via JS -->
+                </nav>
+            </div>
+            
+            <div class="p-6 mt-auto border-t border-gray-100">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <p class="text-xs text-blue-800 font-bold mb-1">PRO TIP</p>
+                    <p class="text-xs text-blue-600">Click card to flip. Use arrow keys to navigate.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN STAGE: FLASHCARDS -->
+        <main class="flex-1 flex flex-col relative">
+            <!-- Background Decoration -->
+            <div class="absolute inset-0 z-0 opacity-5 pointer-events-none">
+                <img src="media/background.jpg" class="w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+
+            <div class="flex-1 flex flex-col items-center justify-center p-8 z-10">
+                
+                <!-- Header Info -->
+                <div class="text-center mb-8">
+                    <span id="current-module-title" class="text-ge-yellow font-bold tracking-widest text-sm uppercase mb-2 block">Select a Module</span>
+                    <h2 id="current-card-count" class="text-gray-400 text-sm">Card 0 of 0</h2>
+                </div>
+
+                <!-- THE FLASHCARD -->
+                <div class="learning-container">
+                    <div class="flashcard" id="active-card" onclick="flipCard()">
+                        <!-- Front -->
+                        <div class="flashcard-face flashcard-front">
+                            <div class="mb-6 text-4xl text-gray-200">?</div>
+                            <h3 id="card-front-text">Welcome to the DCE Academy</h3>
+                            <p class="text-gray-400 text-sm mt-4">Select a module from the left to begin.</p>
+                            <div class="absolute bottom-6 text-xs font-bold text-gray-300 uppercase tracking-widest">Click to Flip</div>
+                        </div>
+                        <!-- Back -->
+                        <div class="flashcard-face flashcard-back">
+                            <div class="mb-6 text-4xl text-ge-yellow">!</div>
+                            <p id="card-back-text">Content will appear here.</p>
+                            <!-- Optional Image Container -->
+                            <div id="card-media" class="mt-4 hidden">
+                                <img id="card-img" class="h-32 w-auto rounded border border-gray-700 object-cover">
+                            </div>
+                            <div class="flashcard-hint">Key Insight</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTROLS -->
+                <div class="w-full max-w-[700px] mt-8 flex items-center justify-between">
+                    <button onclick="prevCard()" class="ge-btn-outline border-gray-300 text-gray-600 hover:bg-gray-100 hover:text-black">← Previous</button>
+                    
+                    <div class="flex-1 mx-8">
+                        <div class="progress-bar-container">
+                            <div id="deck-progress" class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="nextCard()" class="ge-btn-primary">Next Card →</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- DATA & LOGIC ENGINE -->
+    <script>
+        // --- 1. THE CURRICULUM DATA (From PDF) ---
+        const curriculum = [
+            {
+                id: "market",
+                title: "Module 1: The Theatre",
+                desc: "Understanding the Market Friction",
+                cards: [
+                    { front: "What are the 4 Friction Points in the 'European Theatre'?", back: "1. Geopolitics (War/Sanctions)<br>2. Recession (Tariffs/Costs)<br>3. Tech Shock (AI/Nvidia)<br>4. Scarcity (Talent/Materials)" },
+                    { front: "What is 'Angststillstand'?", back: "A German term for 'Fear-induced Stagnation'. Decision makers are paralyzed by uncertainty between today's problems and tomorrow's technology." },
+                    { front: "Why is 'Old Planning' dead?", back: "Because you cannot plan for chaos using static tools. The timeframe for decisions has shrunk, but the impact lasts 2-3 years." }
+                ]
+            },
+            {
+                id: "culture",
+                title: "Module 2: Culture Gap",
+                desc: "Psychology of the Buyer",
+                cards: [
+                    { front: "The 'Burger' vs. 'Döner' Analogy", back: "<b>USA (Burger):</b> Start now, fix later. Vision of Winning.<br><br><b>Europe (Döner):</b> Think to the end. Avoid mistakes. Fear of Losing." },
+                    { front: "Hofstede: Uncertainty Avoidance", back: "Germany scores HIGH (65). USA scores LOW (46).<br><br><b>Takeaway:</b> Do not sell 'Speed' or 'Disruption'. Sell 'Security' and 'Predictability'." },
+                    { front: "Who are 'The Poets'?", back: "European archetype. They reflect on meaning and consequences before acting. They need a narrative, not just features." },
+                    { front: "Who are 'The Doers'?", back: "US archetype. They execute immediately and iterate. This approach scares European buyers." }
+                ]
+            },
+            {
+                id: "competition",
+                title: "Module 3: Competition",
+                desc: "David vs. Goliath",
+                cards: [
+                    { front: "What % of Fortune 500 use SAP?", back: "90%. We cannot compete on 'Install Base' or being the 'Safe Standard'." },
+                    { front: "What is our Core Differentiator?", back: "<b>Trust & Intimacy.</b><br>In times of friction, you don't call a vendor. You call your oldest friend." },
+                    { front: "What is the 'Decision Centric' Promise?", back: "We empower you to take the <b>RIGHT decision</b> in the moment of truth. Not just execute a process." }
+                ]
+            },
+            {
+                id: "plan",
+                title: "Module 4: Execution",
+                desc: "The 12-Month Roadmap",
+                cards: [
+                    { front: "Phase 1: Build Up (Months 1-3)", back: "Focus: <b>Thought Leadership.</b><br>Stop selling features. Define the brand storyline and visual identity." },
+                    { front: "Phase 2: Proof of Concept (Months 3-5)", back: "Focus: <b>Evidence.</b><br>Create 3 concrete Case Studies. Show, don't just tell. Prove we solve friction." },
+                    { front: "Phase 3: Social Proof (Months 5-8)", back: "Focus: <b>Network Effect.</b><br>Account Based Marketing (ABM) and User Conferences. Let customers speak for us." },
+                    { front: "Phase 4: Scale Reach (Months 8-10)", back: "Focus: <b>The C-Suite.</b><br>Executive Roundtables. Shift conversation from 'Supply Chain' to 'Business Resilience'." },
+                    { front: "Phase 5: Stabilize (Months 10-12)", back: "Focus: <b>Intimacy.</b><br>Launch Community Platforms to turn customers into long-term partners." }
+                ]
+            }
+        ];
+
+        // --- 2. APP STATE ---
+        let currentModuleIndex = 0;
+        let currentCardIndex = 0;
+        let isFlipped = false;
+
+        // --- 3. INIT LOGIC ---
+        function init() {
+            renderSidebar();
+            loadModule(0);
+            
+            // Keyboard Nav
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'ArrowRight') nextCard();
+                if(e.key === 'ArrowLeft') prevCard();
+                if(e.key === ' ' || e.key === 'Enter') flipCard();
+            });
+        }
+
+        // --- 4. RENDER FUNCTIONS ---
+        function renderSidebar() {
+            const list = document.getElementById('module-list');
+            list.innerHTML = curriculum.map((mod, index) => `
+                <div onclick="loadModule(${index})" 
+                     class="group flex items-center p-3 rounded-lg cursor-pointer transition-all ${index === currentModuleIndex ? 'bg-black text-white' : 'hover:bg-gray-100'}">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold mr-3 ${index === currentModuleIndex ? 'bg-ge-yellow text-black' : 'bg-gray-200 text-gray-500'}">
+                        ${index + 1}
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold ${index === currentModuleIndex ? 'text-white' : 'text-gray-900'}">${mod.title}</p>
+                        <p class="text-[10px] ${index === currentModuleIndex ? 'text-gray-400' : 'text-gray-500'}">${mod.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadModule(index) {
+            currentModuleIndex = index;
+            currentCardIndex = 0;
+            isFlipped = false;
+            renderSidebar(); // Update active state
+            updateCardDisplay();
+        }
+
+        function updateCardDisplay() {
+            const module = curriculum[currentModuleIndex];
+            const card = module.cards[currentCardIndex];
+            const cardEl = document.getElementById('active-card');
+
+            // Reset Flip
+            cardEl.classList.remove('flipped');
+            isFlipped = false;
+
+            // Update Text (Small delay to allow flip reset if moving fast)
+            setTimeout(() => {
+                document.getElementById('current-module-title').innerText = module.title;
+                document.getElementById('current-card-count').innerText = `Card ${currentCardIndex + 1} of ${module.cards.length}`;
+                
+                document.getElementById('card-front-text').innerHTML = card.front;
+                document.getElementById('card-back-text').innerHTML = card.back;
+
+                // Media Handling (If you drop images in /media named card_mX_cY.jpg)
+                // This is placeholder logic for future media integration
+                const imgContainer = document.getElementById('card-media');
+                imgContainer.classList.add('hidden'); // Default hide
+            }, 150);
+
+            // Update Progress Bar
+            const progress = ((currentCardIndex + 1) / module.cards.length) * 100;
+            document.getElementById('deck-progress').style.width = `${progress}%`;
+        }
+
+        // --- 5. INTERACTION FUNCTIONS ---
+        function flipCard() {
+            const card = document.getElementById('active-card');
+            card.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            const module = curriculum[currentModuleIndex];
+            if (currentCardIndex < module.cards.length - 1) {
+                currentCardIndex++;
+                updateCardDisplay();
+            } else {
+                // Auto-advance to next module?
+                if(currentModuleIndex < curriculum.length - 1) {
+                    if(confirm("Module Complete! Start next module?")) {
+                        loadModule(currentModuleIndex + 1);
+                    }
+                } else {
+                    alert("Curriculum Complete! You are ready to sell.");
+                }
+            }
+        }
+
+        function prevCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                updateCardDisplay();
+            }
+        }
+
+        // Start App
+        document.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>

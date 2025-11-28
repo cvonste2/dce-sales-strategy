@@ -36,6 +36,9 @@
                 <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">DCE Sales Hub</span>
             </div>
             <div class="hidden md:flex items-center gap-6">
+                <!-- NEW LEARNING HUB LINK -->
+                <a href="learning.html" class="ge-nav-link">Learning Hub</a>
+                
                 <button onclick="scrollToId('theatre')" class="ge-nav-link">Market Context</button>
                 <button onclick="scrollToId('culture')" class="ge-nav-link">Mindset</button>
                 <button onclick="openVideo()" class="ge-nav-link text-ge-yellow border border-ge-yellow rounded px-3 py-1 hover:bg-ge-yellow hover:text-black transition">Keynote</button>
@@ -238,12 +241,13 @@
             </div>
             
             <div class="mt-20 text-center bg-[#0B1120] rounded-3xl p-12 relative overflow-hidden shadow-2xl">
-                <div class="absolute inset-0 opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
                 <div class="relative z-10">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">READY TO EXECUTE?</h2>
-                    <div class="flex justify-center gap-4">
+                    <div class="flex justify-center gap-4 flex-wrap">
                         <button class="ge-btn-primary text-base py-3 px-8">LAUNCH CAMPAIGN</button>
                         <a href="DCE_European_perspective_the_foundation_for_a_longterm_partnership_v01_AD.pdf" download class="ge-btn-outline no-underline">DOWNLOAD PLAYBOOK (PDF)</a>
+                        <!-- NEW LEARNING HUB BUTTON -->
+                        <a href="learning.html" class="ge-btn-outline no-underline hover:border-ge-yellow hover:text-ge-yellow">OPEN LEARNING HUB</a>
                     </div>
                 </div>
             </div>
@@ -307,25 +311,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             selectPhase(1);
-            // Friction Chart - Using Corporate Colors
-            new Chart(document.getElementById('frictionChart').getContext('2d'), { 
-                type: 'doughnut', 
-                data: { 
-                    labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'], 
-                    datasets: [{ 
-                        data: [35, 20, 15, 20, 10], 
-                        backgroundColor: ['#C14953', '#FFD100', '#4B5563', '#1F2937', '#9CA3AF'], 
-                        borderWidth: 0 
-                    }] 
-                }, 
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    cutout: '70%', 
-                    plugins: { legend: { display: false } } 
-                } 
-            });
-            // Competitor Chart
+            new Chart(document.getElementById('frictionChart').getContext('2d'), { type: 'doughnut', data: { labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'], datasets: [{ data: [35, 20, 15, 20, 10], backgroundColor: ['#C14953', '#FFD100', '#4B5563', '#1F2937', '#9CA3AF'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } } });
             new Chart(document.getElementById('competitorChart').getContext('2d'), { type: 'bubble', data: { datasets: [{ label: 'Landscape', data: [{ x: 95, y: 95, r: 30, label: 'SAP (Giant)' }, { x: 80, y: 80, r: 15, label: 'Kinaxis' }, { x: 20, y: 90, r: 25, label: 'DCE (Us)' }, { x: 85, y: 60, r: 10, label: 'O2' }], backgroundColor: c => c.raw.label.includes('DCE') ? '#C14953' : '#E5E7EB', borderColor: c => c.raw.label.includes('DCE') ? '#9F1239' : '#9CA3AF', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: {display: true, text: 'Market Dominance'}, min: 0, max: 110 }, y: { title: {display: true, text: 'Trust Score'}, min: 40, max: 110 } }, plugins: { legend: { display: false } } } });
         });
     </script>
