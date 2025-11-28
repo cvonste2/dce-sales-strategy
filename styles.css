@@ -1,0 +1,126 @@
+/* Base Settings */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB;
+    color: #1F2937;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Utilities */
+html {
+    scroll-behavior: smooth;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+/* Animations */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pulse-red {
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+        background-color: #ef4444;
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+        background-color: #b91c1c;
+    }
+}
+
+/* Card & Component Styles */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #C14953, #9d1722);
+}
+
+.bg-texture {
+    /* Subtle dot pattern for dark backgrounds */
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23374151' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Intel Cards (The 4 Tiles) */
+.intel-card {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.intel-card:hover {
+    border-color: #C14953;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.intel-card .sales-hook {
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.intel-card:hover .sales-hook {
+    max-height: 100px;
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+/* Plan Steps (Interactive List) */
+.plan-step {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.plan-step.active {
+    border-left-color: #C14953;
+    background-color: #FEF2F2;
+}
+
+.plan-step.active h4 {
+    color: #C14953;
+}
+
+/* Video Modal */
+#video-modal {
+    transition: opacity 0.3s ease;
+}
+
+#video-modal.hidden {
+    pointer-events: none;
+    opacity: 0;
+}

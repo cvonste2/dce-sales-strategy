@@ -4,55 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCE: The Sales Experience</title>
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; color: #1F2937; }
-        h1, h2, h3 { family: 'Playfair Display', serif; }
-        .chart-container { position: relative; width: 100%; height: 300px; }
-        html { scroll-behavior: smooth; }
-        
-        /* Animations */
-        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        
-        .pulse-red { animation: pulseRed 2s infinite; }
-        @keyframes pulseRed {
-            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); background-color: #ef4444; }
-            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); background-color: #b91c1c; }
-        }
-
-        .hover-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-        .text-gradient { background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-image: linear-gradient(to right, #C14953, #9d1722); }
-        .bg-texture { background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23374151' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E"); }
-        
-        .intel-card { transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .intel-card:hover { border-color: #C14953; background: rgba(255, 255, 255, 0.1); }
-        .intel-card .sales-hook { max-height: 0; opacity: 0; transition: all 0.4s ease; overflow: hidden; }
-        .intel-card:hover .sales-hook { max-height: 100px; opacity: 1; margin-top: 1rem; }
-
-        .plan-step.active { border-left-color: #C14953; background-color: #FEF2F2; }
-        .plan-step.active h4 { color: #C14953; }
-
-        /* Video Modal Styles */
-        #video-modal { transition: opacity 0.3s ease; }
-        #video-modal.hidden { pointer-events: none; opacity: 0; }
-    </style>
+    <!-- CUSTOM CSS LINK -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body class="antialiased">
 
-    <!-- VIDEO MODAL (Hidden by default) -->
-    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center hidden">
+    <!-- VIDEO MODAL (YouTube Version) -->
+    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center hidden" onclick="closeVideo()">
         <div class="relative w-full max-w-5xl mx-4">
             <button onclick="closeVideo()" class="absolute -top-12 right-0 text-white hover:text-[#C14953] text-sm uppercase font-bold tracking-widest">Close [X]</button>
             <div class="aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
-                <video id="keynote-player" controls class="w-full h-full">
-                    <source src="keynote.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe id="youtube-frame" class="w-full h-full" 
+                        src="https://www.youtube.com/embed/LXb3EKWsInQ?enablejsapi=1" 
+                        title="Keynote Player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
@@ -75,7 +48,6 @@
                     <button onclick="scrollToId('theatre')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Threat</button>
                     <button onclick="scrollToId('culture')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Mindset</button>
                     <button onclick="scrollToId('competition')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Fight</button>
-                    <!-- NEW KEYNOTE BUTTON -->
                     <button onclick="openVideo()" class="text-xs font-bold uppercase tracking-widest text-[#C14953] border border-[#C14953] px-3 py-1 rounded hover:bg-[#C14953] hover:text-white transition-colors">Keynote</button>
                     <button onclick="scrollToId('plan')" class="px-4 py-2 bg-[#C14953] text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#a0353e] transition-colors shadow-lg">The Plan</button>
                 </div>
@@ -143,6 +115,7 @@
                 <span class="text-[#C14953] font-bold tracking-widest text-sm uppercase mb-2 block">The Psychology Gap</span>
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-serif mb-4">Why US Competitors Fail Here</h2>
             </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl h-96 hover-card transition-all duration-500">
                     <div class="absolute inset-0"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Burger"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div></div>
@@ -178,27 +151,20 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: KEYNOTE (Inserted Here) -->
+    <!-- NEW SECTION: KEYNOTE (YouTube) -->
     <section id="keynote" class="py-20 bg-gray-900 text-white border-y border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-[#C14953] font-bold tracking-widest text-sm uppercase mb-4 block">NASCES25 Keynote</span>
             <h2 class="text-3xl md:text-4xl font-bold mb-8 font-serif">Software Providers Broke It. You Bought It.<br>Can AI Reimagine It All?</h2>
             
-            <!-- Video Trigger Card -->
             <div onclick="openVideo()" class="max-w-4xl mx-auto aspect-video bg-gray-800 rounded-xl overflow-hidden relative cursor-pointer group shadow-2xl border border-gray-700 hover:border-[#C14953] transition-colors">
-                <!-- Placeholder Cover Image -->
                 <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity">
-                
-                <!-- Play Button Overlay -->
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="w-20 h-20 bg-[#C14953] rounded-full flex items-center justify-center pl-2 shadow-lg group-hover:scale-110 transition-transform">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     </div>
                 </div>
-                <div class="absolute bottom-6 left-6 text-left">
-                    <p class="text-white font-bold text-lg">Watch the Full Keynote</p>
-                    <p class="text-gray-300 text-sm">Duration: 45:00 • Arndt Dallmann</p>
-                </div>
+                <div class="absolute bottom-6 left-6 text-left"><p class="text-white font-bold text-lg">Watch the Full Keynote</p><p class="text-gray-300 text-sm">Duration: 45:00 • Arndt Dallmann</p></div>
             </div>
         </div>
     </section>
@@ -242,21 +208,21 @@
     <script>
         function scrollToId(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
-        // Video Logic
+        // VIDEO LOGIC (YouTube)
         function openVideo() {
-            const modal = document.getElementById('video-modal');
-            const video = document.getElementById('keynote-player');
-            modal.classList.remove('hidden');
-            video.play();
+            document.getElementById('video-modal').classList.remove('hidden');
         }
         function closeVideo() {
             const modal = document.getElementById('video-modal');
-            const video = document.getElementById('keynote-player');
+            const iframe = modal.querySelector('iframe');
+            // Reset URL to stop video
+            const url = iframe.getAttribute('src');
+            iframe.setAttribute('src', '');
+            iframe.setAttribute('src', url);
             modal.classList.add('hidden');
-            video.pause();
         }
 
-        // --- PLAN DATA ---
+        // PLAN LOGIC
         const phaseData = {
             1: { title: "Build Up: Thought Leadership", subtitle: "Defining the Narrative (Months 1-3)", body: "In this foundational phase, we stop selling features and start selling a vision. We must establish a coherent visual approach and a clear storyline that separates us from standard ERP vendors. The goal is not to sell product, but to position the DCE brand as the only intellectual leader capable of understanding the 'Angststillstand'. We define the brand promise before we ask for the sale.", bullets: ["Publish 'Decision Centric' Whitepaper", "Internal Sales Training on 'The Narrative'", "Define Core Visual Identity"] },
             2: { title: "Proof of Concept: Evidence", subtitle: "Show, Don't Just Tell (Months 3-5)", body: "European buyers are skeptics. Theory is not enough; they need proof. We move from the 'Build Up' narrative to concrete evidence. We must highlight specific use cases where we solved 'unsolvable' friction problems (e.g., specific supply chain disruptions). The focus here is to underline our thought leadership with hard data and undeniable success stories.", bullets: ["Release 3 Core Case Studies", "Launch 'Evidence' Marketing Deck", "Initiate Pilot Programs"] },
