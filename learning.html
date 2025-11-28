@@ -15,12 +15,11 @@
         /* --- LEARNING HUB SPECIFIC STYLES --- */
         body { background-color: #F9FAFB; }
 
-        /* The Card Grid Container */
+        /* Card Grid - Adaptive */
         .card-grid {
             display: grid;
             gap: 1.5rem;
-            padding: 2rem;
-            /* Adaptive Columns: 1 on mobile, up to 5 on huge screens */
+            padding: 0 2rem 2rem 2rem;
             grid-template-columns: repeat(1, minmax(0, 1fr));
         }
         @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -32,7 +31,7 @@
         .flashcard-scene {
             background-color: transparent;
             width: 100%;
-            height: 300px; /* Fixed height for consistency */
+            height: 300px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -73,7 +72,7 @@
         }
 
         .flashcard-back {
-            background-color: #111; /* Corporate Black */
+            background-color: #111;
             color: white;
             transform: rotateY(180deg);
             border: 1px solid #333;
@@ -93,7 +92,7 @@
         .flashcard-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: #FFD100; /* Corporate Yellow */
+            color: #FFD100;
         }
 
         .flashcard-q {
@@ -120,19 +119,9 @@
             margin-bottom: 0.5rem;
         }
         
-        .module-btn:hover {
-            background-color: #F3F4F6;
-        }
-
-        .module-btn.active {
-            background-color: #111;
-            color: white;
-        }
-
-        .module-btn.active .module-number {
-            background-color: #FFD100;
-            color: black;
-        }
+        .module-btn:hover { background-color: #F3F4F6; }
+        .module-btn.active { background-color: #111; color: white; }
+        .module-btn.active .module-number { background-color: #FFD100; color: black; }
 
         .module-number {
             width: 24px;
@@ -147,6 +136,20 @@
             justify-content: center;
             margin-right: 0.75rem;
         }
+
+        /* Tab System */
+        .track-tab {
+            padding-bottom: 1rem;
+            margin-right: 2rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #9CA3AF;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .track-tab:hover { color: #111; }
+        .track-tab.active { color: #111; border-bottom-color: #FFD100; }
     </style>
 </head>
 <body class="flex flex-col h-screen overflow-hidden">
@@ -159,10 +162,10 @@
                     <span class="text-3xl text-ge-yellow">∞</span> Germanedge
                 </a>
                 <div class="hidden md:block w-px h-6 bg-gray-700 mx-2"></div>
-                <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">DCE Learning Hub</span>
+                <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Digital Factory Knowledge Hub</span>
             </div>
             <div>
-                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">DCE Sales Hub</a>
+                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
             </div>
         </div>
     </nav>
@@ -170,150 +173,251 @@
     <!-- MAIN LAYOUT -->
     <div class="flex flex-1 pt-20 overflow-hidden">
         
-        <!-- SIDEBAR (Modules) -->
+        <!-- SIDEBAR -->
         <aside class="w-80 bg-white border-r border-gray-200 overflow-y-auto hidden md:block flex-shrink-0">
             <div class="p-6">
-                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Curriculum Modules</h3>
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6" id="sidebar-header">Modules</h3>
                 <div id="module-list">
                     <!-- Modules injected here -->
                 </div>
             </div>
-            
-            <!-- Instructions Footer -->
             <div class="p-6 mt-auto border-t border-gray-100 bg-gray-50">
-                <p class="text-xs font-bold text-black mb-1">HOW TO USE</p>
-                <p class="text-xs text-gray-500">Click any card to flip it. Review all cards in a module before moving to the next section.</p>
+                <p class="text-xs font-bold text-black mb-1">PRO TIP</p>
+                <p class="text-xs text-gray-500">Switch tabs above to change between Strategy and Market Intel.</p>
             </div>
         </aside>
 
-        <!-- CONTENT AREA (Grid) -->
-        <main class="flex-1 overflow-y-auto relative bg-gray-50">
+        <!-- CONTENT AREA -->
+        <main class="flex-1 overflow-y-auto relative bg-gray-50 flex flex-col">
             
-            <!-- Mobile Module Select (Visible only on mobile) -->
-            <div class="md:hidden p-4 bg-white border-b border-gray-200 sticky top-0 z-20">
+            <!-- TRACK TABS (THE NEW UX) -->
+            <div class="px-8 pt-8 pb-0 bg-white border-b border-gray-200 sticky top-0 z-20">
+                <div class="flex">
+                    <button onclick="switchTrack('strategy')" id="tab-strategy" class="track-tab active">TRACK 1: DCE STRATEGY</button>
+                    <button onclick="switchTrack('intel')" id="tab-intel" class="track-tab">TRACK 2: DIGITAL FACTORY INTEL</button>
+                </div>
+            </div>
+
+            <!-- Mobile Select -->
+            <div class="md:hidden p-4 bg-white border-b border-gray-200">
                 <select id="mobile-select" class="w-full p-2 border border-gray-300 rounded font-bold text-sm" onchange="loadModule(this.value)">
                     <!-- Options injected here -->
                 </select>
             </div>
 
-            <!-- Header -->
+            <!-- Module Header -->
             <div class="px-8 pt-8 pb-4">
                 <h1 id="module-title" class="text-3xl font-bold text-black mb-2">Select a Module</h1>
                 <p id="module-desc" class="text-gray-500">Explore the strategic pillars of the Decision Centric Enterprise.</p>
             </div>
 
-            <!-- THE GRID -->
+            <!-- GRID -->
             <div id="card-grid" class="card-grid">
-                <!-- Flashcards injected here -->
+                <!-- Cards injected here -->
             </div>
 
-            <div class="h-20"></div> <!-- Spacer -->
+            <div class="h-20"></div>
         </main>
     </div>
 
-    <!-- APP LOGIC -->
+    <!-- DATA & LOGIC -->
     <script>
-        // --- CONTENT DATABASE ---
+        // --- COMPLETE 12-MODULE DATASET ---
         const modules = [
+            // TRACK 1: DCE STRATEGY (Indices 0-5)
             {
-                id: 0,
-                title: "1. The Burning Platform",
-                desc: "Understanding the Market Context & Urgency",
+                title: "1. Strategic Context",
+                desc: "The Burning Platform & Urgency",
                 cards: [
-                    { q: "What is 'Permacrisis'?", a: "A state of persistent instability (War, Energy, Supply, Tech) where static processes fail because variables change constantly." },
-                    { q: "What is the 'Sick Man of Europe' stat?", a: "Germany ranks 18th of 21 industrial economies (ZEW Ranking). We are losing competitiveness due to a 'Digital Lag'." },
-                    { q: "What is 'Shock Digitalization'?", a: "The argument that incremental pilots are too slow. Companies need a radical digital overhaul to survive de-industrialization." },
-                    { q: "How is LkSG (Supply Chain Act) a 'Trojan Horse'?", a: "Compliance forces companies to build deep-tier visibility, which inadvertently creates the data backbone needed for a DCE." },
-                    { q: "What is the 'Tech Triad'?", a: "<b>1. IIoT/5G:</b> The Nervous System (Visibility).<br><b>2. Big Data:</b> The Brain (Insight).<br><b>3. GenAI:</b> The Accelerator (Speed)." }
+                    { q: "What is 'Permacrisis'?", a: "A state of persistent instability (War, Energy, Supply) where static processes fail because variables change constantly." },
+                    { q: "Sick Man of Europe Stat", a: "Germany ranks 18th of 21 industrial economies (ZEW). Competitiveness is lost due to a 'Digital Lag'." },
+                    { q: "Shock Digitalization", a: "The argument that incremental pilots are too slow. Radical digital overhaul is needed to prevent de-industrialization." },
+                    { q: "The LkSG 'Trojan Horse'", a: "Using Supply Chain Act compliance to force deep-tier visibility, creating the backbone for a DCE." },
+                    { q: "The Tech Triad", a: "<b>1. IIoT/5G:</b> Nervous System.<br><b>2. Big Data:</b> Brain.<br><b>3. GenAI:</b> Accelerator." }
                 ]
             },
             {
-                id: 1,
                 title: "2. Psychology & Culture",
-                desc: "Navigating the European Mindset",
+                desc: "Navigating the Mindset Gap",
                 cards: [
-                    { q: "What is 'Angststillstand'?", a: "Fear-induced stagnation. CEOs are paralyzed between today's crises (Supply/Talent) and tomorrow's tech (AI)." },
-                    { q: "Explain 'Burger vs. Döner'", a: "<b>USA (Burger):</b> 'Vision of Winning'. Start now, fix later.<br><b>Europe (Döner):</b> 'Fear of Losing'. Think to the end. Avoid all errors." },
-                    { q: "The Poet (Archetype)", a: "<b>Europe:</b> Reflects on meaning and narrative. Needs a story and context before acting." },
-                    { q: "The Thinker (Archetype)", a: "<b>Europe:</b> Analyzes systems and risks. Demands 100% accuracy and security. Prone to paralysis." },
-                    { q: "The Doer (Archetype)", a: "<b>USA:</b> Executes immediately. Iterates. Our goal is to use Data to give the 'Thinker' the courage to become a 'Doer'." },
-                    { q: "The Trust Pyramid", a: "<b>Base:</b> Empathy (Validate their fear).<br><b>Middle:</b> Authority (150 years experience).<br><b>Top:</b> Partnership (Long-term alliance)." }
+                    { q: "What is 'Angststillstand'?", a: "Fear-induced stagnation. CEOs paralyzed between today's crises and tomorrow's AI." },
+                    { q: "Burger vs. Döner", a: "<b>US (Burger):</b> Start now, fix later (Winning).<br><b>EU (Döner):</b> Plan to end, avoid error (Fear of Losing)." },
+                    { q: "The Poet (Archetype)", a: "Reflects on meaning. Needs narrative and context before acting." },
+                    { q: "The Thinker (Archetype)", a: "Analyzes risks. Demands 100% accuracy. Prone to paralysis." },
+                    { q: "The Doer (Archetype)", a: "Executes immediately. Our goal: Use data to give the 'Thinker' the courage to become a 'Doer'." },
+                    { q: "Trust Pyramid", a: "Base: Empathy. Middle: Authority. Top: Partnership." }
                 ]
             },
             {
-                id: 2,
                 title: "3. Solution Architecture",
-                desc: "The Engine of the DCE",
+                desc: "The DCE Engine",
                 cards: [
-                    { q: "The Great Synergy", a: "<b>Logility:</b> Strategic Eye (Planning/Forecasting).<br><b>Germanedge:</b> Operational Hand (Execution/Shop Floor)." },
-                    { q: "What is Edge.One?", a: "A PaaS Integration Hub (Unified Production Workplace) that connects legacy ERPs, SCADA, and apps into one flow." },
-                    { q: "Pillar 1: Speed", a: "Reducing the concept-to-cash cycle. Eliminating the latency between an event occurring and the reaction." },
-                    { q: "Pillar 2: Flexibility", a: "Modular consistency. Reconfiguring production lines and supply routes overnight without breaking the system." },
-                    { q: "Pillar 3: Resilience", a: "Security-by-design and predictive continuity. Absorbing shocks (cyber/supply) without stopping." },
-                    { q: "Pillar 4: Courage", a: "The cultural output. Using predictive certainty to lower the risk threshold for bold decisions." }
+                    { q: "The Great Synergy", a: "<b>Logility:</b> Strategic Eye (Plan).<br><b>Germanedge:</b> Operational Hand (Execute)." },
+                    { q: "What is Edge.One?", a: "A PaaS Integration Hub (Unified Production Workplace) connecting ERP, SCADA, and Apps." },
+                    { q: "Pillar 1: Speed", a: "Reducing concept-to-cash cycle. Removing decision latency." },
+                    { q: "Pillar 2: Flexibility", a: "Modular consistency. Reconfiguring lines overnight without breaking the system." },
+                    { q: "Pillar 3: Resilience", a: "Absorbing shocks (cyber/supply) via security-by-design and prediction." },
+                    { q: "Pillar 4: Courage", a: "Using predictive certainty to lower the risk threshold for bold decisions." }
                 ]
             },
             {
-                id: 3,
                 title: "4. Sales Playbook",
-                desc: "Winning Tactics & Arguments",
+                desc: "Winning Tactics",
                 cards: [
-                    { q: "The Anti-SAP Argument", a: "<b>Accountant vs. Engineer.</b><br>SAP runs the office (Finance). We run the factory (Operations). Don't use a finance tool to run a machine." },
-                    { q: "Lesson from ZF: 'Phase Mismatch'", a: "If the customer is in 'Evaluation' (Excel sheets), stop 'Vision Selling'. Map features directly to their requirements line-by-line." },
-                    { q: "The 'Hidden Stakeholder' Tactic", a: "Create a 5-minute video highlight reel for the executives who will vote but never attend the demo." },
-                    { q: "Customer Intimacy Platform (CIP)", a: "A portal for existing customers to access knowledge. Used to detect upsell signals based on what they search for." },
-                    { q: "The Flow Economy Formula", a: "(Speed + Flexibility + Resilience) × Courage = Flow Economy" }
+                    { q: "Beating SAP", a: "<b>Accountant vs. Engineer.</b> SAP runs the office (Finance). We run the factory (Ops)." },
+                    { q: "ZF Lesson: Phase Mismatch", a: "Stop 'Vision Selling' when the customer is in 'Evaluation' mode. Map features to spreadsheets." },
+                    { q: "Hidden Stakeholder", a: "Create a 5-min video reel for executives who vote but never attend demos." },
+                    { q: "Customer Intimacy Platform", a: "A portal for existing customers. Use search data to detect upsell signals." },
+                    { q: "Flow Economy Formula", a: "(Speed + Flexibility + Resilience) × Courage = Flow Economy" }
                 ]
             },
             {
-                id: 4,
                 title: "5. Technical Roadmap",
-                desc: "The Implementation Journey",
+                desc: "Implementation Journey",
                 cards: [
-                    { q: "Stage 1: Connectivity", a: "<b>Goal: Visibility.</b><br>Implement IIoT and 5G to see what is happening in real-time." },
-                    { q: "Stage 2: Analytics", a: "<b>Goal: Understanding.</b><br>Aggregate data via Edge.One to know *why* it is happening." },
-                    { q: "Stage 3: Prediction", a: "<b>Goal: Foresight.</b><br>The DCE Core. Using AI/ML to predict failures before they occur." },
-                    { q: "Stage 4: Autonomous Flow", a: "<b>Goal: Autonomy.</b><br>Self-optimizing lines. Human intervention only for strategic oversight." },
-                    { q: "Cybersecurity Stance", a: "We secure the decision loop. Segregating critical OT networks while allowing secure data passage to the cloud." }
+                    { q: "Stage 1: Connectivity", a: "Goal: Visibility. Implement IIoT/5G to see what is happening." },
+                    { q: "Stage 2: Analytics", a: "Goal: Understanding. Aggregate data to know WHY it happened." },
+                    { q: "Stage 3: Prediction", a: "Goal: Foresight. DCE Core. AI predicts failures before they occur." },
+                    { q: "Stage 4: Autonomous Flow", a: "Goal: Autonomy. Self-optimizing lines. Human strategy only." },
+                    { q: "Cybersecurity", a: "We secure the decision loop. Segregating OT networks from public internet." }
+                ]
+            },
+            {
+                title: "6. Brand Identity",
+                desc: "Tone of Voice",
+                cards: [
+                    { q: "Brand Promise", a: "In the moment of truth, empowering you to take the right decision." },
+                    { q: "Tone of Voice", a: "The 'Professional Provocateur'. Reliable but challenging the status quo." },
+                    { q: "Brand Architecture", a: "'Germanedge is an Aptean company.' Combine German agility with US scale." },
+                    { q: "Key Message", a: "'Germany, Stop Whining!' - Move from analysis to action." }
+                ]
+            },
+            // TRACK 2: DIGITAL FACTORY INTEL (Indices 6-11)
+            {
+                title: "7. Portfolio & Factory 0",
+                desc: "The Disruptive Offer",
+                cards: [
+                    { q: "The 4 Pillars", a: "1. MES (GEFASOFT)<br>2. Planning (ORSOFT)<br>3. Quality (QDA)<br>4. Worker (New Solutions)" },
+                    { q: "Factory 0 Concept", a: "Pre-defined end-to-end processes for immediate value. Zero setup time." },
+                    { q: "Speed USP", a: "Deployment in <b>under 10 minutes</b> vs traditional months." },
+                    { q: "App Composer", a: "Low-code capability for 2-week agile enhancement cycles." },
+                    { q: "Target Matrix", a: "<b>Regions:</b> DACH & Nordics.<br><b>Industries:</b> Auto, Pharma, Electronics." }
+                ]
+            },
+            {
+                title: "8. MES Landscape",
+                desc: "GEFASOFT Domain",
+                cards: [
+                    { q: "Top Incumbents", a: "Siemens, Rockwell, SAP. Strengths: Scale. Weakness: Monolithic/Slow." },
+                    { q: "The Disruptor", a: "<b>Tulip:</b> No-code platform. Wins on agility and ease of use." },
+                    { q: "Cloud Trend", a: "Cloud MES growing to $24B by 2031. Driven by multi-site scalability." },
+                    { q: "AI in MES", a: "Predictive Maintenance & Quality are now standard requirements." },
+                    { q: "Our Positioning", a: "'End-to-End, Yet Modular'. Integrated platform vs point solutions." }
+                ]
+            },
+            {
+                title: "9. Supply Chain Planning",
+                desc: "ORSOFT Domain",
+                cards: [
+                    { q: "The Leaders", a: "Kinaxis, o9 Solutions, Blue Yonder. (Gartner Magic Quadrant)." },
+                    { q: "The Unicorn", a: "<b>o9 Solutions:</b> The 'Digital Brain'. Growing fast via Graph tech." },
+                    { q: "AI Forecasting", a: "Demand sensing using external data (weather, trends) vs historic data." },
+                    { q: "Integration Edge", a: "ORSOFT's deep certification inside SAP. No separate data silo needed." },
+                    { q: "Startup Agility", a: "New players (Relex, Pigment) win on speed (Weeks vs Months implementation)." }
+                ]
+            },
+            {
+                title: "10. Quality & LIMS",
+                desc: "QDA Domain",
+                cards: [
+                    { q: "The Old Guard", a: "ETQ, MasterControl, TrackWise. Reliable but heavy/expensive." },
+                    { q: "Predictive Quality", a: "The shift from 'inspecting defects out' to 'predicting them away' with AI." },
+                    { q: "Phantom of Heilbronn", a: "Story hook: High cost of lab failure (DNA contamination case)." },
+                    { q: "LIMS Disruptors", a: "Benchling & Labguru. Modern, R&D focused, cloud-native." },
+                    { q: "Regulatory Drivers", a: "EU MDR & FDA 21 CFR Part 11 are major sales catalysts." }
+                ]
+            },
+            {
+                title: "11. Connected Worker",
+                desc: "New Solutions Domain",
+                cards: [
+                    { q: "EAM Market Leader", a: "IFS (#1 Market Share). Focus on Asset Lifecycle." },
+                    { q: "Consumer-App Threat", a: "MaintainX & UpKeep. Winning because workers actually like the UX." },
+                    { q: "Demographic Gap", a: "Capturing tribal knowledge from retiring workers for the next gen." },
+                    { q: "The Integrated USP", a: "A checklist app fails without MES integration. We connect the worker to the machine." },
+                    { q: "ROI Logic", a: "Reducing shift handover times by 50%." }
+                ]
+            },
+            {
+                title: "12. Strategy & OKRs",
+                desc: "Execution Targets",
+                cards: [
+                    { q: "Enterprise Strategy", a: "Sell Scalability, Security, and 'Transformation Partner' status." },
+                    { q: "Mid-Market Strategy", a: "Sell 'Turnkey Cloud', Low TCO, and Quick Wins." },
+                    { q: "Trojan Horse", a: "Use LkSG (Supply Chain Act) compliance to sell the platform." },
+                    { q: "Objective: DACH", a: "Win 5 new enterprise customers in target sectors by 2025." },
+                    { q: "Objective: Innovation", a: "Release 4 new AI-powered features by 2025." }
                 ]
             }
         ];
 
-        // --- RENDER LOGIC ---
-        
+        // --- APP STATE ---
+        let currentTrack = 'strategy'; // 'strategy' or 'intel'
+        let currentModuleIndex = 0;
+
+        // --- LOGIC ---
         function init() {
+            switchTrack('strategy');
+        }
+
+        function switchTrack(track) {
+            currentTrack = track;
+            
+            // Update Tabs
+            document.getElementById('tab-strategy').className = `track-tab ${track === 'strategy' ? 'active' : ''}`;
+            document.getElementById('tab-intel').className = `track-tab ${track === 'intel' ? 'active' : ''}`;
+
+            // Determine Module Range
+            const startIndex = track === 'strategy' ? 0 : 6;
+            loadModule(startIndex); // Load first module of track
             renderSidebar();
-            loadModule(0); // Load first module by default
         }
 
         function renderSidebar() {
             const list = document.getElementById('module-list');
             const select = document.getElementById('mobile-select');
             
-            list.innerHTML = modules.map((m, i) => `
-                <div onclick="loadModule(${i})" id="mod-btn-${i}" class="module-btn ${i === 0 ? 'active' : ''}">
+            // Filter modules based on track
+            const start = currentTrack === 'strategy' ? 0 : 6;
+            const end = currentTrack === 'strategy' ? 6 : 12;
+            
+            const activeModules = modules.slice(start, end);
+
+            list.innerHTML = activeModules.map((m, i) => {
+                const globalIndex = start + i;
+                return `
+                <div onclick="loadModule(${globalIndex})" id="mod-btn-${globalIndex}" class="module-btn ${globalIndex === currentModuleIndex ? 'active' : ''}">
                     <div class="module-number">${i + 1}</div>
                     <div>
                         <p class="text-sm font-bold">${m.title}</p>
                         <p class="text-[10px] opacity-70">${m.desc}</p>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
 
-            select.innerHTML = modules.map((m, i) => `<option value="${i}">${m.title}</option>`).join('');
+            select.innerHTML = activeModules.map((m, i) => `<option value="${start + i}">${m.title}</option>`).join('');
         }
 
         function loadModule(index) {
+            currentModuleIndex = index;
             const mod = modules[index];
             
             // Update Text
             document.getElementById('module-title').innerText = mod.title;
             document.getElementById('module-desc').innerText = mod.desc;
 
-            // Update UI Active States
-            document.querySelectorAll('.module-btn').forEach(b => b.classList.remove('active'));
-            const activeBtn = document.getElementById(`mod-btn-${index}`);
-            if(activeBtn) activeBtn.classList.add('active');
+            // Update Sidebar UI
+            renderSidebar();
 
             // Render Cards
             const grid = document.getElementById('card-grid');
