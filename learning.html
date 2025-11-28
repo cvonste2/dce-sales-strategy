@@ -114,6 +114,7 @@
             border-radius: 6px;
             transition: all 0.2s;
             margin-bottom: 0.5rem;
+            cursor: pointer;
         }
         
         .module-btn:hover { background-color: #F3F4F6; }
@@ -161,7 +162,7 @@
                 <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Digital Factory Knowledge Hub</span>
             </div>
             <div>
-                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">DCE Sales Hub</a>
+                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
             </div>
         </div>
     </nav>
@@ -402,7 +403,14 @@
 
         // --- LOGIC ---
         function init() {
-            switchTrack('strategy');
+            try {
+                switchTrack('strategy');
+            } catch (e) {
+                console.error("Initialization failed:", e);
+                // Fallback text if JS crashes
+                document.getElementById('module-title').innerText = "System Error";
+                document.getElementById('module-desc').innerText = "Please check console for details.";
+            }
         }
 
         function switchTrack(track) {
@@ -419,8 +427,8 @@
             else if (track === 'intel') startIndex = 6;
             else if (track === 'ai') startIndex = 12;
 
-            loadModule(startIndex); // Load first module of track
-            renderSidebar();
+            // Load Content
+            loadModule(startIndex);
         }
 
         function renderSidebar() {
@@ -455,6 +463,11 @@
         function loadModule(index) {
             currentModuleIndex = index;
             const mod = modules[index];
+            
+            if (!mod) {
+                console.error("Module not found for index:", index);
+                return;
+            }
             
             // Update Text
             document.getElementById('module-title').innerText = mod.title;
