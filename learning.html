@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Germanedge | DCE Learning Hub</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Corporate CSS -->
     <link rel="stylesheet" href="css/germanedge.css?v=4">
     
     <style>
@@ -154,7 +151,6 @@
 </head>
 <body class="flex flex-col h-screen overflow-hidden">
 
-    <!-- NAVIGATION -->
     <nav class="fixed w-full z-50 ge-nav flex-shrink-0">
         <div class="max-w-full px-6 w-full flex justify-between items-center">
             <div class="flex items-center gap-4">
@@ -165,64 +161,54 @@
                 <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Digital Factory Knowledge Hub</span>
             </div>
             <div>
-                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
+                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">DCE Sales Hub</a>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN LAYOUT -->
     <div class="flex flex-1 pt-20 overflow-hidden">
         
-        <!-- SIDEBAR -->
         <aside class="w-80 bg-white border-r border-gray-200 overflow-y-auto hidden md:block flex-shrink-0">
             <div class="p-6">
                 <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6" id="sidebar-header">Modules</h3>
                 <div id="module-list">
-                    <!-- Modules injected here -->
-                </div>
+                    </div>
             </div>
             <div class="p-6 mt-auto border-t border-gray-100 bg-gray-50">
                 <p class="text-xs font-bold text-black mb-1">PRO TIP</p>
-                <p class="text-xs text-gray-500">Switch tabs above to change between Strategy and Market Intel.</p>
+                <p class="text-xs text-gray-500">Switch tabs above to change between Strategy, Intel and AI Adoption.</p>
             </div>
         </aside>
 
-        <!-- CONTENT AREA -->
         <main class="flex-1 overflow-y-auto relative bg-gray-50 flex flex-col">
             
-            <!-- TRACK TABS (THE NEW UX) -->
             <div class="px-8 pt-8 pb-0 bg-white border-b border-gray-200 sticky top-0 z-20">
-                <div class="flex">
+                <div class="flex flex-wrap">
                     <button onclick="switchTrack('strategy')" id="tab-strategy" class="track-tab active">TRACK 1: DCE STRATEGY</button>
                     <button onclick="switchTrack('intel')" id="tab-intel" class="track-tab">TRACK 2: DIGITAL FACTORY INTEL</button>
+                    <button onclick="switchTrack('ai')" id="tab-ai" class="track-tab">TRACK 3: AI ADOPTION</button>
                 </div>
             </div>
 
-            <!-- Mobile Select -->
             <div class="md:hidden p-4 bg-white border-b border-gray-200">
                 <select id="mobile-select" class="w-full p-2 border border-gray-300 rounded font-bold text-sm" onchange="loadModule(this.value)">
-                    <!-- Options injected here -->
-                </select>
+                    </select>
             </div>
 
-            <!-- Module Header -->
             <div class="px-8 pt-8 pb-4">
                 <h1 id="module-title" class="text-3xl font-bold text-black mb-2">Select a Module</h1>
                 <p id="module-desc" class="text-gray-500">Explore the strategic pillars of the Decision Centric Enterprise.</p>
             </div>
 
-            <!-- GRID -->
             <div id="card-grid" class="card-grid">
-                <!-- Cards injected here -->
-            </div>
+                </div>
 
             <div class="h-20"></div>
         </main>
     </div>
 
-    <!-- DATA & LOGIC -->
     <script>
-        // --- COMPLETE 12-MODULE DATASET ---
+        // --- COMPLETE MODULE DATASET ---
         const modules = [
             // TRACK 1: DCE STRATEGY (Indices 0-5)
             {
@@ -358,11 +344,60 @@
                     { q: "Objective: DACH", a: "Win 5 new enterprise customers in target sectors by 2025." },
                     { q: "Objective: Innovation", a: "Release 4 new AI-powered features by 2025." }
                 ]
+            },
+            // TRACK 3: AI ADOPTION (Indices 12-15)
+            {
+                title: "13. The Centaur Mindset",
+                desc: "Human-Centric AI & Symbiosis",
+                cards: [
+                    [cite_start]{ q: "What is the 'Centaur Model' in AI?", a: "A hybrid collaboration model where humans (Strategic Direction/Creativity) and AI (Data Processing/Speed) combine strengths to outperform either alone. [cite: 1]" },
+                    [cite_start]{ q: "\"AI relieves you from work, not from...\"", a: "<b>\"...Thinking.\"</b> The human remains the \"Pilot\" responsible for critical judgment, context, and final quality control. [cite: 1]" },
+                    [cite_start]{ q: "What is 'AI Triangulation'?", a: "Using multiple different AI models (e.g., ChatGPT + Claude + Perplexity) to compare perspectives and validate results, like a board of advisors. [cite: 1]" },
+                    [cite_start]{ q: "The Core Human Role in the Centaur Model", a: "<b>Quality Control & Direction.</b> The human must set the context (Prompting) and rigorously evaluate the AI's output (Editing). [cite: 1]" },
+                    [cite_start]{ q: "Iterative Workflow Principle", a: "The best results come from a \"Ping-Pong\" dialogue: Human Draft -> AI Critique -> Human Refinement -> AI Polish. [cite: 1]" },
+                    [cite_start]{ q: "Why is 'Prompt Engineering' a social skill?", a: "Because it requires empathy and clear communication context, similar to onboarding a highly intelligent but literal-minded human intern. [cite: 1]" }
+                ]
+            },
+            {
+                title: "14. AI as a Social Partner",
+                desc: "Overcoming Social Friction",
+                cards: [
+                    [cite_start]{ q: "The \"Invisible Assistant\" Ideal", a: "AI should function like a \"Digital Shadow\" or \"Prompter in a Theater\"—always present and helpful, but never dominating the stage. [cite: 1]" },
+                    [cite_start]{ q: "\"Human-in-Control\" Principle", a: "The psychological necessity that humans must always feel they can intervene and steer the AI, reducing stress and rejection. [cite: 1]" },
+                    { q: "The \"Polarity Map\" of Team AI", a: "Teams must balance two poles: **Efficiency/Control** (AI Automation) vs. **Exploration/Learning** (Human Creativity). [cite_start]Both are needed. [cite: 1]" },
+                    { q: "Neuroscience of AI Adoption", a: "\"Visible\" automation can trigger threat responses (Cortisol). [cite_start]\"Invisible/Supportive\" automation triggers trust (Oxytocin). [cite: 1]" },
+                    [cite_start]{ q: "Artificial Colleagues vs. Tools", a: "Moving from viewing AI as a \"Calculator\" to viewing it as a \"Team Member\" (e.g., An Artificial Expert for Quality or an Artificial Challenger for Strategy). [cite: 1]" },
+                    [cite_start]{ q: "The Cultural Catalyst Effect", a: "AI forces teams to ask \"Who are we?\" and \"What is our purpose?\", acting as a mirror that accelerates cultural transformation. [cite: 1]" }
+                ]
+            },
+            {
+                title: "15. Leadership in the Age of Speed",
+                desc: "Dromology & Resonance",
+                cards: [
+                    { q: "What is 'Dromology'?", a: "The study of speed (derived from *dromos*). [cite_start]It posits that speed is the primary engine of modern power and societal change. [cite: 1]" },
+                    [cite_start]{ q: "The Danger of \"Rasender Stillstand\"", a: "<b>\"Frenzied Standstill.\"</b> A state where high-speed activity (Frantic AI loops) leads to a loss of meaning and no actual progress. [cite: 1]" },
+                    [cite_start]{ q: "What are \"Resonance Spaces\" (Resonanzräume)?", a: "Deliberate pauses or \"slow zones\" created by leaders to allow teams to digest information and reflect, counteracting the speed of AI. [cite: 1]" },
+                    [cite_start]{ q: "The Paradox of Acceleration", a: "As AI accelerates information flow, the *time* available for human decision-making shrinks, increasing the risk of \"Decision Paralysis.\" [cite: 1]" },
+                    [cite_start]{ q: "The \"Sprint & Pause\" Rhythm", a: "A leadership strategy: Alternate between high-speed AI execution sprints and slow, human-centric reflection phases. [cite: 1]" },
+                    [cite_start]{ q: "Speed as a Power Factor", a: "In a Dromological organization, power belongs to those who control the *tempo* of information, not just the content. [cite: 1]" }
+                ]
+            },
+            {
+                title: "16. Strategic Execution",
+                desc: "Culture, Governance & KPIs",
+                cards: [
+                    { q: "The \"Scaling Gap\" Statistic", a: "74% of companies fail to scale AI beyond the pilot phase. [cite_start]The barrier is rarely technology, but **Culture and Governance**. [cite: 1]" },
+                    [cite_start]{ q: "Leadership Formula for AI", a: "<b>Leadership = Technology × Culture.</b> You cannot buy adoption; you must cultivate the social acceptance of the tool. [cite: 1]" },
+                    { q: "The \"Early vs. Late\" Risk", a: "Investing too early is expensive (learning curve). Investing too late is dangerous (market irrelevance). [cite_start]The sweet spot is \"Strategic Exploration.\" [cite: 1]" },
+                    { q: "Types of AI Integration", a: "1. **Embedded:** Invisible (e.g., Spam filter). 2. **Copilot:** Collaborative (e.g., Coding assistant). 3. [cite_start]**Agent:** Autonomous (e.g., Auto-booking). [cite: 1]" },
+                    [cite_start]{ q: "The \"Social Competence\" Bias", a: "The risk that employees using AI are perceived as \"lazy\" or \"less competent.\" Leaders must reframe AI usage as \"Smart Leverage.\" [cite: 1]" },
+                    [cite_start]{ q: "Strategic KPI for AI", a: "Don't just measure \"Time Saved.\" Measure \"Quality Gained\" and \"Employee Satisfaction\" (Trust in the tool). [cite: 1]" }
+                ]
             }
         ];
 
         // --- APP STATE ---
-        let currentTrack = 'strategy'; // 'strategy' or 'intel'
+        let currentTrack = 'strategy'; // 'strategy', 'intel', or 'ai'
         let currentModuleIndex = 0;
 
         // --- LOGIC ---
@@ -376,9 +411,14 @@
             // Update Tabs
             document.getElementById('tab-strategy').className = `track-tab ${track === 'strategy' ? 'active' : ''}`;
             document.getElementById('tab-intel').className = `track-tab ${track === 'intel' ? 'active' : ''}`;
+            document.getElementById('tab-ai').className = `track-tab ${track === 'ai' ? 'active' : ''}`;
 
             // Determine Module Range
-            const startIndex = track === 'strategy' ? 0 : 6;
+            let startIndex = 0;
+            if (track === 'strategy') startIndex = 0;
+            else if (track === 'intel') startIndex = 6;
+            else if (track === 'ai') startIndex = 12;
+
             loadModule(startIndex); // Load first module of track
             renderSidebar();
         }
@@ -388,8 +428,12 @@
             const select = document.getElementById('mobile-select');
             
             // Filter modules based on track
-            const start = currentTrack === 'strategy' ? 0 : 6;
-            const end = currentTrack === 'strategy' ? 6 : 12;
+            let start = 0;
+            let end = 6;
+
+            if (currentTrack === 'strategy') { start = 0; end = 6; }
+            else if (currentTrack === 'intel') { start = 6; end = 12; }
+            else if (currentTrack === 'ai') { start = 12; end = 16; }
             
             const activeModules = modules.slice(start, end);
 
