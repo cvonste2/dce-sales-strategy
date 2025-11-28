@@ -24,9 +24,9 @@ h1, h2, h3, h4, h5 {
     letter-spacing: -0.02em;
 }
 
-/* --- NAVIGATION (Forced Black) --- */
+/* --- NAVIGATION (Forced Black with !important to override any defaults) --- */
 .ge-nav {
-    background-color: #000000 !important; /* Force Black */
+    background-color: #000000 !important; /* Force Black Background */
     border-bottom: 1px solid rgba(255,255,255,0.1);
     height: 80px;
     display: flex;
