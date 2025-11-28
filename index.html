@@ -15,19 +15,11 @@
     <!-- Accent Color: #C14953 (Muted Red/Terracotta for 'Action/Friction') -->
     
     <!-- Application Structure Plan:
-         1. Lock Screen: Simple password protection (DCE2025).
-         2. Navigation: Sticky header with NEW Logo Placeholder.
-         3. Hero Section: High-level Value Prop.
-         4. The "European Theatre" Dashboard: Friction Visualization.
-         5. Competitive Landscape: Bubble chart positioning.
-         6. The 12-Month Strategic Plan: Interactive timeline.
-    -->
-
-    <!-- Visualization & Content Choices:
-         - Friction Chart: Doughnut
-         - Competitor Matrix: Bubble
-         - Interaction: Clickable Timeline
-         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+         1. Navigation: Sticky header with Dual-Brand Logo.
+         2. Hero Section: High-level Value Prop.
+         3. The "European Theatre" Dashboard: Friction Visualization.
+         4. Competitive Landscape: Bubble chart positioning.
+         5. The 12-Month Strategic Plan: Interactive timeline.
     -->
 
     <style>
@@ -35,46 +27,21 @@
         .chart-container { position: relative; width: 100%; max-width: 600px; margin: auto; height: 350px; max-height: 400px; }
         .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
         .nav-active { border-bottom: 2px solid #C14953; color: #C14953; }
-        
-        /* Lock Screen Styles */
-        #lock-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #2D2D2A; z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; color: white;
-        }
         .hidden { display: none !important; }
     </style>
 </head>
-<body class="flex flex-col min-h-screen overflow-hidden" id="main-body">
-
-    <!-- LOGIN OVERLAY -->
-    <div id="lock-screen">
-        <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-xl max-w-sm mx-4 shadow-2xl border border-white/20">
-            <h2 class="text-2xl font-bold mb-4 text-white">Restricted Access</h2>
-            <p class="text-gray-300 mb-6 text-sm">Please enter the access code to view the DCE Sales Strategy.</p>
-            <input type="password" id="password-input" placeholder="Enter Access Code" 
-                   class="w-full p-3 rounded bg-white text-black mb-4 focus:outline-none focus:ring-2 focus:ring-[#C14953]"
-                   onkeyup="checkEnter(event)">
-            <button onclick="checkPassword()" class="w-full bg-[#C14953] hover:bg-[#a63d46] text-white font-bold py-3 rounded transition-colors shadow-lg">
-                Unlock Strategy
-            </button>
-            <p id="error-msg" class="text-red-400 text-xs mt-3 hidden">Incorrect Access Code</p>
-        </div>
-    </div>
+<body class="flex flex-col min-h-screen">
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#E8E4D9] shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <!-- NEW LOGO AREA -->
+                <!-- Dual Brand Logo -->
                 <div class="flex items-center gap-3">
-                    <!-- Brand Mark -->
                     <div class="flex h-9 bg-white border border-gray-200 rounded-md overflow-hidden shadow-sm">
                          <div class="w-9 bg-[#2D2D2A] flex items-center justify-center text-white font-bold text-sm">G</div>
                          <div class="w-9 bg-[#C14953] flex items-center justify-center text-white font-bold text-sm">L</div>
                     </div>
-                    <!-- Text -->
                     <div class="flex flex-col justify-center">
                         <span class="text-lg font-bold tracking-tight text-[#2D2D2A] leading-none">DCE <span class="text-[#C14953]">Strategy</span></span>
                         <span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Germanedge & Logility</span>
@@ -88,7 +55,7 @@
                     <button onclick="scrollToSection('roadmap')" class="nav-link text-sm font-medium hover:text-[#C14953] transition-colors">12-Month Plan</button>
                 </div>
                 
-                <!-- Mobile Menu Icon (Placeholder) -->
+                <!-- Mobile Menu Icon -->
                 <div class="md:hidden flex items-center">
                     <button class="text-gray-500 hover:text-[#C14953]">
                         <span class="text-2xl">☰</span>
@@ -279,25 +246,6 @@
     </footer>
 
     <script>
-        // --- PASSWORD LOGIC ---
-        const ACCESS_CODE = "DCE2025"; // CHANGE THIS CODE HERE IF NEEDED
-
-        function checkPassword() {
-            const input = document.getElementById('password-input').value;
-            const errorMsg = document.getElementById('error-msg');
-            const lockScreen = document.getElementById('lock-screen');
-            const mainBody = document.getElementById('main-body');
-
-            if(input === ACCESS_CODE) {
-                lockScreen.classList.add('hidden');
-                mainBody.classList.remove('overflow-hidden');
-                loadCharts();
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        }
-        function checkEnter(e) { if(e.key === "Enter") checkPassword(); }
-
         // --- DATA & CONTENT ---
         const state = {
             competitorData: [
@@ -366,6 +314,9 @@
                 }
             });
         }
+
+        // Initialize Charts when DOM is ready
+        document.addEventListener('DOMContentLoaded', loadCharts);
     </script>
 </body>
 </html>
