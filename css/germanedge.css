@@ -1,21 +1,14 @@
-/* --- GERMANEDGE WEBSITE THEME (Black & Yellow) --- */
+/* --- GERMANEDGE WEBSITE THEME (Corrected) --- */
 :root {
-    /* Brand Colors extracted from Screenshot */
     --ge-black: #000000;
     --ge-dark-grey: #1A1A1A;
-    --ge-yellow: #FFD100; /* Vibrant Corporate Yellow */
+    --ge-yellow: #FFD100;
     --ge-white: #FFFFFF;
-    --ge-grey-text: #9CA3AF;
     
-    /* Typography - Matching the website's clean, bold look */
     --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
-    
-    /* Spacing & UI */
-    --radius-sm: 2px; /* Sharper corners like the website */
-    --radius-md: 4px;
+    --radius-sm: 2px;
 }
 
-/* --- BASE SETTINGS --- */
 body {
     font-family: var(--font-primary);
     background-color: var(--ge-white);
@@ -26,14 +19,14 @@ body {
 
 h1, h2, h3, h4, h5 {
     font-family: var(--font-primary);
-    font-weight: 800; /* Extra Bold */
-    text-transform: uppercase; /* Website style */
+    font-weight: 800;
+    text-transform: uppercase;
     letter-spacing: -0.02em;
 }
 
-/* --- NAVIGATION (Black Bar) --- */
+/* --- NAVIGATION (Forced Black) --- */
 .ge-nav {
-    background-color: var(--ge-black);
+    background-color: #000000 !important; /* Force Black */
     border-bottom: 1px solid rgba(255,255,255,0.1);
     height: 80px;
     display: flex;
@@ -41,29 +34,29 @@ h1, h2, h3, h4, h5 {
 }
 
 .ge-nav-link {
-    color: var(--ge-white);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: none; /* Menu items are mixed case on site */
-    transition: color 0.2s;
+    color: #FFFFFF !important; /* Force White Text */
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
     padding: 0.5rem 1rem;
+    transition: color 0.2s;
 }
 
 .ge-nav-link:hover {
-    color: var(--ge-yellow);
+    color: var(--ge-yellow) !important;
 }
 
-/* Primary Yellow Button (Website Style) */
+/* Primary Button */
 .ge-btn-primary {
     background-color: var(--ge-yellow);
     color: var(--ge-black);
     font-weight: 700;
     font-size: 0.9rem;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-sm); /* Slight radius, mostly square */
-    text-transform: none;
-    transition: transform 0.2s, background-color 0.2s;
+    border-radius: var(--radius-sm);
     border: none;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .ge-btn-primary:hover {
@@ -87,7 +80,7 @@ h1, h2, h3, h4, h5 {
     color: var(--ge-black);
 }
 
-/* --- HERO SECTION --- */
+/* --- SECTIONS --- */
 .hero-section {
     background-color: var(--ge-black);
     color: var(--ge-white);
@@ -95,37 +88,21 @@ h1, h2, h3, h4, h5 {
     overflow: hidden;
 }
 
-.hero-overlay {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,1));
-}
-
-/* --- CARDS & TILES --- */
-.ge-card {
-    background: var(--ge-white);
-    border: 1px solid #E5E7EB;
-    border-radius: var(--radius-sm);
-    transition: all 0.3s ease;
-}
-
-.ge-card:hover {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transform: translateY(-5px);
-    border-bottom: 4px solid var(--ge-yellow); /* Corporate Accent */
-}
-
-/* Dark Cards for Black Sections */
+/* Cards */
 .ge-card-dark {
     background: #111;
     border: 1px solid #333;
     border-radius: var(--radius-sm);
     color: white;
+    transition: all 0.3s;
 }
 
 .ge-card-dark:hover {
     border-color: var(--ge-yellow);
+    transform: translateY(-2px);
 }
 
-/* --- PLAN STEPS --- */
+/* Plan Steps */
 .plan-step {
     border-left: 4px solid #E5E7EB;
     padding: 1.5rem;
@@ -138,20 +115,14 @@ h1, h2, h3, h4, h5 {
     background-color: #FAFAFA;
 }
 
-.plan-step h4 {
-    text-transform: none;
-    font-weight: 700;
-}
-
 .plan-step.active h4 {
-    color: var(--ge-black); /* Keep text black for readability */
+    color: var(--ge-black);
 }
 
-/* --- UTILITIES --- */
+/* Utilities */
 .text-ge-yellow { color: var(--ge-yellow); }
 .bg-ge-yellow { background-color: var(--ge-yellow); }
-.border-ge-yellow { border-color: var(--ge-yellow); }
 
-/* --- VIDEO MODAL --- */
+/* Modal */
 #video-modal { transition: opacity 0.3s ease; }
 #video-modal.hidden { pointer-events: none; opacity: 0; }

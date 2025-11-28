@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Germanedge | Sales Enablement Hub</title>
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Inter Font (Matches Website) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Corporate CSS -->
-    <link rel="stylesheet" href="css/germanedge.css">
+    
+    <!-- VERSIONED CSS LINK TO FORCE REFRESH -->
+    <link rel="stylesheet" href="css/germanedge.css?v=2">
 </head>
 <body class="antialiased">
 
@@ -27,20 +25,16 @@
         </div>
     </div>
 
-    <!-- NAVIGATION (Black Bar) -->
+    <!-- NAVIGATION (Forced Black via CSS) -->
     <nav class="fixed w-full z-50 ge-nav">
         <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-            <!-- Logo Area -->
             <div class="flex items-center gap-4">
-                <!-- Simple Text Logo to match style if SVG unavailable -->
                 <div class="text-white text-2xl font-bold tracking-tight flex items-center gap-2">
-                    <span class="text-3xl">∞</span> Germanedge
+                    <span class="text-3xl text-ge-yellow">∞</span> Germanedge
                 </div>
                 <div class="hidden md:block w-px h-6 bg-gray-700 mx-2"></div>
-                <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Sales Hub</span>
+                <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">DCE Sales Hub</span>
             </div>
-            
-            <!-- Menu -->
             <div class="hidden md:flex items-center gap-6">
                 <button onclick="scrollToId('theatre')" class="ge-nav-link">Market Context</button>
                 <button onclick="scrollToId('culture')" class="ge-nav-link">Mindset</button>
@@ -50,22 +44,22 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Matches Website Screenshot) -->
+    <!-- HERO SECTION -->
     <header class="hero-section pt-40 pb-32 relative">
-        <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-20">
             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
-
         <div class="relative z-10 max-w-7xl mx-auto px-4">
-            <div class="fade-in-up max-w-3xl">
+            <div class="max-w-3xl">
+                <span class="inline-block py-1 px-3 rounded bg-gray-800 text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">Internal Strategy V1.0</span>
                 <h1 class="text-5xl md:text-7xl text-white mb-6 leading-tight">
                     GERMANEDGE:<br>
                     <span class="text-ge-yellow">DECISION CENTRIC ENTERPRISE.</span>
                 </h1>
                 <p class="text-xl text-gray-300 mb-10 max-w-xl font-light">
-                    Empowering our customers to take the right decision in the moment of truth. The foundation for a long-term partnership.
+                    In the moment of truth, empowering customers to take the right decision. 
+                    <strong>The foundation for a long-term partnership.</strong>
                 </p>
                 <div class="flex gap-4">
                     <button onclick="scrollToId('plan')" class="ge-btn-primary">View Execution Plan →</button>
@@ -73,43 +67,44 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Bottom Yellow Bar Accent -->
         <div class="absolute bottom-0 left-0 w-1/3 h-2 bg-ge-yellow"></div>
     </header>
 
-    <!-- SECTION 1: THE THEATRE (Dark Mode to match Hero) -->
+    <!-- SECTION 1: THE THEATRE (Content Restored) -->
     <section id="theatre" class="py-24 bg-[#111] text-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                    <h2 class="text-4xl text-white mb-6">THE MARKET IS <span class="text-ge-yellow">BURNING</span>.</h2>
-                    <p class="text-gray-400 text-lg mb-8">The "Old Way" of planning is dead. European leaders are trapped in a state of crisis.</p>
+                    <h2 class="text-4xl text-white mb-6">THE EUROPEAN THEATRE IS <span class="text-ge-yellow">BURNING</span>.</h2>
+                    <p class="text-gray-400 text-lg mb-8">
+                        The "Old Way" of planning is dead. Decision makers are trapped between actual challenges and lightspeed technology.
+                    </p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Card 1 -->
+                        <!-- Restored Detail Cards -->
                         <div class="ge-card-dark p-6">
                             <div class="flex justify-between mb-4"><span class="text-2xl">💣</span><span class="text-xs font-bold text-gray-500 uppercase">Risk</span></div>
-                            <h4 class="text-lg mb-2">Geopolitics</h4>
-                            <p class="text-sm text-gray-400">Trade routes vanishing. Sanctions overnight.</p>
+                            <h4 class="text-lg mb-2">Geopolitics & War</h4>
+                            <p class="text-xs text-gray-400 mb-3">Trade routes vanishing. Sanctions overnight.</p>
+                            <div class="border-t border-gray-800 pt-2"><p class="text-xs font-bold text-ge-yellow">ASK:</p><p class="text-xs text-white italic">"How fast can you pivot if a key supplier is sanctioned?"</p></div>
                         </div>
-                        <!-- Card 2 -->
                         <div class="ge-card-dark p-6">
                             <div class="flex justify-between mb-4"><span class="text-2xl">📉</span><span class="text-xs font-bold text-gray-500 uppercase">Finance</span></div>
-                            <h4 class="text-lg mb-2">Recession</h4>
-                            <p class="text-sm text-gray-400">Tariffs rising. Margins shrinking.</p>
+                            <h4 class="text-lg mb-2">Recession Trap</h4>
+                            <p class="text-xs text-gray-400 mb-3">Tariffs rising. Margins shrinking.</p>
+                            <div class="border-t border-gray-800 pt-2"><p class="text-xs font-bold text-ge-yellow">ASK:</p><p class="text-xs text-white italic">"Are you optimizing for cost or for resilience?"</p></div>
                         </div>
-                        <!-- Card 3 -->
                         <div class="ge-card-dark p-6">
-                            <div class="flex justify-between mb-4"><span class="text-2xl">🤖</span><span class="text-xs font-bold text-gray-500 uppercase">Tech</span></div>
+                            <div class="flex justify-between mb-4"><span class="text-2xl">🤖</span><span class="text-xs font-bold text-gray-500 uppercase">Future</span></div>
                             <h4 class="text-lg mb-2">AI Tsunami</h4>
-                            <p class="text-sm text-gray-400">ChatGPT, LLMs, Nvidia dominance.</p>
+                            <p class="text-xs text-gray-400 mb-3">ChatGPT, LLMs, Nvidia dominance.</p>
+                            <div class="border-t border-gray-800 pt-2"><p class="text-xs font-bold text-ge-yellow">ASK:</p><p class="text-xs text-white italic">"Is AI a strategic asset or a threat you don't grasp?"</p></div>
                         </div>
-                        <!-- Card 4 -->
                         <div class="ge-card-dark p-6">
                             <div class="flex justify-between mb-4"><span class="text-2xl">⚡</span><span class="text-xs font-bold text-gray-500 uppercase">Supply</span></div>
-                            <h4 class="text-lg mb-2">Scarcity</h4>
-                            <p class="text-sm text-gray-400">Talent shortage. Resource bottlenecks.</p>
+                            <h4 class="text-lg mb-2">Scarcity Crisis</h4>
+                            <p class="text-xs text-gray-400 mb-3">Rare Earths. Talent Shortage.</p>
+                            <div class="border-t border-gray-800 pt-2"><p class="text-xs font-bold text-ge-yellow">ASK:</p><p class="text-xs text-white italic">"What happens when you can't get the parts you need?"</p></div>
                         </div>
                     </div>
                 </div>
@@ -119,15 +114,14 @@
                     <div class="bg-gray-900 border border-gray-800 p-8 rounded">
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="text-xl text-white normal-case">Friction Intensity</h3>
-                            <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">CRITICAL</span>
+                            <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded animate-pulse">CRITICAL</span>
                         </div>
-                        <div class="relative h-64 w-full">
-                            <canvas id="frictionChart"></canvas>
-                        </div>
+                        <div class="relative h-64 w-full"><canvas id="frictionChart"></canvas></div>
+                        <!-- Restored Narrative Box -->
                         <div class="mt-6 border-t border-gray-800 pt-4">
                             <p class="text-ge-yellow font-bold text-sm uppercase mb-1">Psychological Profile</p>
                             <p class="text-white text-lg font-bold">"Angststillstand"</p>
-                            <p class="text-gray-400 text-sm italic">Uncertainty leads to fear. Fear leads to stagnation.</p>
+                            <p class="text-gray-400 text-sm italic mt-2">"Uncertainty leads to fear. Fear leads to stagnation. They don't need a tool; they need a partner who understands the pressure."</p>
                         </div>
                     </div>
                 </div>
@@ -135,49 +129,100 @@
         </div>
     </section>
 
-    <!-- SECTION 2: CULTURE CLASH (Light Mode) -->
+    <!-- SECTION 2: CULTURE CLASH -->
     <section id="culture" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
                 <span class="text-ge-yellow font-bold tracking-widest text-sm uppercase mb-2 block">The Psychology Gap</span>
-                <h2 class="text-4xl text-black mb-4">WHY US COMPETITORS FAIL</h2>
+                <h2 class="text-4xl text-black mb-4">WHY US COMPETITORS FAIL HERE</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                <!-- USA -->
                 <div class="ge-card h-96 relative overflow-hidden group">
                     <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-8 text-white">
                         <span class="bg-blue-600 px-2 py-1 text-xs font-bold uppercase mb-2 inline-block">USA Mindset</span>
                         <h3 class="text-3xl mb-2">VISION OF WINNING</h3>
-                        <p class="text-gray-300 text-sm">Start executing now. Fix it later.</p>
+                        <p class="text-gray-300 text-sm">Start executing now. Fix it later. "Make a mess, clean it up."</p>
                     </div>
                 </div>
-                <!-- Europe -->
                 <div class="ge-card h-96 relative overflow-hidden group">
                     <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-8 text-white">
                         <span class="bg-ge-yellow text-black px-2 py-1 text-xs font-bold uppercase mb-2 inline-block">European Mindset</span>
                         <h3 class="text-3xl mb-2">FEAR OF LOSING</h3>
-                        <p class="text-gray-300 text-sm">Think to the very end. Avoid all mistakes.</p>
+                        <p class="text-gray-300 text-sm">Think to the very end. Avoid all mistakes. Guarantee the outcome.</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Restored Archetypes -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-gray-100 pt-16">
+                <div class="text-center p-6 border border-gray-100 hover:border-ge-yellow transition">
+                    <div class="text-4xl mb-4">📜</div>
+                    <h4 class="text-lg font-bold text-black mb-2">THE POET</h4>
+                    <p class="text-sm text-gray-500">Reflects on meaning and consequences before acting.</p>
+                    <span class="text-xs font-bold text-ge-yellow uppercase mt-2 block">Europe</span>
+                </div>
+                <div class="text-center p-6 border border-gray-100 hover:border-ge-yellow transition">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h4 class="text-lg font-bold text-black mb-2">THE THINKER</h4>
+                    <p class="text-sm text-gray-500">Analyzes systems and risks. Demands 100% accuracy.</p>
+                    <span class="text-xs font-bold text-ge-yellow uppercase mt-2 block">Europe</span>
+                </div>
+                <div class="text-center p-6 border border-blue-100 hover:border-blue-500 transition">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h4 class="text-lg font-bold text-black mb-2">THE DOER</h4>
+                    <p class="text-sm text-gray-500">Executes immediately. Driven by speed and iteration.</p>
+                    <span class="text-xs font-bold text-blue-600 uppercase mt-2 block">USA</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: THE PLAN (Clean Corporate Style) -->
+    <!-- SECTION 3: COMPETITION -->
+    <section id="competition" class="py-24 bg-[#F3F4F6]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 text-[#0B1120]">DAVID VS. THE GOLIATHS</h2>
+                    <p class="text-gray-600 text-lg mb-6">90% of the Fortune 500 use SAP. We cannot compete on "Install Base". We compete on <strong>Intimacy & Trust</strong>.</p>
+                    <blockquote class="border-l-4 border-ge-yellow pl-4 italic text-gray-600">"In times of friction, you don't call a vendor. You call your oldest friend."</blockquote>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="relative w-full h-72"><canvas id="competitorChart"></canvas></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: KEYNOTE -->
+    <section id="keynote" class="py-20 bg-[#0B1120] text-white border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <span class="text-ge-yellow font-bold tracking-widest text-sm uppercase mb-4 block">NASCES25 Keynote</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white">Software Providers Broke It. You Bought It.<br>Can AI Reimagine It All?</h2>
+            
+            <div onclick="openVideo()" class="max-w-4xl mx-auto aspect-video bg-gray-800 rounded-xl overflow-hidden relative cursor-pointer group shadow-2xl border border-gray-700 hover:border-ge-yellow transition-colors">
+                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-20 h-20 bg-ge-yellow rounded-full flex items-center justify-center pl-2 shadow-lg group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div class="absolute bottom-6 left-6 text-left"><p class="text-white font-bold text-lg">Watch the Full Keynote</p><p class="text-gray-300 text-sm">Duration: 45:00 • Arndt Dallmann</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: THE PLAN (Restored) -->
     <section id="plan" class="py-24 bg-gray-50 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
                 <span class="text-ge-yellow font-bold tracking-widest text-sm uppercase mb-2 block">The Roadmap</span>
-                <h2 class="text-4xl text-black mb-4">EXECUTION PLAN: 12 MONTHS</h2>
+                <h2 class="text-4xl text-black mb-4">EXECUTION PLAN: 12 MONTHS TO TRUST</h2>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Nav -->
                 <div class="lg:col-span-4 space-y-2">
                     <div onclick="selectPhase(1)" id="step-1" class="plan-step active"><span class="text-xs font-bold text-gray-400 uppercase">Months 1-3</span><h4 class="text-xl mt-1">1. Build Up</h4></div>
                     <div onclick="selectPhase(2)" id="step-2" class="plan-step"><span class="text-xs font-bold text-gray-400 uppercase">Months 3-5</span><h4 class="text-xl mt-1">2. Proof of Concept</h4></div>
@@ -185,18 +230,18 @@
                     <div onclick="selectPhase(4)" id="step-4" class="plan-step"><span class="text-xs font-bold text-gray-400 uppercase">Months 8-10</span><h4 class="text-xl mt-1">4. Scale Reach</h4></div>
                     <div onclick="selectPhase(5)" id="step-5" class="plan-step"><span class="text-xs font-bold text-gray-400 uppercase">Months 10-12</span><h4 class="text-xl mt-1">5. Stabilize</h4></div>
                 </div>
-                <!-- Content -->
                 <div class="lg:col-span-8">
                     <div id="phase-content" class="bg-white border border-gray-200 p-10 h-full flex flex-col justify-center shadow-lg"></div>
                 </div>
             </div>
-
-            <!-- CTA -->
-            <div class="mt-20 bg-black text-white p-12 text-center">
-                <h2 class="text-3xl font-bold mb-8">READY TO EXECUTE?</h2>
-                <div class="flex justify-center gap-4 flex-wrap">
-                    <button class="ge-btn-primary">LAUNCH CAMPAIGN</button>
-                    <a href="DCE_European_perspective_the_foundation_for_a_longterm_partnership_v01_AD.pdf" download class="ge-btn-outline no-underline">DOWNLOAD PLAYBOOK (PDF)</a>
+            
+            <div class="mt-20 text-center bg-[#0B1120] rounded-3xl p-12 relative overflow-hidden shadow-2xl">
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">READY TO EXECUTE?</h2>
+                    <div class="flex justify-center gap-4">
+                        <button class="ge-btn-primary text-base py-3 px-8">LAUNCH CAMPAIGN</button>
+                        <a href="DCE_European_perspective_the_foundation_for_a_longterm_partnership_v01_AD.pdf" download class="ge-btn-outline no-underline">DOWNLOAD PLAYBOOK (PDF)</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -205,7 +250,7 @@
     <!-- FOOTER -->
     <footer class="bg-black text-white py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <span class="font-bold text-xl tracking-tight">GERMANEDGE</span>
+            <span class="font-bold text-xl tracking-tight">GERMANEDGE <span class="text-ge-yellow">DCE</span></span>
             <div class="text-sm text-gray-500">&copy; 2025 Germanedge. All rights reserved.</div>
         </div>
     </footer>
@@ -222,12 +267,13 @@
             modal.classList.add('hidden');
         }
 
+        // RESTORED CONTENT DATA
         const phaseData = {
-            1: { title: "Build Up: Thought Leadership", subtitle: "Defining the Narrative (Months 1-3)", body: "In this foundational phase, we stop selling features and start selling a vision. We must establish a coherent visual approach and a clear storyline.", bullets: ["Publish 'Decision Centric' Whitepaper", "Internal Sales Training", "Define Core Visual Identity"] },
-            2: { title: "Proof of Concept: Evidence", subtitle: "Show, Don't Just Tell (Months 3-5)", body: "European buyers are skeptics. Theory is not enough; they need proof. We move from the 'Build Up' narrative to concrete evidence.", bullets: ["Release 3 Core Case Studies", "Launch 'Evidence' Marketing Deck", "Initiate Pilot Programs"] },
-            3: { title: "Social Proof: Network Effect", subtitle: "Outside-In Approach (Months 5-8)", body: "Trust transfers from peer to peer. We will leverage Account Based Marketing (ABM) to target specific European decision makers.", bullets: ["Website Relaunch", "Host Regional User Conferences", "Targeted ABM Campaigns"] },
-            4: { title: "Scale Reach: The C-Suite", subtitle: "Expanding Influence (Months 8-10)", body: "Once the foundation is laid, we elevate the conversation. We stop talking to Logistics Managers and start talking to the C-Suite.", bullets: ["Executive Roundtables", "Partnership Events", "Business Press Coverage"] },
-            5: { title: "Stabilize: Deep Trust", subtitle: "Customer Intimacy (Months 10-12)", body: "The final phase is about permanence. We launch community formats and Customer Intimacy Platforms.", bullets: ["Launch Community Platform", "Long-term Retention Programs", "Advisory Board Setup"] }
+            1: { title: "Build Up: Thought Leadership", subtitle: "Defining the Narrative (Months 1-3)", body: "In this foundational phase, we stop selling features and start selling a vision. We must establish a coherent visual approach and a clear storyline that separates us from standard ERP vendors. The goal is not to sell product, but to position the DCE brand as the only intellectual leader capable of understanding the 'Angststillstand'. We define the brand promise before we ask for the sale.", bullets: ["Publish 'Decision Centric' Whitepaper", "Internal Sales Training on 'The Narrative'", "Define Core Visual Identity"] },
+            2: { title: "Proof of Concept: Evidence", subtitle: "Show, Don't Just Tell (Months 3-5)", body: "European buyers are skeptics. Theory is not enough; they need proof. We move from the 'Build Up' narrative to concrete evidence. We must highlight specific use cases where we solved 'unsolvable' friction problems (e.g., specific supply chain disruptions). The focus here is to underline our thought leadership with hard data and undeniable success stories.", bullets: ["Release 3 Core Case Studies", "Launch 'Evidence' Marketing Deck", "Initiate Pilot Programs"] },
+            3: { title: "Social Proof: The Network Effect", subtitle: "Outside-In Approach (Months 5-8)", body: "Trust transfers from peer to peer. We will leverage Account Based Marketing (ABM) to target specific European decision makers, surrounding them with validation from their own industry. User conferences are critical here—letting our existing happy customers speak for us. We shift our marketing from 'Us talking about Us' to 'The Market talking about Us'.", bullets: ["Website Relaunch with Testimonials", "Host Regional User Conferences", "Execute Targeted ABM Campaigns"] },
+            4: { title: "Scale Reach: The C-Suite", subtitle: "Expanding Influence (Months 8-10)", body: "Once the foundation is laid, we elevate the conversation. We stop talking to Logistics Managers and start talking to the C-Suite. We host exclusive Leadership Events for high-potentials, focusing entirely on 'Resilience' and 'Strategic Survival'. We expand our circle of influence beyond the technical user to the strategic buyer.", bullets: ["Executive Roundtables (Dinner Series)", "Partnership Events with Analysts", "Business Press Coverage"] },
+            5: { title: "Stabilize: Deep Trust", subtitle: "Customer Intimacy (Months 10-12)", body: "The final phase is about permanence. We launch community formats and Customer Intimacy Platforms that turn a 'vendor relationship' into a 'partnership'. We stabilize the trust we have built by creating spaces for ongoing dialogue, ensuring that we are the first call they make when the next crisis hits.", bullets: ["Launch 'DCE Community' Platform", "Long-term Retention Programs", "Customer Advisory Board Setup"] }
         };
 
         function selectPhase(id) {
@@ -254,24 +300,8 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             selectPhase(1);
-            // Friction Chart - Using Corporate Colors
-            new Chart(document.getElementById('frictionChart').getContext('2d'), { 
-                type: 'doughnut', 
-                data: { 
-                    labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'], 
-                    datasets: [{ 
-                        data: [35, 20, 15, 20, 10], 
-                        backgroundColor: ['#C14953', '#FFD100', '#4B5563', '#1F2937', '#9CA3AF'], 
-                        borderWidth: 0 
-                    }] 
-                }, 
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    cutout: '70%', 
-                    plugins: { legend: { display: false } } 
-                } 
-            });
+            new Chart(document.getElementById('frictionChart').getContext('2d'), { type: 'doughnut', data: { labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'], datasets: [{ data: [35, 20, 15, 20, 10], backgroundColor: ['#C14953', '#FFD100', '#4B5563', '#1F2937', '#9CA3AF'], borderWidth: 0, hoverOffset: 15 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } } });
+            new Chart(document.getElementById('competitorChart').getContext('2d'), { type: 'bubble', data: { datasets: [{ label: 'Landscape', data: [{ x: 95, y: 95, r: 30, label: 'SAP (Giant)' }, { x: 80, y: 80, r: 15, label: 'Kinaxis' }, { x: 20, y: 90, r: 25, label: 'DCE (Us)' }, { x: 85, y: 60, r: 10, label: 'O2' }], backgroundColor: c => c.raw.label.includes('DCE') ? '#C14953' : '#E5E7EB', borderColor: c => c.raw.label.includes('DCE') ? '#9F1239' : '#9CA3AF', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: {display: true, text: 'Market Dominance'}, min: 0, max: 110 }, y: { title: {display: true, text: 'Trust Score'}, min: 40, max: 110 } }, plugins: { legend: { display: false } } } });
         });
     </script>
 </body>
