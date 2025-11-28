@@ -60,6 +60,7 @@
                 <div class="hidden md:flex space-x-8">
                     <button onclick="scrollToId('theatre')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Threat</button>
                     <button onclick="scrollToId('culture')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Mindset</button>
+                    <button onclick="scrollToId('competition')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Fight</button>
                     <button onclick="scrollToId('plan')" class="px-4 py-2 bg-[#C14953] text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#a0353e] transition-colors shadow-lg">The Plan</button>
                 </div>
             </div>
@@ -94,7 +95,7 @@
                     <h2 class="text-4xl font-bold mb-6 font-serif">The European Theatre is <span class="text-[#C14953]">Burning</span>.</h2>
                     <p class="text-gray-400 text-lg mb-8 leading-relaxed">The "Old Way" of planning is dead. European leaders are trapped in a state of crisis.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                        <!-- Tiles (Same as V4) -->
+                        <!-- Tiles -->
                         <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">💣</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Risk</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">Geopolitics & War</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"How fast can you pivot if a key supplier is sanctioned?"</p></div></div>
                         <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">📉</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Finance</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">The Recession Trap</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"Are you optimizing for cost or for resilience?"</p></div></div>
                         <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">🤖</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Future</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">The AI Tsunami</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"Is AI a strategic asset or a threat?"</p></div></div>
@@ -188,7 +189,7 @@
         </div>
     </section>
 
-    <!-- SECTION 4: THE 12-MONTH PLAN (INTERACTIVE UPDATE) -->
+    <!-- SECTION 4: THE 12-MONTH PLAN -->
     <section id="plan" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -201,49 +202,19 @@
                 <!-- LEFT COLUMN: NAVIGATION LIST -->
                 <div class="lg:col-span-4 space-y-2">
                     <div onclick="selectPhase(1)" id="step-1" class="plan-step active p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 1-3</span>
-                                <h4 class="text-xl font-bold text-gray-900 mt-1">1. Build Up</h4>
-                            </div>
-                            <span class="text-2xl text-gray-300">→</span>
-                        </div>
+                        <div class="flex items-center justify-between"><div><span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 1-3</span><h4 class="text-xl font-bold text-gray-900 mt-1">1. Build Up</h4></div><span class="text-2xl text-gray-300">→</span></div>
                     </div>
                     <div onclick="selectPhase(2)" id="step-2" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 3-5</span>
-                                <h4 class="text-xl font-bold text-gray-900 mt-1">2. Proof of Concept</h4>
-                            </div>
-                            <span class="text-2xl text-gray-300">→</span>
-                        </div>
+                        <div class="flex items-center justify-between"><div><span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 3-5</span><h4 class="text-xl font-bold text-gray-900 mt-1">2. Proof of Concept</h4></div><span class="text-2xl text-gray-300">→</span></div>
                     </div>
                     <div onclick="selectPhase(3)" id="step-3" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 5-8</span>
-                                <h4 class="text-xl font-bold text-gray-900 mt-1">3. Social Proof</h4>
-                            </div>
-                            <span class="text-2xl text-gray-300">→</span>
-                        </div>
+                        <div class="flex items-center justify-between"><div><span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 5-8</span><h4 class="text-xl font-bold text-gray-900 mt-1">3. Social Proof</h4></div><span class="text-2xl text-gray-300">→</span></div>
                     </div>
                     <div onclick="selectPhase(4)" id="step-4" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 8-10</span>
-                                <h4 class="text-xl font-bold text-gray-900 mt-1">4. Scale Reach</h4>
-                            </div>
-                            <span class="text-2xl text-gray-300">→</span>
-                        </div>
+                        <div class="flex items-center justify-between"><div><span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 8-10</span><h4 class="text-xl font-bold text-gray-900 mt-1">4. Scale Reach</h4></div><span class="text-2xl text-gray-300">→</span></div>
                     </div>
                     <div onclick="selectPhase(5)" id="step-5" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 10-12</span>
-                                <h4 class="text-xl font-bold text-gray-900 mt-1">5. Stabilize</h4>
-                            </div>
-                            <span class="text-2xl text-gray-300">→</span>
-                        </div>
+                        <div class="flex items-center justify-between"><div><span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 10-12</span><h4 class="text-xl font-bold text-gray-900 mt-1">5. Stabilize</h4></div><span class="text-2xl text-gray-300">→</span></div>
                     </div>
                 </div>
 
@@ -265,9 +236,10 @@
                         <button class="bg-[#C14953] hover:bg-[#a63d46] text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform hover:-translate-y-1">
                             Launch Campaign
                         </button>
-                        <button class="bg-transparent border border-gray-600 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-full transition-colors">
+                        <!-- ACTUAL WORKING DOWNLOAD LINK -->
+                        <a href="DCE_European_perspective_the_foundation_for_a_longterm_partnership_v01_AD.pdf" download class="bg-transparent border border-gray-600 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-full transition-colors inline-block text-center cursor-pointer">
                             Download Playbook (PDF)
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -315,14 +287,10 @@
         };
 
         function selectPhase(id) {
-            // Update Menu
             document.querySelectorAll('.plan-step').forEach(el => el.classList.remove('active'));
             document.getElementById('step-' + id).classList.add('active');
-
-            // Update Content with Fade
             const contentBox = document.getElementById('phase-content');
             contentBox.style.opacity = '0';
-            
             setTimeout(() => {
                 const data = phaseData[id];
                 contentBox.innerHTML = `
@@ -340,11 +308,8 @@
             }, 200);
         }
 
-        // Init Phase 1
         document.addEventListener('DOMContentLoaded', function() {
             selectPhase(1);
-            
-            // Re-init charts (Previous code)
             new Chart(document.getElementById('frictionChart').getContext('2d'), { type: 'doughnut', data: { labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'], datasets: [{ data: [35, 20, 15, 20, 10], backgroundColor: ['#DC2626', '#F59E0B', '#4B5563', '#10B981', '#6B7280'], borderWidth: 0, hoverOffset: 15 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { color: '#D1D5DB', usePointStyle: true, padding: 15 } } } } });
             new Chart(document.getElementById('competitorChart').getContext('2d'), { type: 'bubble', data: { datasets: [{ label: 'Landscape', data: [{ x: 95, y: 95, r: 30, label: 'SAP (Giant)' }, { x: 80, y: 80, r: 15, label: 'Kinaxis' }, { x: 20, y: 90, r: 25, label: 'DCE (Us)' }, { x: 85, y: 60, r: 10, label: 'O2' }], backgroundColor: c => c.raw.label.includes('DCE') ? '#C14953' : '#E5E7EB', borderColor: c => c.raw.label.includes('DCE') ? '#9F1239' : '#9CA3AF', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: {display: true, text: 'Market Dominance'}, min: 0, max: 110 }, y: { title: {display: true, text: 'Trust Score'}, min: 40, max: 110 } }, plugins: { legend: { display: false } } } });
         });
