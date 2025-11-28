@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCE: The Foundation for a Long-term Partnership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FDFBF7; color: #2D2D2A; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: auto; height: 350px; max-height: 400px; }
+        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+        .nav-active { border-bottom: 2px solid #C14953; color: #C14953; }
+        
+        /* Lock Screen Styles */
+        #lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #2D2D2A; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; color: white;
+        }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen overflow-hidden" id="main-body">
+
+    <!-- LOGIN OVERLAY -->
+    <div id="lock-screen">
+        <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-xl max-w-sm mx-4">
+            <h2 class="text-2xl font-bold mb-4 text-white">Restricted Access</h2>
+            <p class="text-gray-300 mb-6 text-sm">Please enter the access code to view the DCE Sales Strategy.</p>
+            <input type="password" id="password-input" placeholder="Enter Access Code" 
+                   class="w-full p-3 rounded bg-white text-black mb-4 focus:outline-none focus:ring-2 focus:ring-[#C14953]"
+                   onkeyup="checkEnter(event)">
+            <button onclick="checkPassword()" class="w-full bg-[#C14953] hover:bg-[#a63d46] text-white font-bold py-3 rounded transition-colors">
+                Unlock Strategy
+            </button>
+            <p id="error-msg" class="text-red-400 text-xs mt-3 hidden">Incorrect Access Code</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E8E4D9]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold tracking-tight text-[#2D2D2A]">DCE <span class="text-[#C14953]">Strategy</span></span>
+                    <span class="ml-4 text-xs bg-[#E8E4D9] px-2 py-1 rounded text-gray-600 font-medium hidden sm:inline-block">Germanedge & Logility</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('hero')" class="nav-link text-sm font-medium hover:text-[#C14953] transition-colors">Vision</button>
+                    <button onclick="scrollToSection('theatre')" class="nav-link text-sm font-medium hover:text-[#C14953] transition-colors">Market Context</button>
+                    <button onclick="scrollToSection('landscape')" class="nav-link text-sm font-medium hover:text-[#C14953] transition-colors">Competition</button>
+                    <button onclick="scrollToSection('roadmap')" class="nav-link text-sm font-medium hover:text-[#C14953] transition-colors">12-Month Plan</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="hero" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold text-[#2D2D2A] mb-6 leading-tight">
+                    In the Decision Centric Enterprise we <span class="text-[#C14953]">Trust</span>.
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                    The European perspective on positioning a new brand foundation for long-term partnership.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="scrollToSection('roadmap')" class="bg-[#C14953] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#a63d46] transition-transform hover:-translate-y-1 shadow-lg">
+                        View the Strategy
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="bg-white p-6 rounded-xl card-shadow border-t-4 border-[#C14953]">
+                    <h3 class="text-lg font-bold mb-2">Build Trust</h3>
+                    <p class="text-gray-600 text-sm">Consistent delivery on brand promises in a friction-heavy environment.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl card-shadow border-t-4 border-[#4C9F70]">
+                    <h3 class="text-lg font-bold mb-2">Decision Centric</h3>
+                    <p class="text-gray-600 text-sm">Moving beyond process execution to intelligent, impact-driven decision making.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl card-shadow border-t-4 border-[#E8C547]">
+                    <h3 class="text-lg font-bold mb-2">European Focus</h3>
+                    <p class="text-gray-600 text-sm">Understanding the specific mindset of stressed-out European decision makers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: The European Theatre (Context) -->
+        <section id="theatre" class="py-16 bg-[#F3F0E6]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">The European Theatre: A Landscape of Friction</h2>
+                        <p class="text-gray-700 mb-6">
+                            Today's European industrial world is shaken by unprecedented frictional events. 
+                            From geopolitical instability to resource scarcity, the "old ways" of planning are failing.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-[#C14953] rounded-full mr-3"></span><strong>Geopolitics & War</strong></li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-[#C14953] rounded-full mr-3"></span><strong>Resource Scarcity</strong></li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-[#C14953] rounded-full mr-3"></span><strong>Worker Shortage</strong></li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-[#C14953] rounded-full mr-3"></span><strong>Technological Shift (AI)</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl card-shadow">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-lg">Market Friction Intensity Index</h3>
+                            <span class="text-xs text-gray-500">Source: Market Analysis</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="frictionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Competitive Landscape -->
+        <section id="landscape" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold mb-4">David vs. The Goliaths</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    90% of the Fortune 500 use SAP. We compete on Trust, Agility, and Decision Quality.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="w-full lg:w-2/3 bg-white p-6 rounded-xl card-shadow border border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-gray-800">Competitive Positioning</h3>
+                        <div class="flex gap-2">
+                            <span class="text-xs flex items-center"><span class="w-3 h-3 rounded-full bg-[#C14953] mr-1"></span> The Giants</span>
+                            <span class="text-xs flex items-center"><span class="w-3 h-3 rounded-full bg-[#4C9F70] mr-1"></span> DCE (Us)</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="competitorChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/3 flex flex-col gap-6">
+                    <div class="bg-[#2D2D2A] text-white p-6 rounded-xl card-shadow">
+                        <h3 class="font-bold text-xl mb-2 text-[#E8C547]">Analyst Perspective</h3>
+                        <p class="text-sm text-gray-300 mb-4">
+                            "By 2026, 75% of Global Enterprises will apply decision intelligence to reduce value leakage."
+                        </p>
+                        <ul class="text-sm space-y-2">
+                            <li class="flex items-start"><span class="text-[#4C9F70] mr-2">✓</span> Composability is key.</li>
+                            <li class="flex items-start"><span class="text-[#4C9F70] mr-2">✓</span> Resilience over efficiency.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: 12-Month Plan -->
+        <section id="roadmap" class="py-16 bg-[#FDFBF7]">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">The 12-Month Execution Plan</h2>
+                
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden md:block"></div>
+
+                    <!-- Phases -->
+                    <div class="relative z-10 mb-12 flex flex-col md:flex-row items-center timeline-item group cursor-pointer" onclick="updateDetail(1)">
+                        <div class="order-1 md:w-1/2 md:pr-8 text-center md:text-right">
+                            <h3 class="font-bold text-xl text-[#2D2D2A] group-hover:text-[#C14953] transition-colors">Phase 1: Build Up</h3>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Months 1-3</span>
+                        </div>
+                        <div class="order-2 flex items-center justify-center w-12 h-12 bg-white border-4 border-[#C14953] rounded-full shadow-md z-20 group-hover:scale-110 transition-transform"><span class="text-lg font-bold text-[#C14953]">1</span></div>
+                        <div class="order-3 md:w-1/2 md:pl-8 mt-4 md:mt-0 text-center md:text-left"><p class="text-gray-600 text-sm">Initiative of Thought Leadership. Define storyline.</p></div>
+                    </div>
+
+                    <div class="relative z-10 mb-12 flex flex-col md:flex-row items-center timeline-item group cursor-pointer" onclick="updateDetail(2)">
+                        <div class="order-1 md:order-3 md:w-1/2 md:pl-8 text-center md:text-left">
+                            <h3 class="font-bold text-xl text-[#2D2D2A] group-hover:text-[#C14953] transition-colors">Phase 2: Proof of Concept</h3>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Months 3-5</span>
+                        </div>
+                        <div class="order-2 flex items-center justify-center w-12 h-12 bg-white border-4 border-gray-300 group-hover:border-[#C14953] rounded-full shadow-md z-20 group-hover:scale-110 transition-transform"><span class="text-lg font-bold text-gray-500 group-hover:text-[#C14953]">2</span></div>
+                        <div class="order-3 md:order-1 md:w-1/2 md:pr-8 mt-4 md:mt-0 text-center md:text-right"><p class="text-gray-600 text-sm">Show, don't just tell. Create concrete cases.</p></div>
+                    </div>
+
+                    <div class="relative z-10 mb-12 flex flex-col md:flex-row items-center timeline-item group cursor-pointer" onclick="updateDetail(3)">
+                        <div class="order-1 md:w-1/2 md:pr-8 text-center md:text-right">
+                            <h3 class="font-bold text-xl text-[#2D2D2A] group-hover:text-[#C14953] transition-colors">Phase 3: Social Proof</h3>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Months 5-8</span>
+                        </div>
+                        <div class="order-2 flex items-center justify-center w-12 h-12 bg-white border-4 border-gray-300 group-hover:border-[#C14953] rounded-full shadow-md z-20 group-hover:scale-110 transition-transform"><span class="text-lg font-bold text-gray-500 group-hover:text-[#C14953]">3</span></div>
+                        <div class="order-3 md:w-1/2 md:pl-8 mt-4 md:mt-0 text-center md:text-left"><p class="text-gray-600 text-sm">ABM, User Conferences, Website update.</p></div>
+                    </div>
+
+                    <div class="relative z-10 mb-12 flex flex-col md:flex-row items-center timeline-item group cursor-pointer" onclick="updateDetail(4)">
+                        <div class="order-1 md:order-3 md:w-1/2 md:pl-8 text-center md:text-left">
+                            <h3 class="font-bold text-xl text-[#2D2D2A] group-hover:text-[#C14953] transition-colors">Phase 4: Scale Reach</h3>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Months 8-10</span>
+                        </div>
+                        <div class="order-2 flex items-center justify-center w-12 h-12 bg-white border-4 border-gray-300 group-hover:border-[#C14953] rounded-full shadow-md z-20 group-hover:scale-110 transition-transform"><span class="text-lg font-bold text-gray-500 group-hover:text-[#C14953]">4</span></div>
+                        <div class="order-3 md:order-1 md:w-1/2 md:pr-8 mt-4 md:mt-0 text-center md:text-right"><p class="text-gray-600 text-sm">Leadership events. Expanding influence.</p></div>
+                    </div>
+                    
+                    <div class="relative z-10 mb-12 flex flex-col md:flex-row items-center timeline-item group cursor-pointer" onclick="updateDetail(5)">
+                        <div class="order-1 md:w-1/2 md:pr-8 text-center md:text-right">
+                            <h3 class="font-bold text-xl text-[#2D2D2A] group-hover:text-[#C14953] transition-colors">Phase 5: Stabilize</h3>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Months 10-12</span>
+                        </div>
+                        <div class="order-2 flex items-center justify-center w-12 h-12 bg-white border-4 border-gray-300 group-hover:border-[#C14953] rounded-full shadow-md z-20 group-hover:scale-110 transition-transform"><span class="text-lg font-bold text-gray-500 group-hover:text-[#C14953]">5</span></div>
+                        <div class="order-3 md:w-1/2 md:pl-8 mt-4 md:mt-0 text-center md:text-left"><p class="text-gray-600 text-sm">Community formats and Customer Intimacy Platforms.</p></div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Detail Box -->
+                <div id="plan-detail-box" class="mt-8 bg-white p-8 rounded-xl card-shadow border-l-4 border-[#C14953] transition-all duration-500 ease-in-out">
+                    <h4 id="detail-title" class="text-xl font-bold mb-2">Select a phase above to see details</h4>
+                    <p id="detail-desc" class="text-gray-600">Interact with the roadmap to understand the specific tactics for each stage.</p>
+                    <div id="detail-metrics" class="mt-4 flex gap-4 hidden"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#1a1a18] text-gray-500 py-8 border-t border-gray-800 text-center text-sm">
+        <p>&copy; 2025 Germanedge & Logility. DCE Strategy V01.</p>
+    </footer>
+
+    <script>
+        // --- PASSWORD LOGIC ---
+        const ACCESS_CODE = "DCE2025"; // CHANGE THIS CODE HERE IF NEEDED
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            const lockScreen = document.getElementById('lock-screen');
+            const mainBody = document.getElementById('main-body');
+
+            if(input === ACCESS_CODE) {
+                lockScreen.classList.add('hidden');
+                mainBody.classList.remove('overflow-hidden');
+                // Trigger chart load only after unlock to ensure they render correctly
+                loadCharts();
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        }
+        function checkEnter(e) { if(e.key === "Enter") checkPassword(); }
+
+        // --- DATA & CONTENT ---
+        const state = {
+            competitorData: [
+                { x: 90, y: 95, r: 25, label: 'SAP', type: 'Giant' },
+                { x: 80, y: 85, r: 15, label: 'Kinaxis', type: 'Giant' },
+                { x: 75, y: 80, r: 15, label: 'Blue Yonder', type: 'Giant' },
+                { x: 30, y: 90, r: 20, label: 'DCE (Germanedge)', type: 'Challenger' }, 
+                { x: 85, y: 60, r: 10, label: 'O2', type: 'Giant' }
+            ]
+        };
+
+        const planDetails = {
+            1: { title: "Phase 1: Brand Positioning", desc: "Focus on 'Thought Leadership'. Define the 'Decision Centric' narrative. Goal: Become the intellectual leader.", metrics: ["Define Core Story", "Launch Whitepaper"] },
+            2: { title: "Phase 2: Proof of Concept", desc: "Highlight specific Use Cases where we solved 'unsolvable' friction problems.", metrics: ["3 Key Case Studies", "Pilot Success Rates"] },
+            3: { title: "Phase 3: Social Proof & ABM", desc: "Account Based Marketing targeting European decision makers. User conferences.", metrics: ["Website Relaunch", "User Conference"] },
+            4: { title: "Phase 4: Scaling Reach", desc: "High-level leadership events. Selling 'resilience' to the C-Suite.", metrics: ["Executive Roundtables", "Media Coverage"] },
+            5: { title: "Phase 5: Stabilization", desc: "Creating permanent community formats. Deepening trust.", metrics: ["Community Launch", "Retention Programs"] }
+        };
+
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+        function updateDetail(phaseId) {
+            const detailBox = document.getElementById('plan-detail-box');
+            detailBox.style.opacity = '0.5';
+            setTimeout(() => {
+                const data = planDetails[phaseId];
+                document.getElementById('detail-title').textContent = data.title;
+                document.getElementById('detail-desc').textContent = data.desc;
+                const mContainer = document.getElementById('detail-metrics');
+                mContainer.innerHTML = '';
+                mContainer.classList.remove('hidden');
+                data.metrics.forEach(m => {
+                    const pill = document.createElement('span');
+                    pill.className = "bg-[#F3F0E6] text-[#2D2D2A] px-3 py-1 rounded-full text-xs font-semibold border border-gray-200";
+                    pill.textContent = m;
+                    mContainer.appendChild(pill);
+                });
+                detailBox.style.opacity = '1';
+            }, 200);
+        }
+
+        // --- CHART LOAD ---
+        function loadCharts() {
+            new Chart(document.getElementById('frictionChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'],
+                    datasets: [{ data: [30, 25, 20, 15, 10], backgroundColor: ['#C14953', '#E8C547', '#2D2D2A', '#4C9F70', '#A4A4A4'], borderWidth: 0 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '60%' }
+            });
+
+            new Chart(document.getElementById('competitorChart').getContext('2d'), {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Market Landscape', data: state.competitorData,
+                        backgroundColor: c => c.raw.type === 'Challenger' ? '#4C9F70' : 'rgba(193, 73, 83, 0.6)',
+                        borderColor: c => c.raw.type === 'Challenger' ? '#2F6F48' : '#C14953', borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { x: { title: {display:true, text:'Market Share'}, min: 0, max: 100 }, y: { title: {display:true, text:'Trust Score'}, min: 0, max: 110 } },
+                    plugins: { legend: {display:false}, tooltip: { callbacks: { label: c => c.raw.label } } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
