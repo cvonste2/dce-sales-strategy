@@ -12,22 +12,33 @@
         body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; color: #1F2937; }
         h1, h2, h3 { family: 'Playfair Display', serif; }
         .chart-container { position: relative; width: 100%; height: 300px; }
-        
-        /* Smooth Scrolling */
         html { scroll-behavior: smooth; }
         
-        /* Custom Animations */
+        /* Animation Classes */
         .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         
-        /* Card Hover Effects */
+        /* Pulse Animation */
+        .pulse-red { animation: pulseRed 2s infinite; }
+        @keyframes pulseRed {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); background-color: #ef4444; }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); background-color: #b91c1c; }
+        }
+
         .hover-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-        
-        /* Gradient Text */
         .text-gradient { background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-image: linear-gradient(to right, #C14953, #9d1722); }
-        
-        /* Texture Overlay for Dark Section */
         .bg-texture { background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23374151' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E"); }
+        
+        /* Card Styles */
+        .intel-card { transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .intel-card:hover { border-color: #C14953; background: rgba(255, 255, 255, 0.1); }
+        .intel-card .sales-hook { max-height: 0; opacity: 0; transition: all 0.4s ease; overflow: hidden; }
+        .intel-card:hover .sales-hook { max-height: 100px; opacity: 1; margin-top: 1rem; }
+
+        /* Plan Styles */
+        .plan-step.active { border-left-color: #C14953; background-color: #FEF2F2; }
+        .plan-step.active h4 { color: #C14953; }
     </style>
 </head>
 <body class="antialiased">
@@ -49,21 +60,18 @@
                 <div class="hidden md:flex space-x-8">
                     <button onclick="scrollToId('theatre')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Threat</button>
                     <button onclick="scrollToId('culture')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Mindset</button>
-                    <button onclick="scrollToId('competition')" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#C14953] transition-colors">The Fight</button>
                     <button onclick="scrollToId('plan')" class="px-4 py-2 bg-[#C14953] text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#a0353e] transition-colors shadow-lg">The Plan</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION: Emotional Hook -->
+    <!-- HERO SECTION -->
     <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Strategic/Chess Imagery -->
             <img src="https://images.unsplash.com/photo-1555582370-13725612c6c0?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-10" alt="Strategy Background">
             <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-[#F9FAFB]"></div>
         </div>
-
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="fade-in-up" style="animation-delay: 0.1s;">
                 <span class="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-[#C14953] text-xs font-bold uppercase tracking-widest mb-6">Internal Strategy V01</span>
@@ -77,76 +85,50 @@
         </div>
     </header>
 
-    <!-- SECTION 1: THE THEATRE (Dark Mode / High Drama) -->
+    <!-- SECTION 1: THE THEATRE -->
     <section id="theatre" class="py-24 bg-[#1a1a18] text-white relative overflow-hidden bg-texture">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#C14953]/10 to-transparent pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div>
                     <h2 class="text-4xl font-bold mb-6 font-serif">The European Theatre is <span class="text-[#C14953]">Burning</span>.</h2>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                        The "Old Way" of planning is dead. Our customers are facing a convergence of crises that traditional ERPs cannot handle.
-                    </p>
-                    
-                    <!-- The Friction Grid -->
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-                            <div class="text-[#C14953] text-2xl mb-2">💣</div>
-                            <h4 class="font-bold text-sm">Geopolitics</h4>
-                            <p class="text-xs text-gray-500 mt-1">War & Trade Routes</p>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-                            <div class="text-[#C14953] text-2xl mb-2">📉</div>
-                            <h4 class="font-bold text-sm">Recession</h4>
-                            <p class="text-xs text-gray-500 mt-1">Tariffs & Costs</p>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-                            <div class="text-[#C14953] text-2xl mb-2">🤖</div>
-                            <h4 class="font-bold text-sm">Tech Shock</h4>
-                            <p class="text-xs text-gray-500 mt-1">AI & Digital Pressure</p>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
-                            <div class="text-[#C14953] text-2xl mb-2">⚡</div>
-                            <h4 class="font-bold text-sm">Scarcity</h4>
-                            <p class="text-xs text-gray-500 mt-1">Energy & Materials</p>
-                        </div>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">The "Old Way" of planning is dead. European leaders are trapped in a state of crisis.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <!-- Tiles (Same as V4) -->
+                        <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">💣</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Risk</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">Geopolitics & War</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"How fast can you pivot if a key supplier is sanctioned?"</p></div></div>
+                        <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">📉</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Finance</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">The Recession Trap</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"Are you optimizing for cost or for resilience?"</p></div></div>
+                        <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">🤖</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Future</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">The AI Tsunami</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"Is AI a strategic asset or a threat?"</p></div></div>
+                        <div class="intel-card p-5 bg-white/5 rounded-xl border border-white/10 cursor-default group"><div class="flex items-start justify-between mb-2"><div class="text-[#C14953] text-2xl">⚡</div><span class="text-[10px] uppercase font-bold text-gray-500 tracking-widest border border-gray-700 px-2 py-0.5 rounded">Supply</span></div><h4 class="font-bold text-lg text-white group-hover:text-[#C14953] transition-colors">Scarcity Crisis</h4><div class="sales-hook border-t border-gray-700 pt-3"><p class="text-xs font-bold text-[#C14953] uppercase mb-1">Ask:</p><p class="text-xs text-white italic">"What happens when you can't get the parts you need?"</p></div></div>
                     </div>
                 </div>
-
-                <!-- Friction Chart -->
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <div class="flex justify-between items-end mb-6">
-                        <div>
-                            <h3 class="text-xl font-bold">The "Angststillstand"</h3>
-                            <p class="text-sm text-gray-400">The Friction Index</p>
-                        </div>
-                        <div class="text-right">
-                            <span class="block text-3xl font-bold text-[#C14953]">High</span>
-                            <span class="text-xs text-gray-500 uppercase tracking-widest">Severity</span>
-                        </div>
+                <div class="sticky top-24 space-y-6">
+                    <div class="bg-[#C14953]/10 border border-[#C14953] p-6 rounded-xl relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 text-[#C14953]/20 text-9xl font-serif font-black select-none">"</div>
+                        <h3 class="text-[#C14953] font-bold uppercase tracking-widest text-xs mb-3">Psychological Profile</h3>
+                        <h4 class="text-2xl font-bold text-white mb-3">"Angststillstand"</h4>
+                        <p class="text-gray-300 italic leading-relaxed text-sm">"Decision takers are trapped between actual challenges and lightspeed technology. Uncertainty leads to fear. Fear leads to stagnation."</p>
                     </div>
-                    <div class="chart-container">
-                        <canvas id="frictionChart"></canvas>
+                    <div class="bg-black/40 p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
+                        <div class="flex justify-between items-start mb-6 border-b border-white/10 pb-4">
+                            <div><h3 class="text-xl font-bold text-white">Friction Intensity</h3><p class="text-xs text-gray-400 uppercase tracking-wide">Market Pressure Index</p></div>
+                            <div class="text-right"><div class="inline-flex items-center justify-center px-4 py-1 rounded bg-[#C14953] text-white font-bold text-sm uppercase tracking-widest pulse-red shadow-[0_0_15px_rgba(193,73,83,0.5)]">Critical</div></div>
+                        </div>
+                        <div class="chart-container"><canvas id="frictionChart"></canvas></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: CULTURE CLASH (The Hook) -->
+    <!-- SECTION 2: CULTURE CLASH -->
     <section id="culture" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#C14953] font-bold tracking-widest text-sm uppercase mb-2 block">The Psychology Gap</span>
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-serif mb-4">Why US Competitors Fail Here</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto text-lg">
-                    We must position ourselves as the partner who understands the European soul.
-                </p>
             </div>
-
-            <!-- THE VISUAL METAPHOR: BURGER VS DONER -->
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                
-                <!-- USA CARD -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl h-96 hover-card transition-all duration-500">
                     <div class="absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Burger">
@@ -155,238 +137,216 @@
                     <div class="absolute bottom-0 left-0 p-8 text-white">
                         <span class="text-xs font-bold uppercase tracking-widest bg-blue-600 px-2 py-1 rounded mb-3 inline-block">The USA Mindset</span>
                         <h3 class="text-3xl font-bold mb-2">"Vision of Winning"</h3>
-                        <p class="text-gray-300 text-sm mb-4">Start executing now. Fix it later. Move fast and break things.</p>
-                        <div class="border-l-2 border-blue-500 pl-3">
-                            <p class="text-xs italic text-gray-400">"Make a mess, clean it up."</p>
-                        </div>
+                        <p class="text-gray-300 text-sm mb-4">Start executing now. Fix it later. Move fast.</p>
                     </div>
                 </div>
-
-                <!-- EUROPE CARD -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl h-96 hover-card transition-all duration-500">
                     <div class="absolute inset-0">
-                        <!-- Using a generic European Dish/Vibe -->
-                        <img src="https://images.unsplash.com/photo-1626804475297-411d8c6600a2?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Gourmet Dish">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Gourmet European Dish">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     </div>
                     <div class="absolute bottom-0 left-0 p-8 text-white">
                         <span class="text-xs font-bold uppercase tracking-widest bg-[#C14953] px-2 py-1 rounded mb-3 inline-block">The European Mindset</span>
                         <h3 class="text-3xl font-bold mb-2">"Fear of Losing"</h3>
-                        <p class="text-gray-300 text-sm mb-4">Think to the very end. Avoid all mistakes. Guarantee the outcome.</p>
-                        <div class="border-l-2 border-[#C14953] pl-3">
-                            <p class="text-xs italic text-gray-400">"Don't start until it's perfect."</p>
-                        </div>
+                        <p class="text-gray-300 text-sm mb-4">Think to the very end. Avoid all mistakes.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Hofstede Chart -->
-            <div class="bg-gray-50 rounded-2xl p-8 shadow-inner">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="w-full md:w-2/3">
-                        <div class="chart-container" style="height: 350px;">
-                            <canvas id="cultureChart"></canvas>
-                        </div>
+            <!-- TRIANGLE ANALOGY -->
+            <div id="archetypes" class="py-12 border-t border-gray-100">
+                <div class="text-center mb-10"><h3 class="text-2xl font-bold font-serif text-gray-900">The Cultural Archetypes</h3></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-8 rounded-xl text-center border border-gray-100 hover:border-[#C14953] transition-colors group">
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-3xl group-hover:scale-110 transition-transform">📜</div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-2">The Poet</h4><p class="text-sm text-gray-600 mb-4">Reflects on meaning and consequences before acting.</p><span class="text-xs font-bold uppercase text-[#C14953] tracking-widest">Europe</span>
                     </div>
-                    <div class="w-full md:w-1/3 space-y-4">
-                        <h4 class="font-bold text-gray-900 text-xl">The Data Behind It</h4>
-                        <p class="text-sm text-gray-600">
-                            Look at "Uncertainty Avoidance" (purple bar). Germany is high. USA is low. 
-                        </p>
-                        <div class="bg-white p-4 rounded-lg border-l-4 border-[#C14953] shadow-sm">
-                            <span class="block text-xs font-bold text-[#C14953] uppercase mb-1">Sales Tip</span>
-                            <p class="text-sm text-gray-800 italic">"Don't sell speed. Sell <strong>Security</strong> and <strong>Predictability</strong>. That is what a European CEO craves."</p>
-                        </div>
+                    <div class="bg-gray-50 p-8 rounded-xl text-center border border-gray-100 hover:border-[#C14953] transition-colors group">
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-3xl group-hover:scale-110 transition-transform">🧠</div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-2">The Thinker</h4><p class="text-sm text-gray-600 mb-4">Analyzes systems and risks. Demands accuracy.</p><span class="text-xs font-bold uppercase text-[#C14953] tracking-widest">Europe</span>
+                    </div>
+                    <div class="bg-blue-50 p-8 rounded-xl text-center border border-blue-100 hover:border-blue-500 transition-colors group">
+                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-3xl group-hover:scale-110 transition-transform">🚀</div>
+                        <h4 class="font-bold text-lg text-gray-900 mb-2">The Doer</h4><p class="text-sm text-gray-600 mb-4">Executes immediately. Driven by speed.</p><span class="text-xs font-bold uppercase text-blue-600 tracking-widest">USA</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: COMPETITION (David vs Goliath) -->
+    <!-- SECTION 3: COMPETITION -->
     <section id="competition" class="py-24 bg-[#F9FAFB]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-4xl font-bold mb-6 font-serif text-gray-900">David vs. The Goliaths</h2>
-                    <p class="text-gray-600 text-lg mb-6">
-                        90% of the Fortune 500 use SAP. We cannot compete on "Install Base" or "Safe Choice". We compete on <strong>Intimacy & Trust</strong>.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-center p-3 bg-white rounded-lg shadow-sm">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-500 mr-4">S</div>
-                            <div><h5 class="font-bold text-sm">SAP / Giants</h5><p class="text-xs text-gray-500">Legacy, ERP Lock-in, "The System"</p></div>
-                        </div>
-                        <div class="flex items-center p-3 bg-[#FFF5F5] border border-[#FECACA] rounded-lg shadow-sm transform scale-105">
-                            <div class="w-10 h-10 rounded-full bg-[#C14953] flex items-center justify-center font-bold text-white mr-4">D</div>
-                            <div><h5 class="font-bold text-sm text-[#C14953]">DCE (Us)</h5><p class="text-xs text-[#C14953]">Decision Quality, Agility, "The Partner"</p></div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8">
-                        <blockquote class="border-l-4 border-[#C14953] pl-4 italic text-gray-600">
-                            "In times of friction, you don't call a vendor. You call your oldest friend."
-                        </blockquote>
-                    </div>
+                    <p class="text-gray-600 text-lg mb-6">90% of the Fortune 500 use SAP. We compete on <strong>Intimacy & Trust</strong>.</p>
+                    <div class="mt-8"><blockquote class="border-l-4 border-[#C14953] pl-4 italic text-gray-600">"In times of friction, you don't call a vendor. You call your oldest friend."</blockquote></div>
                 </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
-                    <div class="text-center mb-4 text-sm font-bold text-gray-400 uppercase tracking-widest">Competitive Landscape</div>
-                    <div class="chart-container">
-                        <canvas id="competitorChart"></canvas>
-                    </div>
-                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100"><div class="chart-container"><canvas id="competitorChart"></canvas></div></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: THE 12-MONTH PLAN -->
+    <!-- SECTION 4: THE 12-MONTH PLAN (INTERACTIVE UPDATE) -->
     <section id="plan" class="py-24 bg-white relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 font-serif">The Execution Plan</h2>
-                <p class="text-gray-500">From "Who are you?" to "Trusted Partner" in 12 months.</p>
+                <span class="text-[#C14953] font-bold tracking-widest text-sm uppercase mb-2 block">The Roadmap</span>
+                <h2 class="text-4xl font-bold mb-4 font-serif text-gray-900">Execution Plan: 12 Months to Trust</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Click on each phase to reveal the tactical steps.</p>
             </div>
 
-            <div class="relative">
-                <!-- Vertical Line -->
-                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-
-                <!-- Phase 1 -->
-                <div class="relative pl-24 mb-12 group cursor-pointer" onclick="alert('Phase 1 Details: Thought Leadership Whitepapers, Brand Definition.')">
-                    <div class="absolute left-0 top-0 w-16 h-16 bg-[#C14953] rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-red-200 group-hover:scale-110 transition-transform">01</div>
-                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-[#C14953] transition-colors">Build Up</h3>
-                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block">Months 1-3</span>
-                    <p class="text-gray-600">Take initiative on Thought Leadership. Define the storyline. Be clear.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- LEFT COLUMN: NAVIGATION LIST -->
+                <div class="lg:col-span-4 space-y-2">
+                    <div onclick="selectPhase(1)" id="step-1" class="plan-step active p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 1-3</span>
+                                <h4 class="text-xl font-bold text-gray-900 mt-1">1. Build Up</h4>
+                            </div>
+                            <span class="text-2xl text-gray-300">→</span>
+                        </div>
+                    </div>
+                    <div onclick="selectPhase(2)" id="step-2" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 3-5</span>
+                                <h4 class="text-xl font-bold text-gray-900 mt-1">2. Proof of Concept</h4>
+                            </div>
+                            <span class="text-2xl text-gray-300">→</span>
+                        </div>
+                    </div>
+                    <div onclick="selectPhase(3)" id="step-3" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 5-8</span>
+                                <h4 class="text-xl font-bold text-gray-900 mt-1">3. Social Proof</h4>
+                            </div>
+                            <span class="text-2xl text-gray-300">→</span>
+                        </div>
+                    </div>
+                    <div onclick="selectPhase(4)" id="step-4" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 8-10</span>
+                                <h4 class="text-xl font-bold text-gray-900 mt-1">4. Scale Reach</h4>
+                            </div>
+                            <span class="text-2xl text-gray-300">→</span>
+                        </div>
+                    </div>
+                    <div onclick="selectPhase(5)" id="step-5" class="plan-step p-6 rounded-xl border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-all">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Months 10-12</span>
+                                <h4 class="text-xl font-bold text-gray-900 mt-1">5. Stabilize</h4>
+                            </div>
+                            <span class="text-2xl text-gray-300">→</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Phase 2 -->
-                <div class="relative pl-24 mb-12 group cursor-pointer" onclick="alert('Phase 2 Details: 3 Key Case Studies, Pilot Programs.')">
-                    <div class="absolute left-0 top-0 w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center text-gray-400 font-bold text-xl group-hover:border-[#C14953] group-hover:text-[#C14953] transition-colors">02</div>
-                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-[#C14953] transition-colors">Proof of Concept</h3>
-                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block">Months 3-5</span>
-                    <p class="text-gray-600">Show, don't just tell. Highlight concrete cases where we solved friction.</p>
+                <!-- RIGHT COLUMN: DYNAMIC CONTENT -->
+                <div class="lg:col-span-8">
+                    <div id="phase-content" class="bg-white border border-gray-200 rounded-2xl p-10 shadow-xl h-full flex flex-col justify-center transition-all duration-300 ease-in-out">
+                        <!-- Content injected via JS -->
+                    </div>
                 </div>
+            </div>
 
-                <!-- Phase 3 -->
-                <div class="relative pl-24 mb-12 group cursor-pointer" onclick="alert('Phase 3 Details: Website Relaunch, User Conferences, ABM.')">
-                    <div class="absolute left-0 top-0 w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center text-gray-400 font-bold text-xl group-hover:border-[#C14953] group-hover:text-[#C14953] transition-colors">03</div>
-                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-[#C14953] transition-colors">Social Proof</h3>
-                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block">Months 5-8</span>
-                    <p class="text-gray-600">Website update, Account Based Marketing (ABM), User Conferences.</p>
-                </div>
-                
-                 <!-- Phase 4 -->
-                 <div class="relative pl-24 mb-12 group cursor-pointer" onclick="alert('Phase 4 Details: Executive Roundtables, C-Suite targeting.')">
-                    <div class="absolute left-0 top-0 w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center text-gray-400 font-bold text-xl group-hover:border-[#C14953] group-hover:text-[#C14953] transition-colors">04</div>
-                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-[#C14953] transition-colors">Scale Reach</h3>
-                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block">Months 8-10</span>
-                    <p class="text-gray-600">Leadership events. Expanding the circle of influence to the C-Suite.</p>
-                </div>
-
-                 <!-- Phase 5 -->
-                 <div class="relative pl-24 group cursor-pointer" onclick="alert('Phase 5 Details: Community Platform Launch, Retention Programs.')">
-                    <div class="absolute left-0 top-0 w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center text-gray-400 font-bold text-xl group-hover:border-[#C14953] group-hover:text-[#C14953] transition-colors">05</div>
-                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-[#C14953] transition-colors">Stabilize</h3>
-                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block">Months 10-12</span>
-                    <p class="text-gray-600">Community formats and Customer Intimacy Platforms.</p>
+            <!-- CTA SECTION -->
+            <div class="mt-20 text-center bg-[#1F2937] rounded-3xl p-12 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-serif">Ready to execute the strategy?</h2>
+                    <p class="text-gray-400 mb-8 max-w-2xl mx-auto">We have the plan, the tools, and the mindset. It's time to become the partner they trust.</p>
+                    <div class="flex justify-center gap-4">
+                        <button class="bg-[#C14953] hover:bg-[#a63d46] text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform hover:-translate-y-1">
+                            Launch Campaign
+                        </button>
+                        <button class="bg-transparent border border-gray-600 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-full transition-colors">
+                            Download Playbook (PDF)
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="font-bold text-xl tracking-tight">DCE <span class="text-[#C14953]">HUB</span></span>
-                <p class="text-gray-500 text-sm mt-1">Internal Sales Enablement Tool</p>
-            </div>
-            <div class="text-sm text-gray-500">
-                &copy; 2025 Germanedge & Logility
-            </div>
-        </div>
-    </footer>
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center"><div class="mb-4 md:mb-0"><span class="font-bold text-xl tracking-tight">DCE <span class="text-[#C14953]">HUB</span></span><p class="text-gray-500 text-sm mt-1">Internal Sales Enablement Tool</p></div><div class="text-sm text-gray-500">&copy; 2025 Germanedge & Logility</div></div></footer>
 
     <script>
-        // --- SCROLLING ---
         function scrollToId(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
-        // --- CHARTS ---
-        document.addEventListener('DOMContentLoaded', function() {
+        // --- PLAN DATA ---
+        const phaseData = {
+            1: {
+                title: "Build Up: Thought Leadership",
+                subtitle: "Defining the Narrative (Months 1-3)",
+                body: "In this foundational phase, we stop selling features and start selling a vision. We must establish a coherent visual approach and a clear storyline that separates us from standard ERP vendors. The goal is not to sell product, but to position the DCE brand as the only intellectual leader capable of understanding the 'Angststillstand'. We define the brand promise before we ask for the sale.",
+                bullets: ["Publish 'Decision Centric' Whitepaper", "Internal Sales Training on 'The Narrative'", "Define Core Visual Identity"]
+            },
+            2: {
+                title: "Proof of Concept: Evidence",
+                subtitle: "Show, Don't Just Tell (Months 3-5)",
+                body: "European buyers are skeptics. Theory is not enough; they need proof. We move from the 'Build Up' narrative to concrete evidence. We must highlight specific use cases where we solved 'unsolvable' friction problems (e.g., specific supply chain disruptions). The focus here is to underline our thought leadership with hard data and undeniable success stories.",
+                bullets: ["Release 3 Core Case Studies", "Launch 'Evidence' Marketing Deck", "Initiate Pilot Programs"]
+            },
+            3: {
+                title: "Social Proof: The Network Effect",
+                subtitle: "Outside-In Approach (Months 5-8)",
+                body: "Trust transfers from peer to peer. We will leverage Account Based Marketing (ABM) to target specific European decision makers, surrounding them with validation from their own industry. User conferences are critical here—letting our existing happy customers speak for us. We shift our marketing from 'Us talking about Us' to 'The Market talking about Us'.",
+                bullets: ["Website Relaunch with Testimonials", "Host Regional User Conferences", "Execute Targeted ABM Campaigns"]
+            },
+            4: {
+                title: "Scale Reach: The C-Suite",
+                subtitle: "Expanding Influence (Months 8-10)",
+                body: "Once the foundation is laid, we elevate the conversation. We stop talking to Logistics Managers and start talking to the C-Suite. We host exclusive Leadership Events for high-potentials, focusing entirely on 'Resilience' and 'Strategic Survival'. We expand our circle of influence beyond the technical user to the strategic buyer.",
+                bullets: ["Executive Roundtables (Dinner Series)", "Partnership Events with Analysts", "Business Press Coverage"]
+            },
+            5: {
+                title: "Stabilize: Deep Trust",
+                subtitle: "Customer Intimacy (Months 10-12)",
+                body: "The final phase is about permanence. We launch community formats and Customer Intimacy Platforms that turn a 'vendor relationship' into a 'partnership'. We stabilize the trust we have built by creating spaces for ongoing dialogue, ensuring that we are the first call they make when the next crisis hits.",
+                bullets: ["Launch 'DCE Community' Platform", "Long-term Retention Programs", "Customer Advisory Board Setup"]
+            }
+        };
+
+        function selectPhase(id) {
+            // Update Menu
+            document.querySelectorAll('.plan-step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + id).classList.add('active');
+
+            // Update Content with Fade
+            const contentBox = document.getElementById('phase-content');
+            contentBox.style.opacity = '0';
             
-            // 1. FRICTION CHART (Dark Mode)
-            new Chart(document.getElementById('frictionChart').getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'],
-                    datasets: [{
-                        data: [30, 25, 20, 15, 10],
-                        backgroundColor: ['#C14953', '#E8C547', '#4B5563', '#10B981', '#6B7280'],
-                        borderWidth: 0,
-                        hoverOffset: 20
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: { legend: { position: 'bottom', labels: { color: '#9CA3AF', usePointStyle: true, padding: 20 } } }
-                }
-            });
+            setTimeout(() => {
+                const data = phaseData[id];
+                contentBox.innerHTML = `
+                    <span class="text-[#C14953] font-bold text-xs uppercase tracking-widest mb-2 block">${data.subtitle}</span>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 font-serif">${data.title}</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">${data.body}</p>
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                        <h4 class="font-bold text-gray-900 text-sm uppercase mb-3">Key Tactics:</h4>
+                        <ul class="space-y-2">
+                            ${data.bullets.map(b => `<li class="flex items-center text-gray-700 text-sm"><span class="w-2 h-2 bg-[#C14953] rounded-full mr-3"></span>${b}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                contentBox.style.opacity = '1';
+            }, 200);
+        }
 
-            // 2. CULTURE CHART (Bar)
-            new Chart(document.getElementById('cultureChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Power Distance', 'Individualism', 'Masculinity', 'Uncertainty Avoidance', 'Long Term', 'Indulgence'],
-                    datasets: [
-                        { label: 'Germany (Target)', data: [35, 67, 66, 65, 83, 40], backgroundColor: '#C14953', borderRadius: 4 },
-                        { label: 'USA', data: [40, 91, 62, 46, 26, 68], backgroundColor: '#E5E7EB', borderRadius: 4 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: { 
-                        y: { beginAtZero: true, grid: { color: '#F3F4F6' } },
-                        x: { grid: { display: false } }
-                    },
-                    plugins: { legend: { position: 'top' } }
-                }
-            });
-
-            // 3. COMPETITOR CHART (Bubble)
-            new Chart(document.getElementById('competitorChart').getContext('2d'), {
-                type: 'bubble',
-                data: {
-                    datasets: [{
-                        label: 'Landscape',
-                        data: [
-                            { x: 95, y: 95, r: 30, label: 'SAP (Giant)' },
-                            { x: 80, y: 80, r: 15, label: 'Kinaxis' },
-                            { x: 20, y: 90, r: 25, label: 'DCE (Us)' },
-                            { x: 85, y: 60, r: 10, label: 'O2' }
-                        ],
-                        backgroundColor: context => context.raw.label.includes('DCE') ? '#C14953' : '#E5E7EB',
-                        borderColor: context => context.raw.label.includes('DCE') ? '#9F1239' : '#9CA3AF',
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { title: {display: true, text: 'Market Dominance'}, min: 0, max: 110 },
-                        y: { title: {display: true, text: 'Trust Score'}, min: 40, max: 110 }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { callbacks: { label: context => context.raw.label } }
-                    }
-                }
-            });
+        // Init Phase 1
+        document.addEventListener('DOMContentLoaded', function() {
+            selectPhase(1);
+            
+            // Re-init charts (Previous code)
+            new Chart(document.getElementById('frictionChart').getContext('2d'), { type: 'doughnut', data: { labels: ['Geopolitics', 'Supply Chain', 'Talent', 'AI/Tech', 'Recession'], datasets: [{ data: [35, 20, 15, 20, 10], backgroundColor: ['#DC2626', '#F59E0B', '#4B5563', '#10B981', '#6B7280'], borderWidth: 0, hoverOffset: 15 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { color: '#D1D5DB', usePointStyle: true, padding: 15 } } } } });
+            new Chart(document.getElementById('competitorChart').getContext('2d'), { type: 'bubble', data: { datasets: [{ label: 'Landscape', data: [{ x: 95, y: 95, r: 30, label: 'SAP (Giant)' }, { x: 80, y: 80, r: 15, label: 'Kinaxis' }, { x: 20, y: 90, r: 25, label: 'DCE (Us)' }, { x: 85, y: 60, r: 10, label: 'O2' }], backgroundColor: c => c.raw.label.includes('DCE') ? '#C14953' : '#E5E7EB', borderColor: c => c.raw.label.includes('DCE') ? '#9F1239' : '#9CA3AF', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: {display: true, text: 'Market Dominance'}, min: 0, max: 110 }, y: { title: {display: true, text: 'Trust Score'}, min: 40, max: 110 } }, plugins: { legend: { display: false } } } });
         });
     </script>
 </body>
