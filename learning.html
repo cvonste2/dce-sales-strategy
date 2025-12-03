@@ -120,6 +120,25 @@
             color: #E5E7EB;
         }
 
+        /* NEW: Tag Styles */
+        .card-tags {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .card-tag {
+            background: #333;
+            color: #FFD100;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 99px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
         /* Sidebar Styles - UPDATED FOR DARK MODE */
         .module-btn {
             display: flex;
@@ -323,74 +342,74 @@
 
     <!-- DATA & LOGIC -->
     <script>
-        // --- COMPLETE MODULE DATASET ---
+        // --- COMPLETE MODULE DATASET WITH TAGS ---
         const modules = [
             // TRACK 1: DCE STRATEGY (Indices 0-5)
             {
                 title: "1. Strategic Context",
                 desc: "The Burning Platform & Urgency",
                 cards: [
-                    { q: "What is 'Permacrisis'?", a: "A state of persistent instability (War, Energy, Supply) where static processes fail because variables change constantly." },
-                    { q: "Sick Man of Europe Stat", a: "Germany ranks 18th of 21 industrial economies (ZEW). Competitiveness is lost due to a 'Digital Lag'." },
-                    { q: "Shock Digitalization", a: "The argument that incremental pilots are too slow. Radical digital overhaul is needed to prevent de-industrialization." },
-                    { q: "The LkSG 'Trojan Horse'", a: "Using Supply Chain Act compliance to force deep-tier visibility, creating the backbone for a DCE." },
-                    { q: "The Tech Triad", a: "<b>1. IIoT/5G:</b> Nervous System.<br><b>2. Big Data:</b> Brain.<br><b>3. GenAI:</b> Accelerator." }
+                    { q: "What is 'Permacrisis'?", a: "A state of persistent instability (War, Energy, Supply) where static processes fail because variables change constantly.", tags: ["Strategy", "Crisis", "Market"] },
+                    { q: "Sick Man of Europe Stat", a: "Germany ranks 18th of 21 industrial economies (ZEW). Competitiveness is lost due to a 'Digital Lag'.", tags: ["Economics", "Germany", "Competitiveness"] },
+                    { q: "Shock Digitalization", a: "The argument that incremental pilots are too slow. Radical digital overhaul is needed to prevent de-industrialization.", tags: ["Digitalization", "Urgency", "Transformation"] },
+                    { q: "The LkSG 'Trojan Horse'", a: "Using Supply Chain Act compliance to force deep-tier visibility, creating the backbone for a DCE.", tags: ["Compliance", "Supply Chain", "Regulation"] },
+                    { q: "The Tech Triad", a: "<b>1. IIoT/5G:</b> Nervous System.<br><b>2. Big Data:</b> Brain.<br><b>3. GenAI:</b> Accelerator.", tags: ["Technology", "IoT", "AI"] }
                 ]
             },
             {
                 title: "2. Psychology & Culture",
                 desc: "Navigating the Mindset Gap",
                 cards: [
-                    { q: "What is 'Angststillstand'?", a: "Fear-induced stagnation. CEOs paralyzed between today's crises and tomorrow's AI." },
-                    { q: "Burger vs. Döner", a: "<b>US (Burger):</b> Start now, fix later (Winning).<br><b>EU (Döner):</b> Plan to end, avoid error (Fear of Losing)." },
-                    { q: "The Poet (Archetype)", a: "Reflects on meaning. Needs narrative and context before acting." },
-                    { q: "The Thinker (Archetype)", a: "Analyzes risks. Demands 100% accuracy. Prone to paralysis." },
-                    { q: "The Doer (Archetype)", a: "Executes immediately. Our goal: Use data to give the 'Thinker' the courage to become a 'Doer'." },
-                    { q: "Trust Pyramid", a: "Base: Empathy. Middle: Authority. Top: Partnership." }
+                    { q: "What is 'Angststillstand'?", a: "Fear-induced stagnation. CEOs paralyzed between today's crises and tomorrow's AI.", tags: ["Psychology", "Leadership", "Fear"] },
+                    { q: "Burger vs. Döner", a: "<b>US (Burger):</b> Start now, fix later (Winning).<br><b>EU (Döner):</b> Plan to end, avoid error (Fear of Losing).", tags: ["Culture", "Mindset", "USA vs EU"] },
+                    { q: "The Poet (Archetype)", a: "Reflects on meaning. Needs narrative and context before acting.", tags: ["Archetype", "Culture", "Narrative"] },
+                    { q: "The Thinker (Archetype)", a: "Analyzes risks. Demands 100% accuracy. Prone to paralysis.", tags: ["Archetype", "Risk", "Analysis"] },
+                    { q: "The Doer (Archetype)", a: "Executes immediately. Our goal: Use data to give the 'Thinker' the courage to become a 'Doer'.", tags: ["Archetype", "Execution", "Action"] },
+                    { q: "Trust Pyramid", a: "Base: Empathy. Middle: Authority. Top: Partnership.", tags: ["Trust", "Relationships", "Sales"] }
                 ]
             },
             {
                 title: "3. Solution Architecture",
                 desc: "The DCE Engine",
                 cards: [
-                    { q: "The Great Synergy", a: "<b>Logility:</b> Strategic Eye (Plan).<br><b>Germanedge:</b> Operational Hand (Execute)." },
-                    { q: "What is Edge.One?", a: "A PaaS Integration Hub (Unified Production Workplace) connecting ERP, SCADA, and Apps." },
-                    { q: "Pillar 1: Speed", a: "Reducing concept-to-cash cycle. Removing decision latency." },
-                    { q: "Pillar 2: Flexibility", a: "Modular consistency. Reconfiguring lines overnight without breaking the system." },
-                    { q: "Pillar 3: Resilience", a: "Absorbing shocks (cyber/supply) via security-by-design and prediction." },
-                    { q: "Pillar 4: Courage", a: "Using predictive certainty to lower the risk threshold for bold decisions." }
+                    { q: "The Great Synergy", a: "<b>Logility:</b> Strategic Eye (Plan).<br><b>Germanedge:</b> Operational Hand (Execute).", tags: ["Partnership", "Logility", "Germanedge"] },
+                    { q: "What is Edge.One?", a: "A PaaS Integration Hub (Unified Production Workplace) connecting ERP, SCADA, and Apps.", tags: ["Platform", "PaaS", "Integration"] },
+                    { q: "Pillar 1: Speed", a: "Reducing concept-to-cash cycle. Removing decision latency.", tags: ["Value Driver", "Speed", "Efficiency"] },
+                    { q: "Pillar 2: Flexibility", a: "Modular consistency. Reconfiguring lines overnight without breaking the system.", tags: ["Value Driver", "Modularity", "Agility"] },
+                    { q: "Pillar 3: Resilience", a: "Absorbing shocks (cyber/supply) via security-by-design and prediction.", tags: ["Value Driver", "Security", "Risk"] },
+                    { q: "Pillar 4: Courage", a: "Using predictive certainty to lower the risk threshold for bold decisions.", tags: ["Value Driver", "Decision", "Culture"] }
                 ]
             },
             {
                 title: "4. Sales Playbook",
                 desc: "Winning Tactics",
                 cards: [
-                    { q: "Beating SAP", a: "<b>Accountant vs. Engineer.</b> SAP runs the office (Finance). We run the factory (Ops)." },
-                    { q: "ZF Lesson: Phase Mismatch", a: "Stop 'Vision Selling' when the customer is in 'Evaluation' mode. Map features to spreadsheets." },
-                    { q: "Hidden Stakeholder", a: "Create a 5-min video reel for executives who vote but never attend demos." },
-                    { q: "Customer Intimacy Platform", a: "A portal for existing customers. Use search data to detect upsell signals." },
-                    { q: "Flow Economy Formula", a: "(Speed + Flexibility + Resilience) × Courage = Flow Economy" }
+                    { q: "Beating SAP", a: "<b>Accountant vs. Engineer.</b> SAP runs the office (Finance). We run the factory (Ops).", tags: ["Competition", "SAP", "Strategy"] },
+                    { q: "ZF Lesson: Phase Mismatch", a: "Stop 'Vision Selling' when the customer is in 'Evaluation' mode. Map features to spreadsheets.", tags: ["Sales Process", "Tactics", "Alignment"] },
+                    { q: "Hidden Stakeholder", a: "Create a 5-min video reel for executives who vote but never attend demos.", tags: ["Sales", "Decision Makers", "Influencers"] },
+                    { q: "Customer Intimacy Platform", a: "A portal for existing customers. Use search data to detect upsell signals.", tags: ["Customer Success", "Retention", "Upsell"] },
+                    { q: "Flow Economy Formula", a: "(Speed + Flexibility + Resilience) × Courage = Flow Economy", tags: ["Concept", "Formula", "Value"] }
                 ]
             },
             {
                 title: "5. Technical Roadmap",
                 desc: "Implementation Journey",
                 cards: [
-                    { q: "Stage 1: Connectivity", a: "Goal: Visibility. Implement IIoT/5G to see what is happening." },
-                    { q: "Stage 2: Analytics", a: "Goal: Understanding. Aggregate data to know WHY it happened." },
-                    { q: "Stage 3: Prediction", a: "Goal: Foresight. DCE Core. AI predicts failures before they occur." },
-                    { q: "Stage 4: Autonomous Flow", a: "Goal: Autonomy. Self-optimizing lines. Human strategy only." },
-                    { q: "Cybersecurity", a: "We secure the decision loop. Segregating OT networks from public internet." }
+                    { q: "Stage 1: Connectivity", a: "Goal: Visibility. Implement IIoT/5G to see what is happening.", tags: ["Roadmap", "IIoT", "Visibility"] },
+                    { q: "Stage 2: Analytics", a: "Goal: Understanding. Aggregate data to know WHY it happened.", tags: ["Roadmap", "Data", "Insights"] },
+                    { q: "Stage 3: Prediction", a: "Goal: Foresight. DCE Core. AI predicts failures before they occur.", tags: ["Roadmap", "AI", "Foresight"] },
+                    { q: "Stage 4: Autonomous Flow", a: "Goal: Autonomy. Self-optimizing lines. Human strategy only.", tags: ["Roadmap", "Automation", "Autonomy"] },
+                    { q: "Cybersecurity", a: "We secure the decision loop. Segregating OT networks from public internet.", tags: ["Security", "OT", "Infrastructure"] }
                 ]
             },
             {
                 title: "6. Brand Identity",
                 desc: "Tone of Voice",
                 cards: [
-                    { q: "Brand Promise", a: "In the moment of truth, empowering you to take the right decision." },
-                    { q: "Tone of Voice", a: "The 'Professional Provocateur'. Reliable but challenging the status quo." },
-                    { q: "Brand Architecture", a: "'Germanedge is an Aptean company.' Combine German agility with US scale." },
-                    { q: "Key Message", a: "'Germany, Stop Whining!' - Move from analysis to action." }
+                    { q: "Brand Promise", a: "In the moment of truth, empowering you to take the right decision.", tags: ["Brand", "Mission", "Empowerment"] },
+                    { q: "Tone of Voice", a: "The 'Professional Provocateur'. Reliable but challenging the status quo.", tags: ["Brand", "Communication", "Tone"] },
+                    { q: "Brand Architecture", a: "'Germanedge is an Aptean company.' Combine German agility with US scale.", tags: ["Brand", "Aptean", "Structure"] },
+                    { q: "Key Message", a: "'Germany, Stop Whining!' - Move from analysis to action.", tags: ["Messaging", "Call to Action", "Urgency"] }
                 ]
             },
             // TRACK 2: DIGITAL FACTORY INTEL (Indices 6-11)
@@ -398,66 +417,66 @@
                 title: "7. Portfolio & Factory 0",
                 desc: "The Disruptive Offer",
                 cards: [
-                    { q: "The 4 Pillars", a: "1. MES (GEFASOFT)<br>2. Planning (ORSOFT)<br>3. Quality (QDA)<br>4. Worker (New Solutions)" },
-                    { q: "Factory 0 Concept", a: "Pre-defined end-to-end processes for immediate value. Zero setup time." },
-                    { q: "Speed USP", a: "Deployment in <b>under 10 minutes</b> vs traditional months." },
-                    { q: "App Composer", a: "Low-code capability for 2-week agile enhancement cycles." },
-                    { q: "Target Matrix", a: "<b>Regions:</b> DACH & Nordics.<br><b>Industries:</b> Auto, Pharma, Electronics." }
+                    { q: "The 4 Pillars", a: "1. MES (GEFASOFT)<br>2. Planning (ORSOFT)<br>3. Quality (QDA)<br>4. Worker (New Solutions)", tags: ["Portfolio", "MES", "Planning"] },
+                    { q: "Factory 0 Concept", a: "Pre-defined end-to-end processes for immediate value. Zero setup time.", tags: ["Concept", "Speed", "Standardization"] },
+                    { q: "Speed USP", a: "Deployment in <b>under 10 minutes</b> vs traditional months.", tags: ["USP", "Deployment", "Value"] },
+                    { q: "App Composer", a: "Low-code capability for 2-week agile enhancement cycles.", tags: ["Technology", "Low-Code", "Agility"] },
+                    { q: "Target Matrix", a: "<b>Regions:</b> DACH & Nordics.<br><b>Industries:</b> Auto, Pharma, Electronics.", tags: ["Sales", "Regions", "Verticals"] }
                 ]
             },
             {
                 title: "8. MES Landscape",
                 desc: "GEFASOFT Domain",
                 cards: [
-                    { q: "Top Incumbents", a: "Siemens, Rockwell, SAP. Strengths: Scale. Weakness: Monolithic/Slow." },
-                    { q: "The Disruptor", a: "<b>Tulip:</b> No-code platform. Wins on agility and ease of use." },
-                    { q: "Cloud Trend", a: "Cloud MES growing to $24B by 2031. Driven by multi-site scalability." },
-                    { q: "AI in MES", a: "Predictive Maintenance & Quality are now standard requirements." },
-                    { q: "Our Positioning", a: "'End-to-End, Yet Modular'. Integrated platform vs point solutions." }
+                    { q: "Top Incumbents", a: "Siemens, Rockwell, SAP. Strengths: Scale. Weakness: Monolithic/Slow.", tags: ["Competition", "Siemens", "Rockwell"] },
+                    { q: "The Disruptor", a: "<b>Tulip:</b> No-code platform. Wins on agility and ease of use.", tags: ["Competition", "Tulip", "No-Code"] },
+                    { q: "Cloud Trend", a: "Cloud MES growing to $24B by 2031. Driven by multi-site scalability.", tags: ["Market Trend", "Cloud", "Growth"] },
+                    { q: "AI in MES", a: "Predictive Maintenance & Quality are now standard requirements.", tags: ["Technology", "AI", "Predictive"] },
+                    { q: "Our Positioning", a: "'End-to-End, Yet Modular'. Integrated platform vs point solutions.", tags: ["Strategy", "Differentiation", "Platform"] }
                 ]
             },
             {
                 title: "9. Supply Chain Planning",
                 desc: "ORSOFT Domain",
                 cards: [
-                    { q: "The Leaders", a: "Kinaxis, o9 Solutions, Blue Yonder. (Gartner Magic Quadrant)." },
-                    { q: "The Unicorn", a: "<b>o9 Solutions:</b> The 'Digital Brain'. Growing fast via Graph tech." },
-                    { q: "AI Forecasting", a: "Demand sensing using external data (weather, trends) vs historic data." },
-                    { q: "Integration Edge", a: "ORSOFT's deep certification inside SAP. No separate data silo needed." },
-                    { q: "Startup Agility", a: "New players (Relex, Pigment) win on speed (Weeks vs Months implementation)." }
+                    { q: "The Leaders", a: "Kinaxis, o9 Solutions, Blue Yonder. (Gartner Magic Quadrant).", tags: ["Competition", "Kinaxis", "Blue Yonder"] },
+                    { q: "The Unicorn", a: "<b>o9 Solutions:</b> The 'Digital Brain'. Growing fast via Graph tech.", tags: ["Competition", "o9", "AI"] },
+                    { q: "AI Forecasting", a: "Demand sensing using external data (weather, trends) vs historic data.", tags: ["Technology", "AI", "Demand"] },
+                    { q: "Integration Edge", a: "ORSOFT's deep certification inside SAP. No separate data silo needed.", tags: ["USP", "SAP", "Integration"] },
+                    { q: "Startup Agility", a: "New players (Relex, Pigment) win on speed (Weeks vs Months implementation).", tags: ["Competition", "Startups", "Speed"] }
                 ]
             },
             {
                 title: "10. Quality & LIMS",
                 desc: "QDA Domain",
                 cards: [
-                    { q: "The Old Guard", a: "ETQ, MasterControl, TrackWise. Reliable but heavy/expensive." },
-                    { q: "Predictive Quality", a: "The shift from 'inspecting defects out' to 'predicting them away' with AI." },
-                    { q: "Phantom of Heilbronn", a: "Story hook: High cost of lab failure (DNA contamination case)." },
-                    { q: "LIMS Disruptors", a: "Benchling & Labguru. Modern, R&D focused, cloud-native." },
-                    { q: "Regulatory Drivers", a: "EU MDR & FDA 21 CFR Part 11 are major sales catalysts." }
+                    { q: "The Old Guard", a: "ETQ, MasterControl, TrackWise. Reliable but heavy/expensive.", tags: ["Competition", "ETQ", "TrackWise"] },
+                    { q: "Predictive Quality", a: "The shift from 'inspecting defects out' to 'predicting them away' with AI.", tags: ["Trend", "AI", "Prevention"] },
+                    { q: "Phantom of Heilbronn", a: "Story hook: High cost of lab failure (DNA contamination case).", tags: ["Story", "Risk", "Quality"] },
+                    { q: "LIMS Disruptors", a: "Benchling & Labguru. Modern, R&D focused, cloud-native.", tags: ["Competition", "Benchling", "Cloud"] },
+                    { q: "Regulatory Drivers", a: "EU MDR & FDA 21 CFR Part 11 are major sales catalysts.", tags: ["Drivers", "Compliance", "FDA"] }
                 ]
             },
             {
                 title: "11. Connected Worker",
                 desc: "New Solutions Domain",
                 cards: [
-                    { q: "EAM Market Leader", a: "IFS (#1 Market Share). Focus on Asset Lifecycle." },
-                    { q: "Consumer-App Threat", a: "MaintainX & UpKeep. Winning because workers actually like the UX." },
-                    { q: "Demographic Gap", a: "Capturing tribal knowledge from retiring workers for the next gen." },
-                    { q: "The Integrated USP", a: "A checklist app fails without MES integration. We connect the worker to the machine." },
-                    { q: "ROI Logic", a: "Reducing shift handover times by 50%." }
+                    { q: "EAM Market Leader", a: "IFS (#1 Market Share). Focus on Asset Lifecycle.", tags: ["Competition", "IFS", "Asset Mgmt"] },
+                    { q: "Consumer-App Threat", a: "MaintainX & UpKeep. Winning because workers actually like the UX.", tags: ["Competition", "MaintainX", "UX"] },
+                    { q: "Demographic Gap", a: "Capturing tribal knowledge from retiring workers for the next gen.", tags: ["Drivers", "Workforce", "Knowledge"] },
+                    { q: "The Integrated USP", a: "A checklist app fails without MES integration. We connect the worker to the machine.", tags: ["USP", "Integration", "MES"] },
+                    { q: "ROI Logic", a: "Reducing shift handover times by 50%.", tags: ["ROI", "Efficiency", "Shift Book"] }
                 ]
             },
             {
                 title: "12. Strategy & OKRs",
                 desc: "Execution Targets",
                 cards: [
-                    { q: "Enterprise Strategy", a: "Sell Scalability, Security, and 'Transformation Partner' status." },
-                    { q: "Mid-Market Strategy", a: "Sell 'Turnkey Cloud', Low TCO, and Quick Wins." },
-                    { q: "Trojan Horse", a: "Use LkSG (Supply Chain Act) compliance to sell the platform." },
-                    { q: "Objective: DACH", a: "Win 5 new enterprise customers in target sectors by 2025." },
-                    { q: "Objective: Innovation", a: "Release 4 new AI-powered features by 2025." }
+                    { q: "Enterprise Strategy", a: "Sell Scalability, Security, and 'Transformation Partner' status.", tags: ["Strategy", "Enterprise", "Scalability"] },
+                    { q: "Mid-Market Strategy", a: "Sell 'Turnkey Cloud', Low TCO, and Quick Wins.", tags: ["Strategy", "SME", "Cloud"] },
+                    { q: "Trojan Horse", a: "Use LkSG (Supply Chain Act) compliance to sell the platform.", tags: ["Tactic", "LkSG", "Entry Point"] },
+                    { q: "Objective: DACH", a: "Win 5 new enterprise customers in target sectors by 2025.", tags: ["Goals", "Sales", "DACH"] },
+                    { q: "Objective: Innovation", a: "Release 4 new AI-powered features by 2025.", tags: ["Goals", "Product", "AI"] }
                 ]
             },
             // TRACK 3: AI ADOPTION (Indices 12-16)
@@ -465,58 +484,58 @@
                 title: "13. The Centaur Mindset",
                 desc: "Human-Centric AI & Symbiosis",
                 cards: [
-                    { q: "What is the 'Centaur Model' in AI?", a: "A hybrid collaboration model where humans (Strategic Direction/Creativity) and AI (Data Processing/Speed) combine strengths to outperform either alone." },
-                    { q: "\"AI relieves you from work, not from...\"", a: "<b>\"...Thinking.\"</b> The human remains the \"Pilot\" responsible for critical judgment, context, and final quality control." },
-                    { q: "What is 'AI Triangulation'?", a: "Using multiple different AI models (e.g., ChatGPT + Claude + Perplexity) to compare perspectives and validate results, like a board of advisors." },
-                    { q: "The Core Human Role in the Centaur Model", a: "<b>Quality Control & Direction.</b> The human must set the context (Prompting) and rigorously evaluate the AI's output (Editing)." },
-                    { q: "Iterative Workflow Principle", a: "The best results come from a \"Ping-Pong\" dialogue: Human Draft -> AI Critique -> Human Refinement -> AI Polish." },
-                    { q: "Why is 'Prompt Engineering' a social skill?", a: "Because it requires empathy and clear communication context, similar to onboarding a highly intelligent but literal-minded human intern." }
+                    { q: "What is the 'Centaur Model' in AI?", a: "A hybrid collaboration model where humans (Strategic Direction/Creativity) and AI (Data Processing/Speed) combine strengths to outperform either alone.", tags: ["Concept", "Collaboration", "Hybrid"] },
+                    { q: "\"AI relieves you from work, not from...\"", a: "<b>\"...Thinking.\"</b> The human remains the \"Pilot\" responsible for critical judgment, context, and final quality control.", tags: ["Role", "Human", "Judgment"] },
+                    { q: "What is 'AI Triangulation'?", a: "Using multiple different AI models (e.g., ChatGPT + Claude + Perplexity) to compare perspectives and validate results, like a board of advisors.", tags: ["Technique", "Validation", "Models"] },
+                    { q: "The Core Human Role in the Centaur Model", a: "<b>Quality Control & Direction.</b> The human must set the context (Prompting) and rigorously evaluate the AI's output (Editing).", tags: ["Role", "Quality Control", "Prompting"] },
+                    { q: "Iterative Workflow Principle", a: "The best results come from a \"Ping-Pong\" dialogue: Human Draft -> AI Critique -> Human Refinement -> AI Polish.", tags: ["Workflow", "Process", "Refinement"] },
+                    { q: "Why is 'Prompt Engineering' a social skill?", a: "Because it requires empathy and clear communication context, similar to onboarding a highly intelligent but literal-minded human intern.", tags: ["Skill", "Prompting", "Empathy"] }
                 ]
             },
             {
                 title: "14. AI as a Social Partner",
                 desc: "Overcoming Social Friction",
                 cards: [
-                    { q: "The \"Invisible Assistant\" Ideal", a: "AI should function like a \"Digital Shadow\" or \"Prompter in a Theater\"—always present and helpful, but never dominating the stage." },
-                    { q: "\"Human-in-Control\" Principle", a: "The psychological necessity that humans must always feel they can intervene and steer the AI, reducing stress and rejection." },
-                    { q: "The \"Polarity Map\" of Team AI", a: "Teams must balance two poles: **Efficiency/Control** (AI Automation) vs. **Exploration/Learning** (Human Creativity). Both are needed." },
-                    { q: "Neuroscience of AI Adoption", a: "\"Visible\" automation can trigger threat responses (Cortisol). \"Invisible/Supportive\" automation triggers trust (Oxytocin)." },
-                    { q: "Artificial Colleagues vs. Tools", a: "Moving from viewing AI as a \"Calculator\" to viewing it as a \"Team Member\" (e.g., An Artificial Expert for Quality or an Artificial Challenger for Strategy)." },
-                    { q: "The Cultural Catalyst Effect", a: "AI forces teams to ask \"Who are we?\" and \"What is our purpose?\", acting as a mirror that accelerates cultural transformation." }
+                    { q: "The \"Invisible Assistant\" Ideal", a: "AI should function like a \"Digital Shadow\" or \"Prompter in a Theater\"—always present and helpful, but never dominating the stage.", tags: ["Role", "Support", "UX"] },
+                    { q: "\"Human-in-Control\" Principle", a: "The psychological necessity that humans must always feel they can intervene and steer the AI, reducing stress and rejection.", tags: ["Psychology", "Trust", "Control"] },
+                    { q: "The \"Polarity Map\" of Team AI", a: "Teams must balance two poles: **Efficiency/Control** (AI Automation) vs. **Exploration/Learning** (Human Creativity). Both are needed.", tags: ["Framework", "Balance", "Efficiency"] },
+                    { q: "Neuroscience of AI Adoption", a: "\"Visible\" automation can trigger threat responses (Cortisol). \"Invisible/Supportive\" automation triggers trust (Oxytocin).", tags: ["Science", "Trust", "Adoption"] },
+                    { q: "Artificial Colleagues vs. Tools", a: "Moving from viewing AI as a \"Calculator\" to viewing it as a \"Team Member\" (e.g., An Artificial Expert for Quality or an Artificial Challenger for Strategy).", tags: ["Mindset", "Team", "Collaboration"] },
+                    { q: "The Cultural Catalyst Effect", a: "AI forces teams to ask \"Who are we?\" and \"What is our purpose?\", acting as a mirror that accelerates cultural transformation.", tags: ["Culture", "Transformation", "Purpose"] }
                 ]
             },
             {
                 title: "15. Leadership in the Age of Speed",
                 desc: "Dromology & Resonance",
                 cards: [
-                    { q: "What is 'Dromology'?", a: "The study of speed (derived from *dromos*). It posits that speed is the primary engine of modern power and societal change." },
-                    { q: "The Danger of \"Rasender Stillstand\"", a: "<b>\"Frenzied Standstill.\"</b> A state where high-speed activity (Frantic AI loops) leads to a loss of meaning and no actual progress." },
-                    { q: "What are \"Resonance Spaces\" (Resonanzräume)?", a: "Deliberate pauses or \"slow zones\" created by leaders to allow teams to digest information and reflect, counteracting the speed of AI." },
-                    { q: "The Paradox of Acceleration", a: "As AI accelerates information flow, the *time* available for human decision-making shrinks, increasing the risk of \"Decision Paralysis.\"" },
-                    { q: "The \"Sprint & Pause\" Rhythm", a: "A leadership strategy: Alternate between high-speed AI execution sprints and slow, human-centric reflection phases." },
-                    { q: "Speed as a Power Factor", a: "In a Dromological organization, power belongs to those who control the *tempo* of information, not just the content." }
+                    { q: "What is 'Dromology'?", a: "The study of speed (derived from *dromos*). It posits that speed is the primary engine of modern power and societal change.", tags: ["Concept", "Speed", "Power"] },
+                    { q: "The Danger of \"Rasender Stillstand\"", a: "<b>\"Frenzied Standstill.\"</b> A state where high-speed activity (Frantic AI loops) leads to a loss of meaning and no actual progress.", tags: ["Risk", "Stagnation", "Speed"] },
+                    { q: "What are \"Resonance Spaces\" (Resonanzräume)?", a: "Deliberate pauses or \"slow zones\" created by leaders to allow teams to digest information and reflect, counteracting the speed of AI.", tags: ["Leadership", "Reflection", "Pacing"] },
+                    { q: "The Paradox of Acceleration", a: "As AI accelerates information flow, the *time* available for human decision-making shrinks, increasing the risk of \"Decision Paralysis.\"", tags: ["Challenge", "Decision", "Time"] },
+                    { q: "The \"Sprint & Pause\" Rhythm", a: "A leadership strategy: Alternate between high-speed AI execution sprints and slow, human-centric reflection phases.", tags: ["Strategy", "Rhythm", "Management"] },
+                    { q: "Speed as a Power Factor", a: "In a Dromological organization, power belongs to those who control the *tempo* of information, not just the content.", tags: ["Power", "Information", "Tempo"] }
                 ]
             },
             {
                 title: "16. Strategic Execution",
                 desc: "Culture, Governance & KPIs",
                 cards: [
-                    { q: "The \"Scaling Gap\" Statistic", a: "74% of companies fail to scale AI beyond the pilot phase. The barrier is rarely technology, but **Culture and Governance**." },
-                    { q: "Leadership Formula for AI", a: "<b>Leadership = Technology × Culture.</b> You cannot buy adoption; you must cultivate the social acceptance of the tool." },
-                    { q: "The \"Early vs. Late\" Risk", a: "Investing too early is expensive (learning curve). Investing too late is dangerous (market irrelevance). The sweet spot is \"Strategic Exploration.\"" },
-                    { q: "Types of AI Integration", a: "1. **Embedded:** Invisible (e.g., Spam filter). 2. **Copilot:** Collaborative (e.g., Coding assistant). 3. **Agent:** Autonomous (e.g., Auto-booking)." },
-                    { q: "The \"Social Competence\" Bias", a: "The risk that employees using AI are perceived as \"lazy\" or \"less competent.\" Leaders must reframe AI usage as \"Smart Leverage.\"" },
-                    { q: "Strategic KPI for AI", a: "Don't just measure \"Time Saved.\" Measure \"Quality Gained\" and \"Employee Satisfaction\" (Trust in the tool)." }
+                    { q: "The \"Scaling Gap\" Statistic", a: "74% of companies fail to scale AI beyond the pilot phase. The barrier is rarely technology, but **Culture and Governance**.", tags: ["Challenge", "Adoption", "Culture"] },
+                    { q: "Leadership Formula for AI", a: "<b>Leadership = Technology × Culture.</b> You cannot buy adoption; you must cultivate the social acceptance of the tool.", tags: ["Formula", "Culture", "Tech"] },
+                    { q: "The \"Early vs. Late\" Risk", a: "Investing too early is expensive (learning curve). Investing too late is dangerous (market irrelevance). The sweet spot is \"Strategic Exploration.\"", tags: ["Strategy", "Investment", "Risk"] },
+                    { q: "Types of AI Integration", a: "1. **Embedded:** Invisible (e.g., Spam filter). 2. **Copilot:** Collaborative (e.g., Coding assistant). 3. **Agent:** Autonomous (e.g., Auto-booking).", tags: ["Framework", "Embedded", "Agent"] },
+                    { q: "The \"Social Competence\" Bias", a: "The risk that employees using AI are perceived as \"lazy\" or \"less competent.\" Leaders must reframe AI usage as \"Smart Leverage.\"", tags: ["Culture", "Perception", "Skills"] },
+                    { q: "Strategic KPI for AI", a: "Don't just measure \"Time Saved.\" Measure \"Quality Gained\" and \"Employee Satisfaction\" (Trust in the tool).", tags: ["Metrics", "Quality", "Satisfaction"] }
                 ]
             },
             {
                 title: "17. Social Interaction",
                 desc: "Defining AI Roles",
                 cards: [
-                    { q: "AI Role: Experts", a: "AI acting as a deep-domain specialist (e.g., Legal, Code, Medicine) available on demand to answer complex queries." },
-                    { q: "AI Role: Colleagues", a: "AI working alongside humans on daily tasks (\"Co-Pilot\"), handling the repetitive load while the human guides the workflow." },
-                    { q: "AI Role: Decision Makers", a: "AI taking over specific autonomous decisions based on data thresholds (e.g., automated stock reordering), freeing humans for strategic choices." },
-                    { q: "AI Role: Discussion Partners", a: "AI acting as a \"Sparring Partner\" or \"Devil's Advocate\" to challenge human assumptions and refine ideas through dialogue." }
+                    { q: "AI Role: Experts", a: "AI acting as a deep-domain specialist (e.g., Legal, Code, Medicine) available on demand to answer complex queries.", tags: ["Role", "Specialist", "Knowledge"] },
+                    { q: "AI Role: Colleagues", a: "AI working alongside humans on daily tasks (\"Co-Pilot\"), handling the repetitive load while the human guides the workflow.", tags: ["Role", "Co-Pilot", "Execution"] },
+                    { q: "AI Role: Decision Makers", a: "AI taking over specific autonomous decisions based on data thresholds (e.g., automated stock reordering), freeing humans for strategic choices.", tags: ["Role", "Automation", "Rules"] },
+                    { q: "AI Role: Discussion Partners", a: "AI acting as a \"Sparring Partner\" or \"Devil's Advocate\" to challenge human assumptions and refine ideas through dialogue.", tags: ["Role", "Sparring", "Ideation"] }
                 ]
             },
             // TRACK 4: COMPETITIVE MASTERY (Indices 17-21)
@@ -524,60 +543,60 @@
                 title: "18. The Factory 0 Disruption",
                 desc: "Tech Advantage & Speed",
                 cards: [
-                    { q: "What is the 'Factory 0' Concept?", a: "Pre-defined end-to-end processes allowing immediate value and zero setup time. A 'Factory in a Box' approach." },
-                    { q: "The '10-Minute' Promise", a: "The ability to deploy a digital factory module in minutes, not months. A bold claim that proves true agility against legacy MES." },
-                    { q: "The Enabler: App Composer", a: "Low-code capability allowing customers to enhance processes in 2-week Scrum cycles without heavy IT dependency." },
-                    { q: "Target Audience Positioning", a: "<b>Mid-Market:</b> Needs 'Turnkey' solutions.<br><b>Enterprise:</b> Needs 'Agility' to pivot fast." },
-                    { q: "The Competitive Wedge", a: "We beat Legacy on <b>Speed</b> (minutes vs months). We beat Startups on <b>Completeness</b> (full suite vs apps)." },
-                    { q: "The Market Trend", a: "Cloud MES is skyrocketing. The market is projected to reach <b>$24 Billion by 2031</b>." }
+                    { q: "What is the 'Factory 0' Concept?", a: "Pre-defined end-to-end processes allowing immediate value and zero setup time. A 'Factory in a Box' approach.", tags: ["Factory 0", "Concept", "Standardization"] },
+                    { q: "The '10-Minute' Promise", a: "The ability to deploy a digital factory module in minutes, not months. A bold claim that proves true agility against legacy MES.", tags: ["USP", "Speed", "Deployment"] },
+                    { q: "The Enabler: App Composer", a: "Low-code capability allowing customers to enhance processes in 2-week Scrum cycles without heavy IT dependency.", tags: ["Tech", "Low-Code", "Agility"] },
+                    { q: "Target Audience Positioning", a: "<b>Mid-Market:</b> Needs 'Turnkey' solutions.<br><b>Enterprise:</b> Needs 'Agility' to pivot fast.", tags: ["Strategy", "Segmentation", "Needs"] },
+                    { q: "The Competitive Wedge", a: "We beat Legacy on <b>Speed</b> (minutes vs months). We beat Startups on <b>Completeness</b> (full suite vs apps).", tags: ["Differentiation", "Speed", "Completeness"] },
+                    { q: "The Market Trend", a: "Cloud MES is skyrocketing. The market is projected to reach <b>$24 Billion by 2031</b>.", tags: ["Market", "Cloud", "Growth"] }
                 ]
             },
             {
                 title: "19. Battling the Giants",
                 desc: "Enterprise Strategy (SAP/Siemens)",
                 cards: [
-                    { q: "The Opponents", a: "<b>Siemens, Rockwell, SAP.</b> Strengths: Brand & Scale. Weaknesses: Monolithic, slow, and 'Aging Architectures'." },
-                    { q: "The 'Silo' Argument", a: "Buying point solutions creates data silos. We offer a unified spine (Edge.One) versus fragmented tools." },
-                    { q: "The Integration Advantage", a: "<b>Data Convergence.</b> A quality issue in QDA automatically adjusts the schedule in ORSOFT—a seamless loop." },
-                    { q: "Countering the 'Suite' Pitch", a: "Big vendors offer suites but they are cobbled together acquisitions. Edge.One is 'End-to-End, Yet Modular'." },
-                    { q: "The 'Risk' Neutralizer", a: "Leverage <b>Aptean's global backing</b> + ISO 27001 compliance. We have the stability of a giant with the speed of a startup." },
-                    { q: "Winning on Agility", a: "Enterprises are stuck with static systems. Our 2-week innovation cycles mean they are never obsolete." }
+                    { q: "The Opponents", a: "<b>Siemens, Rockwell, SAP.</b> Strengths: Brand & Scale. Weaknesses: Monolithic, slow, and 'Aging Architectures'.", tags: ["Competition", "Enterprise", "Legacy"] },
+                    { q: "The 'Silo' Argument", a: "Buying point solutions creates data silos. We offer a unified spine (Edge.One) versus fragmented tools.", tags: ["Pain Point", "Fragmentation", "Data"] },
+                    { q: "The Integration Advantage", a: "<b>Data Convergence.</b> A quality issue in QDA automatically adjusts the schedule in ORSOFT—a seamless loop.", tags: ["USP", "Convergence", "Loop"] },
+                    { q: "Countering the 'Suite' Pitch", a: "Big vendors offer suites but they are cobbled together acquisitions. Edge.One is 'End-to-End, Yet Modular'.", tags: ["Counter-Arg", "Architecture", "Modern"] },
+                    { q: "The 'Risk' Neutralizer", a: "Leverage <b>Aptean's global backing</b> + ISO 27001 compliance. We have the stability of a giant with the speed of a startup.", tags: ["Trust", "Aptean", "Compliance"] },
+                    { q: "Winning on Agility", a: "Enterprises are stuck with static systems. Our 2-week innovation cycles mean they are never obsolete.", tags: ["USP", "Innovation", "Updates"] }
                 ]
             },
             {
                 title: "20. Crushing the Startups",
                 desc: "Mid-Market Strategy (Tulip/MaintainX)",
                 cards: [
-                    { q: "The Opponents", a: "<b>Tulip, MaintainX, o9.</b> Strengths: Modern UI & Speed. Weaknesses: Lack of breadth & long-term stability." },
-                    { q: "The 'App Fatigue' Trap", a: "Startups offer fragmented tools (just checklists, just planning). We offer a platform that grows with you." },
-                    { q: "The 'Risk' Argument", a: "Startups are 'Here today, gone tomorrow.' Germanedge offers modern SaaS tech backed by decades of domain stability." },
-                    { q: "The Pricing Strategy", a: "<b>GermanedgeNOW.</b> A SaaS/Marketplace model that lowers upfront costs, making us accessible to the 'Mittelstand'." },
-                    { q: "Domain Expertise Difference", a: "Startups have cool tech but shallow logic. We have deep manufacturing logic (GEFASOFT/ORSOFT) wrapped in new tech." },
-                    { q: "The Mid-Market Pitch", a: "\"Enterprise Power at Mid-Market Cost.\" You don't need to be BMW to run a BMW-grade system." }
+                    { q: "The Opponents", a: "<b>Tulip, MaintainX, o9.</b> Strengths: Modern UI & Speed. Weaknesses: Lack of breadth & long-term stability.", tags: ["Competition", "Startups", "Niche"] },
+                    { q: "The 'App Fatigue' Trap", a: "Startups offer fragmented tools (just checklists, just planning). We offer a platform that grows with you.", tags: ["Pain Point", "Fragmentation", "Tools"] },
+                    { q: "The 'Risk' Argument", a: "Startups are 'Here today, gone tomorrow.' Germanedge offers modern SaaS tech backed by decades of domain stability.", tags: ["Objection", "Stability", "Longevity"] },
+                    { q: "The Pricing Strategy", a: "<b>GermanedgeNOW.</b> A SaaS/Marketplace model that lowers upfront costs, making us accessible to the 'Mittelstand'.", tags: ["Commercial", "SaaS", "Entry"] },
+                    { q: "Domain Expertise Difference", a: "Startups have cool tech but shallow logic. We have deep manufacturing logic (GEFASOFT/ORSOFT) wrapped in new tech.", tags: ["Differentiation", "Domain", "Logic"] },
+                    { q: "The Mid-Market Pitch", a: "\"Enterprise Power at Mid-Market Cost.\" You don't need to be BMW to run a BMW-grade system.", tags: ["Messaging", "Value", "Hybrid"] }
                 ]
             },
             {
                 title: "21. ROI & Financial Selling",
                 desc: "The CFO Pitch & Metrics",
                 cards: [
-                    { q: "The Strategy Pivot", a: "Stop selling features. Start selling <b>Outcomes</b>. Moving from 'Technical Feasibility' to 'Financial Transparency'." },
-                    { q: "Key Metric: Payback Period", a: "Target ROI in <b>< 1.5 Years</b> (vs industry avg 2.5 years for legacy MES projects)." },
-                    { q: "Key Metric: Inventory", a: "Our APS can cut inventory holding costs by <b>15%</b>, freeing millions in working capital." },
-                    { q: "Key Metric: Throughput", a: "Mid-sized plants increased throughput by <b>5-10%</b> without buying new machines, just by optimizing flow." },
-                    { q: "Key Metric: Efficiency", a: "Reducing shift handover times by <b>50%</b> using the Digital Shift Book (New Solutions)." },
-                    { q: "Key Metric: OEE", a: "LNS Research data shows Digital Lean tools drive <b>10-20%</b> improvement in OEE (Overall Equipment Effectiveness)." }
+                    { q: "The Strategy Pivot", a: "Stop selling features. Start selling <b>Outcomes</b>. Moving from 'Technical Feasibility' to 'Financial Transparency'.", tags: ["Sales", "Methodology", "Outcomes"] },
+                    { q: "Key Metric: Payback Period", a: "Target ROI in <b>< 1.5 Years</b> (vs industry avg 2.5 years for legacy MES projects).", tags: ["Metric", "ROI", "Finance"] },
+                    { q: "Key Metric: Inventory", a: "Our APS can cut inventory holding costs by <b>15%</b>, freeing millions in working capital.", tags: ["Metric", "APS", "Cost"] },
+                    { q: "Key Metric: Throughput", a: "Mid-sized plants increased throughput by <b>5-10%</b> without buying new machines, just by optimizing flow.", tags: ["Metric", "MES", "Productivity"] },
+                    { q: "Key Metric: Efficiency", a: "Reducing shift handover times by <b>50%</b> using the Digital Shift Book (New Solutions).", tags: ["Metric", "Worker", "Time"] },
+                    { q: "Key Metric: OEE", a: "LNS Research data shows Digital Lean tools drive <b>10-20%</b> improvement in OEE (Overall Equipment Effectiveness).", tags: ["Metric", "Quality", "Performance"] }
                 ]
             },
             {
                 title: "22. Sales Narratives",
                 desc: "Storytelling for Sales",
                 cards: [
-                    { q: "The 'Phantom of Heilbronn'", a: "<i>The Quality Story.</i> A police hunt for a serial killer turned out to be contaminated cotton swabs. <b>Lesson: Quality data integrity is everything.</b>" },
-                    { q: "The '10-Minute Factory'", a: "<i>The Speed Story.</i> Imagine setting up a full digital factory before you finish your coffee. That is the new standard we set." },
-                    { q: "The 'Safe Bet' Trap", a: "<i>The Innovation Story.</i> \"Nobody gets fired for buying Siemens\"... until the factory closes because it couldn't adapt fast enough." },
-                    { q: "The 'Excel House of Cards'", a: "<i>The Planning Story.</i> One wrong formula in a spreadsheet can cost millions in stockouts. Why run a €50M plant on a €100 tool?" },
-                    { q: "The 'Silo Detective'", a: "<i>The Integration Story.</i> Maintenance blames Production. Production blames Planning. Why? Because they look at different data." },
-                    { q: "The 'Centaur' Future", a: "<i>The AI Story.</i> AI doesn't replace the worker; it gives them superpowers. Be the Pilot, not the Passenger." }
+                    { q: "The 'Phantom of Heilbronn'", a: "<i>The Quality Story.</i> A police hunt for a serial killer turned out to be contaminated cotton swabs. <b>Lesson: Quality data integrity is everything.</b>", tags: ["Story", "Quality", "Risk"] },
+                    { q: "The '10-Minute Factory'", a: "<i>The Speed Story.</i> Imagine setting up a full digital factory before you finish your coffee. That is the new standard we set.", tags: ["Story", "Speed", "Vision"] },
+                    { q: "The 'Safe Bet' Trap", a: "<i>The Innovation Story.</i> \"Nobody gets fired for buying Siemens\"... until the factory closes because it couldn't adapt fast enough.", tags: ["Story", "Innovation", "Warning"] },
+                    { q: "The 'Excel House of Cards'", a: "<i>The Planning Story.</i> One wrong formula in a spreadsheet can cost millions in stockouts. Why run a €50M plant on a €100 tool?", tags: ["Story", "Planning", "Risk"] },
+                    { q: "The 'Silo Detective'", a: "<i>The Integration Story.</i> Maintenance blames Production. Production blames Planning. Why? Because they look at different data.", tags: ["Story", "Integration", "Alignment"] },
+                    { q: "The 'Centaur' Future", a: "<i>The AI Story.</i> AI doesn't replace the worker; it gives them superpowers. Be the Pilot, not the Passenger.", tags: ["Story", "AI", "Future"] }
                 ]
             }
         ];
@@ -729,6 +748,10 @@
                             <div class="flashcard-category text-ge-yellow">Insight</div>
                             <div class="flashcard-icon">!</div>
                             <p class="flashcard-a">${card.a}</p>
+                            <!-- TAGS RENDERED HERE -->
+                            <div class="card-tags">
+                                ${card.tags ? card.tags.map(t => `<span class="card-tag">${t}</span>`).join('') : ''}
+                            </div>
                         </div>
                     </div>
                 </div>
