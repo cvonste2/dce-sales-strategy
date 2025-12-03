@@ -12,23 +12,22 @@
     <link rel="stylesheet" href="css/germanedge.css?v=4">
     
     <style>
-        /* --- VISUAL UNIFICATION (STEP 3) --- */
-        /* Dark Sidebar & Nav to match index.html */
+        /* --- VISUAL UNIFICATION --- */
         :root {
             --ge-black: #050505;
             --ge-dark-grey: #111111;
             --ge-yellow: #FFD100;
         }
 
-        body { background-color: #F3F4F6; } /* Light content area for contrast */
+        body { background-color: #F3F4F6; }
 
-        /* Custom Scrollbar for Dark Sidebar */
+        /* Dark Sidebar Scrollbar */
         .dark-scroll::-webkit-scrollbar { width: 6px; }
         .dark-scroll::-webkit-scrollbar-track { background: #111; }
         .dark-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
         .dark-scroll::-webkit-scrollbar-thumb:hover { background: #FFD100; }
 
-        /* Card Grid - Adaptive */
+        /* Card Grid */
         .card-grid {
             display: grid;
             gap: 1.5rem;
@@ -40,7 +39,7 @@
         @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
         @media (min-width: 1600px) { .card-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 
-        /* 3D Flip Card Effect */
+        /* 3D Flip Card */
         .flashcard-scene {
             background-color: transparent;
             width: 100%;
@@ -120,7 +119,7 @@
             color: #E5E7EB;
         }
 
-        /* NEW: Tag Styles */
+        /* Tag Styles */
         .card-tags {
             margin-top: 1.5rem;
             display: flex;
@@ -139,7 +138,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* Sidebar Styles - UPDATED FOR DARK MODE */
+        /* Sidebar Module Button */
         .module-btn {
             display: flex;
             align-items: center;
@@ -150,7 +149,7 @@
             transition: all 0.2s;
             margin-bottom: 0.5rem;
             cursor: pointer;
-            color: #9CA3AF; /* Gray text */
+            color: #9CA3AF;
             border: 1px solid transparent;
         }
         
@@ -178,7 +177,7 @@
             transition: all 0.2s;
         }
 
-        /* Tab System - UPDATED FOR DARK MODE */
+        /* Tabs */
         .track-tab {
             padding-bottom: 1rem;
             margin-right: 2rem;
@@ -193,7 +192,7 @@
         .track-tab:hover { color: #111; }
         .track-tab.active { color: #000; border-bottom-color: #FFD100; }
 
-        /* Badge Styles */
+        /* Badges */
         .badge-certified {
             display: inline-flex;
             align-items: center;
@@ -205,10 +204,10 @@
             font-weight: 800;
             margin-left: 8px;
             text-transform: uppercase;
-            display: none; /* Hidden by default */
+            display: none;
         }
         
-        /* Tag Cloud Styles */
+        /* Tag Cloud */
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
@@ -236,25 +235,51 @@
             font-weight: 700;
         }
 
-        /* Modal Animation */
+        /* Dashboard */
+        .dashboard-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD100;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        }
+        .dash-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .dash-title { font-weight: 800; font-size: 1.2rem; color: black; margin-bottom: 0.5rem; }
+        .dash-desc { color: #6B7280; font-size: 0.9rem; }
+
+        /* Modal Safe-Guard */
         #quiz-modal { transition: opacity 0.3s ease; }
-        #quiz-modal.hidden { opacity: 0; pointer-events: none; }
+        #quiz-modal.hidden { display: none !important; opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body class="flex flex-col h-screen overflow-hidden">
 
-    <!-- NAVIGATION (Dark Mode) -->
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10 h-20 flex-shrink-0">
+    <!-- NAVIGATION (Forced Black via Tailwind to fix UI consistency, z-index 1000) -->
+    <nav class="fixed w-full z-[1000] bg-black h-20 flex-shrink-0 border-b border-white/10">
         <div class="max-w-full px-6 w-full h-full flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <a href="index.html" class="text-white text-2xl font-bold tracking-tight flex items-center gap-2 hover:text-ge-yellow transition">
+                <!-- explicit relative link -->
+                <a href="./index.html" class="text-white text-2xl font-bold tracking-tight flex items-center gap-2 hover:text-ge-yellow transition">
                     <span class="text-3xl text-ge-yellow">∞</span> Germanedge
                 </a>
                 <div class="hidden md:block w-px h-6 bg-gray-700 mx-2"></div>
                 <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Digital Factory Knowledge Hub</span>
             </div>
             <div>
-                <a href="index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
+                <!-- explicit relative link -->
+                <a href="./index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
             </div>
         </div>
     </nav>
@@ -291,10 +316,10 @@
         <!-- CONTENT AREA -->
         <main class="flex-1 overflow-y-auto relative bg-[#F3F4F6] flex flex-col">
             
-            <!-- TRACK TABS (Light Header to contrast content) -->
+            <!-- TRACK TABS -->
             <div class="px-8 pt-8 pb-0 bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm flex justify-between items-end">
                 <div class="flex flex-wrap gap-4 overflow-x-auto" id="track-tabs-container">
-                    <button onclick="switchTrack('strategy')" id="tab-strategy" class="track-tab active">
+                    <button onclick="switchTrack('strategy')" id="tab-strategy" class="track-tab">
                         TRACK 1: STRATEGY <span id="badge-strategy" class="badge-certified">✓</span>
                     </button>
                     <button onclick="switchTrack('intel')" id="tab-intel" class="track-tab">
@@ -307,7 +332,9 @@
                         TRACK 4: COMPETITION <span id="badge-comp" class="badge-certified">✓</span>
                     </button>
                 </div>
-                <button onclick="openQuiz()" id="quiz-btn" class="mb-3 bg-black text-white text-xs font-bold uppercase px-4 py-2 rounded hover:bg-ge-yellow hover:text-black transition flex items-center gap-2">
+                
+                <!-- Main Quiz Button -->
+                <button onclick="openQuiz()" id="quiz-btn" class="hidden mb-3 bg-black text-white text-xs font-bold uppercase px-4 py-2 rounded hover:bg-ge-yellow hover:text-black transition flex items-center gap-2">
                     <span>🎓 Take Exam</span>
                 </button>
             </div>
@@ -326,29 +353,32 @@
                         <h1 id="module-title" class="text-3xl font-bold text-black mb-2">Select a Module</h1>
                         <p id="module-desc" class="text-gray-500">Explore the strategic pillars of the Decision Centric Enterprise.</p>
                     </div>
-                    <button id="clear-filter-btn" onclick="clearTagFilter()" class="hidden bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded hover:bg-red-200">Clear Filter ✕</button>
+                    <!-- Tag Filter Controls (Hidden by default) -->
+                    <div id="filter-controls" class="hidden flex gap-2">
+                        <!-- Buttons injected via JS -->
+                    </div>
                 </div>
             </div>
 
-            <!-- GRID -->
+            <!-- CONTENT GRID -->
             <div id="card-grid" class="card-grid">
-                <!-- Cards injected here -->
+                <!-- Dashboard or Cards injected here -->
             </div>
 
             <div class="h-20"></div>
         </main>
     </div>
 
-    <!-- QUIZ MODAL (STEP 1) -->
-    <div id="quiz-modal" class="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center hidden">
+    <!-- QUIZ MODAL -->
+    <div id="quiz-modal" class="fixed inset-0 z-[1100] bg-black/90 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full mx-4 overflow-hidden relative">
             <button onclick="closeQuiz()" class="absolute top-4 right-4 text-gray-400 hover:text-black font-bold">✕</button>
             
             <!-- Quiz Start State -->
             <div id="quiz-start" class="p-8 text-center">
                 <div class="w-16 h-16 bg-ge-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎓</div>
-                <h2 class="text-2xl font-bold mb-2">Track Certification Exam</h2>
-                <p class="text-gray-600 mb-6">Answer 3 questions correctly to earn your certification badge for this track.</p>
+                <h2 id="quiz-title-display" class="text-2xl font-bold mb-2">Track Certification Exam</h2>
+                <p id="quiz-desc-display" class="text-gray-600 mb-6">Answer 3 questions correctly to earn your certification badge for this track.</p>
                 <button onclick="startQuiz()" class="bg-black text-white font-bold py-3 px-8 rounded hover:bg-gray-800 transition">Start Quiz</button>
             </div>
 
@@ -368,7 +398,7 @@
             <div id="quiz-success" class="p-8 text-center hidden">
                 <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl text-white">✓</div>
                 <h2 class="text-2xl font-bold mb-2">Certified!</h2>
-                <p class="text-gray-600 mb-6">You have mastered this track. The badge has been added to your profile.</p>
+                <p class="text-gray-600 mb-6">You have mastered this topic.</p>
                 <button onclick="closeQuiz()" class="bg-black text-white font-bold py-3 px-8 rounded hover:bg-gray-800 transition">Close & Save</button>
             </div>
 
@@ -376,7 +406,7 @@
             <div id="quiz-fail" class="p-8 text-center hidden">
                 <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl text-white">✕</div>
                 <h2 class="text-2xl font-bold mb-2">Not Quite...</h2>
-                <p class="text-gray-600 mb-6">Review the flashcards and try again to earn your badge.</p>
+                <p class="text-gray-600 mb-6">Review the flashcards and try again.</p>
                 <button onclick="resetQuiz()" class="bg-gray-200 text-black font-bold py-3 px-8 rounded hover:bg-gray-300 transition">Try Again</button>
             </div>
         </div>
@@ -386,7 +416,7 @@
     <script>
         // --- COMPLETE MODULE DATASET WITH CONSOLIDATED TAGS ---
         const modules = [
-            // TRACK 1: DCE STRATEGY (Indices 0-5)
+            // TRACK 1: DCE STRATEGY
             {
                 title: "1. Strategic Context",
                 desc: "The Burning Platform & Urgency",
@@ -454,7 +484,7 @@
                     { q: "Key Message", a: "'Germany, Stop Whining!' - Move from analysis to action.", tags: ["Sales Tactics", "Strategy & Mindset"] }
                 ]
             },
-            // TRACK 2: DIGITAL FACTORY INTEL (Indices 6-11)
+            // TRACK 2: DIGITAL FACTORY INTEL
             {
                 title: "7. Portfolio & Factory 0",
                 desc: "The Disruptive Offer",
@@ -521,7 +551,7 @@
                     { q: "Objective: Innovation", a: "Release 4 new AI-powered features by 2025.", tags: ["AI & Future", "Technology"] }
                 ]
             },
-            // TRACK 3: AI ADOPTION (Indices 12-16)
+            // TRACK 3: AI ADOPTION
             {
                 title: "13. The Centaur Mindset",
                 desc: "Human-Centric AI & Symbiosis",
@@ -580,7 +610,7 @@
                     { q: "AI Role: Discussion Partners", a: "AI acting as a \"Sparring Partner\" or \"Devil's Advocate\" to challenge human assumptions and refine ideas through dialogue.", tags: ["AI & Future", "Workforce"] }
                 ]
             },
-            // TRACK 4: COMPETITIVE MASTERY (Indices 17-21)
+            // TRACK 4: COMPETITIVE MASTERY
             {
                 title: "18. The Factory 0 Disruption",
                 desc: "Tech Advantage & Speed",
@@ -676,22 +706,20 @@
         };
 
         // --- APP STATE ---
-        let currentTrack = 'strategy'; // 'strategy', 'intel', 'ai', 'comp'
+        let currentTrack = null; 
         let currentModuleIndex = 0;
         let quizState = { currentQ: 0, correct: 0, track: '' };
+        let activeQuizQuestions = [];
         let allTags = new Set();
+        let isTagQuiz = false;
 
         // --- LOGIC ---
         function init() {
             try {
-                // Check local storage for badges
                 updateBadges();
-                
-                // Initialize Tags
                 extractTags();
                 renderTagCloud();
-
-                switchTrack('strategy');
+                showDashboard();
             } catch (e) {
                 console.error("Initialization failed:", e);
                 document.getElementById('module-title').innerText = "System Error";
@@ -726,44 +754,80 @@
             });
         }
 
+        function showDashboard() {
+            currentTrack = null;
+            
+            document.querySelectorAll('.track-tab').forEach(el => el.classList.remove('active'));
+            document.getElementById('quiz-btn').classList.add('hidden');
+            document.getElementById('filter-controls').classList.add('hidden');
+            document.getElementById('track-tabs-container').classList.remove('hidden'); 
+            
+            document.getElementById('module-title').innerText = "Welcome to the Academy";
+            document.getElementById('module-desc').innerText = "Choose your learning path below.";
+
+            const grid = document.getElementById('card-grid');
+            grid.innerHTML = `
+                <div class="dashboard-card" onclick="switchTrack('strategy')">
+                    <div class="dash-icon">🚀</div>
+                    <div class="dash-title">The Rookie</div>
+                    <div class="dash-desc">Start here to understand the Strategy & "Why".</div>
+                </div>
+                <div class="dashboard-card" onclick="switchTrack('comp')">
+                    <div class="dash-icon">⚔️</div>
+                    <div class="dash-title">The Deal Closer</div>
+                    <div class="dash-desc">Jump to competitive battlecards & ROI data.</div>
+                </div>
+                <div class="dashboard-card" onclick="switchTrack('ai')">
+                    <div class="dash-icon">🧙</div>
+                    <div class="dash-title">The Futurist</div>
+                    <div class="dash-desc">Master AI adoption and new tech trends.</div>
+                </div>
+                <div class="dashboard-card" onclick="switchTrack('intel')">
+                    <div class="dash-icon">🧠</div>
+                    <div class="dash-title">The Expert</div>
+                    <div class="dash-desc">Deep dive into product pillars and Intel.</div>
+                </div>
+            `;
+            
+            renderSidebar(); 
+        }
+
         function switchTrack(track) {
             currentTrack = track;
             
-            // Clear Filters
-            document.getElementById('clear-filter-btn').classList.add('hidden');
+            document.getElementById('filter-controls').classList.add('hidden');
             
-            // Update Tabs
             document.querySelectorAll('.track-tab').forEach(el => el.classList.remove('active'));
             if(document.getElementById(`tab-${track}`)) {
                 document.getElementById(`tab-${track}`).classList.add('active');
             }
 
-            // Show Tabs & Quiz Button
             document.getElementById('track-tabs-container').classList.remove('hidden');
             document.getElementById('quiz-btn').classList.remove('hidden');
 
-            // Determine Module Range
             let startIndex = 0;
             if (track === 'strategy') startIndex = 0;
             else if (track === 'intel') startIndex = 6;
             else if (track === 'ai') startIndex = 12;
             else if (track === 'comp') startIndex = 17;
 
-            // Load Content
             loadModule(startIndex);
         }
 
         function filterByTag(tag) {
-            // UI Updates
             document.getElementById('module-title').innerText = `Tag: ${tag}`;
             document.getElementById('module-desc').innerText = `Showing all cards tagged with #${tag}`;
-            document.getElementById('clear-filter-btn').classList.remove('hidden');
             
-            // Hide Tabs & Quiz Button (since we are cross-track)
             document.getElementById('track-tabs-container').classList.add('hidden');
             document.getElementById('quiz-btn').classList.add('hidden');
 
-            // Find Cards
+            const controlsDiv = document.getElementById('filter-controls');
+            controlsDiv.innerHTML = `
+                <button onclick="startTagQuiz('${tag}')" class="bg-black text-white text-xs font-bold uppercase px-3 py-1 rounded hover:bg-ge-yellow hover:text-black mr-2">🎓 Exam: ${tag}</button>
+                <button onclick="clearTagFilter()" class="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded hover:bg-red-200">Clear Filter ✕</button>
+            `;
+            controlsDiv.classList.remove('hidden');
+
             const grid = document.getElementById('card-grid');
             const matchingCards = [];
 
@@ -775,7 +839,6 @@
                 });
             });
 
-            // Render
             grid.innerHTML = matchingCards.map((card, i) => `
                 <div class="flashcard-scene" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-inner">
@@ -799,17 +862,23 @@
         }
 
         function clearTagFilter() {
-            // Restore UI
-            document.getElementById('track-tabs-container').classList.remove('hidden');
-            document.getElementById('quiz-btn').classList.remove('hidden');
-            switchTrack(currentTrack);
+            if (currentTrack) {
+                switchTrack(currentTrack);
+            } else {
+                showDashboard();
+            }
         }
 
         function renderSidebar() {
             const list = document.getElementById('module-list');
             const select = document.getElementById('mobile-select');
             
-            // Filter modules based on track
+            if (!currentTrack) {
+                list.innerHTML = `<p class="text-gray-500 text-xs text-center mt-10">Select a journey from the dashboard.</p>`;
+                select.innerHTML = `<option>Select a journey...</option>`;
+                return;
+            }
+
             let start = 0;
             let end = 6;
 
@@ -819,11 +888,6 @@
             else if (currentTrack === 'comp') { start = 17; end = 22; }
             
             const activeModules = modules.slice(start, end);
-
-            // Update Sidebar Badge visibility
-            const isCertified = localStorage.getItem(`cert_${currentTrack}`) === 'true';
-            const sbBadge = document.getElementById('sidebar-badge');
-            if (sbBadge) sbBadge.style.display = isCertified ? 'inline-flex' : 'none';
 
             list.innerHTML = activeModules.map((m, i) => {
                 const globalIndex = start + i;
@@ -849,14 +913,11 @@
                 return;
             }
             
-            // Update Text
             document.getElementById('module-title').innerText = mod.title;
             document.getElementById('module-desc').innerText = mod.desc;
 
-            // Update Sidebar UI
             renderSidebar();
 
-            // Render Cards
             const grid = document.getElementById('card-grid');
             grid.innerHTML = mod.cards.map((card, i) => `
                 <div class="flashcard-scene" onclick="this.classList.toggle('flipped')">
@@ -882,15 +943,78 @@
         }
 
         // --- QUIZ FUNCTIONS ---
-        function openQuiz() {
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startTagQuiz(tag) {
+            const taggedCards = [];
+            const relatedDistractors = []; 
+            const fallbackDistractors = []; 
+            
+            modules.forEach(mod => {
+                mod.cards.forEach(card => {
+                    const isTagged = card.tags && card.tags.includes(tag);
+                    
+                    if (isTagged) {
+                        taggedCards.push(card);
+                    } else {
+                        const hasOverlap = card.tags && card.tags.some(t => t !== tag && taggedCards.length > 0 && taggedCards[0].tags.includes(t));
+                        if (hasOverlap) {
+                            relatedDistractors.push(card.a);
+                        } else {
+                            fallbackDistractors.push(card.a);
+                        }
+                    }
+                });
+            });
+
+            if (taggedCards.length < 1) return; 
+
+            const shuffledCards = shuffleArray([...taggedCards]);
+            const selectedCards = shuffledCards.slice(0, 3);
+
+            activeQuizQuestions = selectedCards.map(card => {
+                let possibleDistractors = [...relatedDistractors, ...fallbackDistractors].filter(a => a !== card.a);
+                
+                const shuffledDistractors = shuffleArray(possibleDistractors);
+                const distractors = shuffledDistractors.slice(0, 2);
+                
+                const answers = shuffleArray([card.a, ...distractors]);
+                
+                return {
+                    q: card.q,
+                    answers: answers,
+                    correct: answers.indexOf(card.a)
+                };
+            });
+
+            isTagQuiz = true;
+            openQuiz(tag);
+        }
+
+        function openQuiz(tagName = null) {
             const modal = document.getElementById('quiz-modal');
             modal.classList.remove('hidden');
             
-            // Reset to start screen
             document.getElementById('quiz-start').classList.remove('hidden');
             document.getElementById('quiz-questions').classList.add('hidden');
             document.getElementById('quiz-success').classList.add('hidden');
             document.getElementById('quiz-fail').classList.add('hidden');
+
+            if (isTagQuiz && tagName) {
+                document.getElementById('quiz-title-display').innerText = `Topic Exam: ${tagName}`;
+                document.getElementById('quiz-desc-display').innerText = `Test your knowledge on #${tagName}.`;
+            } else {
+                document.getElementById('quiz-title-display').innerText = "Track Certification Exam";
+                document.getElementById('quiz-desc-display').innerText = "Answer 3 questions correctly to earn your certification badge for this track.";
+                isTagQuiz = false; 
+            }
         }
 
         function closeQuiz() {
@@ -899,16 +1023,22 @@
 
         function startQuiz() {
             quizState = { currentQ: 0, correct: 0, track: currentTrack };
+            
+            if (!isTagQuiz) {
+                activeQuizQuestions = quizzes[currentTrack].questions;
+                document.getElementById('quiz-track-name').innerText = currentTrack.toUpperCase();
+            }
+
             document.getElementById('quiz-start').classList.add('hidden');
             document.getElementById('quiz-questions').classList.remove('hidden');
-            document.getElementById('quiz-track-name').innerText = currentTrack.toUpperCase();
+            
             renderQuestion();
         }
 
         function renderQuestion() {
-            const qData = quizzes[quizState.track].questions[quizState.currentQ];
+            const qData = activeQuizQuestions[quizState.currentQ];
             document.getElementById('q-current').innerText = quizState.currentQ + 1;
-            document.getElementById('q-total').innerText = quizzes[quizState.track].questions.length;
+            document.getElementById('q-total').innerText = activeQuizQuestions.length;
             document.getElementById('question-text').innerText = qData.q;
 
             const container = document.getElementById('answers-container');
@@ -920,13 +1050,13 @@
         }
 
         function answerQuestion(index) {
-            const qData = quizzes[quizState.track].questions[quizState.currentQ];
+            const qData = activeQuizQuestions[quizState.currentQ];
             if (index === qData.correct) {
                 quizState.correct++;
             }
 
             quizState.currentQ++;
-            if (quizState.currentQ < quizzes[quizState.track].questions.length) {
+            if (quizState.currentQ < activeQuizQuestions.length) {
                 renderQuestion();
             } else {
                 finishQuiz();
@@ -935,17 +1065,16 @@
 
         function finishQuiz() {
             document.getElementById('quiz-questions').classList.add('hidden');
-            const total = quizzes[quizState.track].questions.length;
+            const total = activeQuizQuestions.length;
             
             if (quizState.correct === total) {
-                // Success
                 document.getElementById('quiz-success').classList.remove('hidden');
-                // Save Certification
-                localStorage.setItem(`cert_${quizState.track}`, 'true');
-                updateBadges();
-                // Trigger confetti logic could go here
+                
+                if (!isTagQuiz) {
+                    localStorage.setItem(`cert_${quizState.track}`, 'true');
+                    updateBadges();
+                }
             } else {
-                // Fail
                 document.getElementById('quiz-fail').classList.remove('hidden');
             }
         }
