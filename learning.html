@@ -12,8 +12,21 @@
     <link rel="stylesheet" href="css/germanedge.css?v=4">
     
     <style>
-        /* --- LEARNING HUB SPECIFIC STYLES --- */
-        body { background-color: #F9FAFB; }
+        /* --- VISUAL UNIFICATION (STEP 3) --- */
+        /* Dark Sidebar & Nav to match index.html */
+        :root {
+            --ge-black: #050505;
+            --ge-dark-grey: #111111;
+            --ge-yellow: #FFD100;
+        }
+
+        body { background-color: #F3F4F6; } /* Light content area for contrast */
+
+        /* Custom Scrollbar for Dark Sidebar */
+        .dark-scroll::-webkit-scrollbar { width: 6px; }
+        .dark-scroll::-webkit-scrollbar-track { background: #111; }
+        .dark-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        .dark-scroll::-webkit-scrollbar-thumb:hover { background: #FFD100; }
 
         /* Card Grid - Adaptive */
         .card-grid {
@@ -107,7 +120,7 @@
             color: #E5E7EB;
         }
 
-        /* Sidebar Styles */
+        /* Sidebar Styles - UPDATED FOR DARK MODE */
         .module-btn {
             display: flex;
             align-items: center;
@@ -118,47 +131,74 @@
             transition: all 0.2s;
             margin-bottom: 0.5rem;
             cursor: pointer;
+            color: #9CA3AF; /* Gray text */
+            border: 1px solid transparent;
         }
         
-        .module-btn:hover { background-color: #F3F4F6; }
-        .module-btn.active { background-color: #111; color: white; }
+        .module-btn:hover { background-color: #222; color: white; }
+        .module-btn.active { 
+            background-color: #1A1A1A; 
+            color: white; 
+            border-color: #333;
+            border-left: 3px solid #FFD100;
+        }
         .module-btn.active .module-number { background-color: #FFD100; color: black; }
 
         .module-number {
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background-color: #E5E7EB;
-            color: #6B7280;
+            background-color: #333;
+            color: #999;
             font-size: 0.75rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 0.75rem;
+            transition: all 0.2s;
         }
 
-        /* Tab System */
+        /* Tab System - UPDATED FOR DARK MODE */
         .track-tab {
             padding-bottom: 1rem;
             margin-right: 2rem;
             font-weight: 700;
             font-size: 0.8rem;
-            color: #9CA3AF;
+            color: #6B7280;
             border-bottom: 3px solid transparent;
             cursor: pointer;
             transition: all 0.3s;
             white-space: nowrap;
         }
         .track-tab:hover { color: #111; }
-        .track-tab.active { color: #111; border-bottom-color: #FFD100; }
+        .track-tab.active { color: #000; border-bottom-color: #FFD100; }
+
+        /* Badge Styles */
+        .badge-certified {
+            display: inline-flex;
+            align-items: center;
+            background: #FFD100;
+            color: black;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+            margin-left: 8px;
+            text-transform: uppercase;
+            display: none; /* Hidden by default */
+        }
+        
+        /* Modal Animation */
+        #quiz-modal { transition: opacity 0.3s ease; }
+        #quiz-modal.hidden { opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body class="flex flex-col h-screen overflow-hidden">
 
-    <!-- NAVIGATION -->
-    <nav class="fixed w-full z-50 ge-nav flex-shrink-0">
-        <div class="max-w-full px-6 w-full flex justify-between items-center">
+    <!-- NAVIGATION (Dark Mode) -->
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10 h-20 flex-shrink-0">
+        <div class="max-w-full px-6 w-full h-full flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <a href="index.html" class="text-white text-2xl font-bold tracking-tight flex items-center gap-2 hover:text-ge-yellow transition">
                     <span class="text-3xl text-ge-yellow">∞</span> Germanedge
@@ -175,31 +215,45 @@
     <!-- MAIN LAYOUT -->
     <div class="flex flex-1 pt-20 overflow-hidden">
         
-        <!-- SIDEBAR -->
-        <aside class="w-80 bg-white border-r border-gray-200 overflow-y-auto hidden md:block flex-shrink-0">
+        <!-- SIDEBAR (Dark Mode) -->
+        <aside class="w-80 bg-[#050505] border-r border-white/10 overflow-y-auto hidden md:block flex-shrink-0 dark-scroll">
             <div class="p-6">
-                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6" id="sidebar-header">Modules</h3>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest" id="sidebar-header">Modules</h3>
+                    <div id="sidebar-badge" class="badge-certified">CERTIFIED</div>
+                </div>
                 <div id="module-list">
                     <!-- Modules injected here -->
                 </div>
             </div>
-            <div class="p-6 mt-auto border-t border-gray-100 bg-gray-50">
-                <p class="text-xs font-bold text-black mb-1">PRO TIP</p>
+            <div class="p-6 mt-auto border-t border-white/10 bg-[#0a0a0a]">
+                <p class="text-xs font-bold text-white mb-1">PRO TIP</p>
                 <p class="text-xs text-gray-500">Switch tabs above to change tracks.</p>
             </div>
         </aside>
 
         <!-- CONTENT AREA -->
-        <main class="flex-1 overflow-y-auto relative bg-gray-50 flex flex-col">
+        <main class="flex-1 overflow-y-auto relative bg-[#F3F4F6] flex flex-col">
             
-            <!-- TRACK TABS (THE NEW UX) -->
-            <div class="px-8 pt-8 pb-0 bg-white border-b border-gray-200 sticky top-0 z-20">
+            <!-- TRACK TABS (Light Header to contrast content) -->
+            <div class="px-8 pt-8 pb-0 bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm flex justify-between items-end">
                 <div class="flex flex-wrap gap-4 overflow-x-auto">
-                    <button onclick="switchTrack('strategy')" id="tab-strategy" class="track-tab active">TRACK 1: STRATEGY</button>
-                    <button onclick="switchTrack('intel')" id="tab-intel" class="track-tab">TRACK 2: INTEL</button>
-                    <button onclick="switchTrack('ai')" id="tab-ai" class="track-tab">TRACK 3: AI ADOPTION</button>
-                    <button onclick="switchTrack('comp')" id="tab-comp" class="track-tab">TRACK 4: COMPETITIVE MASTERY</button>
+                    <button onclick="switchTrack('strategy')" id="tab-strategy" class="track-tab active">
+                        TRACK 1: STRATEGY <span id="badge-strategy" class="badge-certified">✓</span>
+                    </button>
+                    <button onclick="switchTrack('intel')" id="tab-intel" class="track-tab">
+                        TRACK 2: INTEL <span id="badge-intel" class="badge-certified">✓</span>
+                    </button>
+                    <button onclick="switchTrack('ai')" id="tab-ai" class="track-tab">
+                        TRACK 3: AI ADOPTION <span id="badge-ai" class="badge-certified">✓</span>
+                    </button>
+                    <button onclick="switchTrack('comp')" id="tab-comp" class="track-tab">
+                        TRACK 4: COMPETITION <span id="badge-comp" class="badge-certified">✓</span>
+                    </button>
                 </div>
+                <button onclick="openQuiz()" class="mb-3 bg-black text-white text-xs font-bold uppercase px-4 py-2 rounded hover:bg-ge-yellow hover:text-black transition flex items-center gap-2">
+                    <span>🎓 Take Exam</span>
+                </button>
             </div>
 
             <!-- Mobile Select -->
@@ -222,6 +276,49 @@
 
             <div class="h-20"></div>
         </main>
+    </div>
+
+    <!-- QUIZ MODAL (STEP 1) -->
+    <div id="quiz-modal" class="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full mx-4 overflow-hidden relative">
+            <button onclick="closeQuiz()" class="absolute top-4 right-4 text-gray-400 hover:text-black font-bold">✕</button>
+            
+            <!-- Quiz Start State -->
+            <div id="quiz-start" class="p-8 text-center">
+                <div class="w-16 h-16 bg-ge-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎓</div>
+                <h2 class="text-2xl font-bold mb-2">Track Certification Exam</h2>
+                <p class="text-gray-600 mb-6">Answer 3 questions correctly to earn your certification badge for this track.</p>
+                <button onclick="startQuiz()" class="bg-black text-white font-bold py-3 px-8 rounded hover:bg-gray-800 transition">Start Quiz</button>
+            </div>
+
+            <!-- Quiz Questions State -->
+            <div id="quiz-questions" class="p-8 hidden">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Question <span id="q-current">1</span> of <span id="q-total">3</span></span>
+                    <span class="text-ge-yellow font-bold text-sm" id="quiz-track-name">STRATEGY</span>
+                </div>
+                <h3 id="question-text" class="text-xl font-bold mb-6">Question goes here?</h3>
+                <div id="answers-container" class="space-y-3">
+                    <!-- Buttons injected via JS -->
+                </div>
+            </div>
+
+            <!-- Quiz Success State -->
+            <div id="quiz-success" class="p-8 text-center hidden">
+                <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl text-white">✓</div>
+                <h2 class="text-2xl font-bold mb-2">Certified!</h2>
+                <p class="text-gray-600 mb-6">You have mastered this track. The badge has been added to your profile.</p>
+                <button onclick="closeQuiz()" class="bg-black text-white font-bold py-3 px-8 rounded hover:bg-gray-800 transition">Close & Save</button>
+            </div>
+
+            <!-- Quiz Fail State -->
+            <div id="quiz-fail" class="p-8 text-center hidden">
+                <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl text-white">✕</div>
+                <h2 class="text-2xl font-bold mb-2">Not Quite...</h2>
+                <p class="text-gray-600 mb-6">Review the flashcards and try again to earn your badge.</p>
+                <button onclick="resetQuiz()" class="bg-gray-200 text-black font-bold py-3 px-8 rounded hover:bg-gray-300 transition">Try Again</button>
+            </div>
+        </div>
     </div>
 
     <!-- DATA & LOGIC -->
@@ -485,20 +582,65 @@
             }
         ];
 
+        // --- QUIZ DATA ---
+        const quizzes = {
+            'strategy': {
+                questions: [
+                    { q: "What is 'Permacrisis'?", answers: ["A temporary recession", "A state of persistent instability", "A software bug"], correct: 1 },
+                    { q: "What is the primary psychological barrier for German CEOs?", answers: ["Arrogance", "Angststillstand (Fear-induced stagnation)", "Lack of budget"], correct: 1 },
+                    { q: "What is the key differentiator of Edge.One?", answers: ["It is the cheapest option", "It connects ERP, SCADA, and Apps (PaaS)", "It is only for automotive"], correct: 1 }
+                ]
+            },
+            'intel': {
+                questions: [
+                    { q: "What is the 'Factory 0' concept?", answers: ["A factory with no workers", "Pre-defined end-to-end processes for zero setup time", "A factory with zero emissions"], correct: 1 },
+                    { q: "Who is the main disruptor in the MES space?", answers: ["SAP", "Tulip", "Oracle"], correct: 1 },
+                    { q: "What is the ROI logic for the Connected Worker?", answers: ["Reducing shift handover times by 50%", "Replacing all workers with robots", "Cheaper coffee in the breakroom"], correct: 0 }
+                ]
+            },
+            'ai': {
+                questions: [
+                    { q: "What is the 'Centaur Model'?", answers: ["AI replacing humans", "Human creativity + AI speed working together", "A mythical creature strategy"], correct: 1 },
+                    { q: "What is 'Dromology'?", answers: ["The study of drones", "The study of speed as power", "A new coding language"], correct: 1 },
+                    { q: "What is the core human role in the AI era?", answers: ["Data entry", "Quality Control & Direction", "Coffee fetching"], correct: 1 }
+                ]
+            },
+            'comp': {
+                questions: [
+                    { q: "How fast can the Digital Factory be deployed?", answers: ["6 Months", "10 Minutes", "2 Weeks"], correct: 1 },
+                    { q: "What is the key weakness of legacy giants like SAP?", answers: ["Too expensive", "Monolithic architectures & slow speed", "Lack of brand awareness"], correct: 1 },
+                    { q: "What is the target ROI payback period?", answers: ["5 Years", "< 1.5 Years", "10 Years"], correct: 1 }
+                ]
+            }
+        };
+
         // --- APP STATE ---
-        let currentTrack = 'strategy'; // 'strategy', 'intel', 'ai', or 'comp'
+        let currentTrack = 'strategy'; // 'strategy', 'intel', 'ai', 'comp'
         let currentModuleIndex = 0;
+        let quizState = { currentQ: 0, correct: 0, track: '' };
 
         // --- LOGIC ---
         function init() {
             try {
+                // Check local storage for badges
+                updateBadges();
                 switchTrack('strategy');
             } catch (e) {
                 console.error("Initialization failed:", e);
-                // Fallback text if JS crashes
                 document.getElementById('module-title').innerText = "System Error";
-                document.getElementById('module-desc').innerText = "Please check console for details.";
             }
+        }
+
+        function updateBadges() {
+            const tracks = ['strategy', 'intel', 'ai', 'comp'];
+            tracks.forEach(t => {
+                if (localStorage.getItem(`cert_${t}`) === 'true') {
+                    const badge = document.getElementById(`badge-${t}`);
+                    if (badge) badge.style.display = 'inline-flex';
+                }
+            });
+            // Also update sidebar badge for current module if applicable
+            // (Simplified: Sidebar badge only shows if track is certified. Logic in renderSidebar would be better but this works for init)
         }
 
         function switchTrack(track) {
@@ -535,6 +677,11 @@
             else if (currentTrack === 'comp') { start = 17; end = 22; }
             
             const activeModules = modules.slice(start, end);
+
+            // Update Sidebar Badge visibility
+            const isCertified = localStorage.getItem(`cert_${currentTrack}`) === 'true';
+            const sbBadge = document.getElementById('sidebar-badge');
+            if (sbBadge) sbBadge.style.display = isCertified ? 'inline-flex' : 'none';
 
             list.innerHTML = activeModules.map((m, i) => {
                 const globalIndex = start + i;
@@ -586,6 +733,79 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        // --- QUIZ FUNCTIONS ---
+        function openQuiz() {
+            const modal = document.getElementById('quiz-modal');
+            modal.classList.remove('hidden');
+            
+            // Reset to start screen
+            document.getElementById('quiz-start').classList.remove('hidden');
+            document.getElementById('quiz-questions').classList.add('hidden');
+            document.getElementById('quiz-success').classList.add('hidden');
+            document.getElementById('quiz-fail').classList.add('hidden');
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').classList.add('hidden');
+        }
+
+        function startQuiz() {
+            quizState = { currentQ: 0, correct: 0, track: currentTrack };
+            document.getElementById('quiz-start').classList.add('hidden');
+            document.getElementById('quiz-questions').classList.remove('hidden');
+            document.getElementById('quiz-track-name').innerText = currentTrack.toUpperCase();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const qData = quizzes[quizState.track].questions[quizState.currentQ];
+            document.getElementById('q-current').innerText = quizState.currentQ + 1;
+            document.getElementById('q-total').innerText = quizzes[quizState.track].questions.length;
+            document.getElementById('question-text').innerText = qData.q;
+
+            const container = document.getElementById('answers-container');
+            container.innerHTML = qData.answers.map((ans, i) => `
+                <button onclick="answerQuestion(${i})" class="w-full text-left p-4 border border-gray-200 rounded hover:bg-gray-50 transition hover:border-black font-medium text-sm">
+                    ${ans}
+                </button>
+            `).join('');
+        }
+
+        function answerQuestion(index) {
+            const qData = quizzes[quizState.track].questions[quizState.currentQ];
+            if (index === qData.correct) {
+                quizState.correct++;
+            }
+
+            quizState.currentQ++;
+            if (quizState.currentQ < quizzes[quizState.track].questions.length) {
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-questions').classList.add('hidden');
+            const total = quizzes[quizState.track].questions.length;
+            
+            if (quizState.correct === total) {
+                // Success
+                document.getElementById('quiz-success').classList.remove('hidden');
+                // Save Certification
+                localStorage.setItem(`cert_${quizState.track}`, 'true');
+                updateBadges();
+                // Trigger confetti logic could go here
+            } else {
+                // Fail
+                document.getElementById('quiz-fail').classList.remove('hidden');
+            }
+        }
+
+        function resetQuiz() {
+            startQuiz();
         }
 
         document.addEventListener('DOMContentLoaded', init);
