@@ -262,15 +262,44 @@
         /* Modal Safe-Guard */
         #quiz-modal { transition: opacity 0.3s ease; }
         #quiz-modal.hidden { display: none !important; opacity: 0; pointer-events: none; }
+        
+        /* Sidebar Cards (NEW) */
+        .sidebar-card {
+            background-color: #111;
+            border: 1px solid #333;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .sidebar-card:hover {
+            background-color: #1A1A1A;
+            border-color: #FFD100;
+        }
+        .sidebar-card-icon {
+            font-size: 1.2rem;
+        }
+        .sidebar-card-text {
+            color: #E5E7EB;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .sidebar-card:hover .sidebar-card-text {
+            color: white;
+        }
     </style>
 </head>
 <body class="flex flex-col h-screen overflow-hidden">
 
-    <!-- NAVIGATION (Forced Black via Tailwind to fix UI consistency, z-index 1000) -->
+    <!-- NAVIGATION -->
     <nav class="fixed w-full z-[1000] bg-black h-20 flex-shrink-0 border-b border-white/10">
         <div class="max-w-full px-6 w-full h-full flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <!-- explicit relative link -->
                 <a href="./index.html" class="text-white text-2xl font-bold tracking-tight flex items-center gap-2 hover:text-ge-yellow transition">
                     <span class="text-3xl text-ge-yellow">∞</span> Germanedge
                 </a>
@@ -278,7 +307,6 @@
                 <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Digital Factory Knowledge Hub</span>
             </div>
             <div>
-                <!-- explicit relative link -->
                 <a href="./index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
             </div>
         </div>
@@ -300,16 +328,41 @@
             </div>
             
             <!-- TAG CLOUD SECTION -->
-            <div class="mt-4">
-                <h3 class="px-6 text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Explore by Topic</h3>
-                <div id="tag-cloud" class="tag-cloud">
+            <div class="mt-4 px-6">
+                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Explore by Topic</h3>
+                <div id="tag-cloud" class="flex flex-wrap gap-2">
                     <!-- Tags injected here -->
+                </div>
+            </div>
+
+            <!-- LEARNING PATHS (New Sidebar Cards) -->
+            <div class="mt-8 px-6">
+                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Quick Paths</h3>
+                
+                <div onclick="switchTrack('strategy')" class="sidebar-card">
+                    <span class="sidebar-card-icon">🚀</span>
+                    <span class="sidebar-card-text">The Rookie</span>
+                </div>
+                
+                <div onclick="switchTrack('comp')" class="sidebar-card">
+                    <span class="sidebar-card-icon">⚔️</span>
+                    <span class="sidebar-card-text">The Deal Closer</span>
+                </div>
+                
+                <div onclick="switchTrack('ai')" class="sidebar-card">
+                    <span class="sidebar-card-icon">🧙</span>
+                    <span class="sidebar-card-text">The Futurist</span>
+                </div>
+
+                <div onclick="switchTrack('intel')" class="sidebar-card">
+                    <span class="sidebar-card-icon">🧠</span>
+                    <span class="sidebar-card-text">The Expert</span>
                 </div>
             </div>
 
             <div class="p-6 mt-auto border-t border-white/10 bg-[#0a0a0a]">
                 <p class="text-xs font-bold text-white mb-1">PRO TIP</p>
-                <p class="text-xs text-gray-500">Click tags to filter cards across all tracks.</p>
+                <p class="text-xs text-gray-500">Switch tabs above to change between Strategy, Intel and AI Adoption.</p>
             </div>
         </aside>
 
