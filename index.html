@@ -8,6 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/germanedge.css?v=4">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body class="antialiased">
 
@@ -43,6 +47,12 @@
                 <button onclick="scrollToId('culture')" class="ge-nav-link">Mindset</button>
                 <button onclick="openVideo()" class="ge-nav-link text-ge-yellow border border-ge-yellow rounded px-3 py-1 hover:bg-ge-yellow hover:text-black transition">Keynote</button>
                 <button onclick="scrollToId('plan')" class="ge-btn-primary">The Strategy</button>
+                
+                <!-- AUTH CONTAINER -->
+                <div class="auth-container ml-4 pl-4 border-l border-gray-700">
+                    <!-- Auth buttons injected by auth.js -->
+                    <div class="text-gray-500 text-xs">Loading...</div>
+                </div>
             </div>
         </div>
     </nav>
@@ -315,5 +325,8 @@
             new Chart(document.getElementById('competitorChart').getContext('2d'), { type: 'bubble', data: { datasets: [{ label: 'Landscape', data: [{ x: 95, y: 95, r: 30, label: 'SAP (Giant)' }, { x: 80, y: 80, r: 15, label: 'Kinaxis' }, { x: 20, y: 90, r: 25, label: 'DCE (Us)' }, { x: 85, y: 60, r: 10, label: 'O2' }], backgroundColor: c => c.raw.label.includes('DCE') ? '#C14953' : '#E5E7EB', borderColor: c => c.raw.label.includes('DCE') ? '#9F1239' : '#9CA3AF', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: {display: true, text: 'Market Dominance'}, min: 0, max: 110 }, y: { title: {display: true, text: 'Trust Score'}, min: 40, max: 110 } }, plugins: { legend: { display: false } } } });
         });
     </script>
+    
+    <!-- Firebase Auth Integration -->
+    <script src="js/auth.js"></script>
 </body>
 </html>
