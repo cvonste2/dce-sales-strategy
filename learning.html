@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <!-- Corporate CSS -->
     <link rel="stylesheet" href="css/germanedge.css?v=4">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     
     <style>
         /* --- VISUAL UNIFICATION --- */
@@ -306,8 +310,14 @@
                 <div class="hidden md:block w-px h-6 bg-gray-700 mx-2"></div>
                 <span class="hidden md:block text-gray-400 text-xs font-bold uppercase tracking-widest">Digital Factory Knowledge Hub</span>
             </div>
-            <div>
+            <div class="flex items-center gap-4">
                 <a href="./index.html" class="text-xs font-bold text-white uppercase border border-gray-600 px-4 py-2 rounded hover:bg-white hover:text-black transition">Back to Strategy</a>
+                
+                <!-- AUTH CONTAINER -->
+                <div class="auth-container">
+                    <!-- Auth buttons injected by auth.js -->
+                    <div class="text-gray-500 text-xs">Loading...</div>
+                </div>
             </div>
         </div>
     </nav>
@@ -358,6 +368,11 @@
                     <span class="sidebar-card-icon">🧠</span>
                     <span class="sidebar-card-text">The Expert</span>
                 </div>
+            </div>
+            
+            <!-- PROGRESS PANEL (populated by auth.js) -->
+            <div id="sidebar-progress-panel" class="mt-6 px-6">
+                <!-- Progress UI injected here when logged in -->
             </div>
 
             <div class="p-6 mt-auto border-t border-white/10 bg-[#0a0a0a]">
@@ -1119,8 +1134,24 @@
         function finishQuiz() {
             document.getElementById('quiz-questions').classList.add('hidden');
             const total = activeQuizQuestions.length;
+            const passed = quizState.correct === total;
+            const trackId = isTagQuiz ? `tag_${quizState.track}` : quizState.track;
             
-            if (quizState.correct === total) {
+            // Save exam result to Firestore (if logged in)
+            if (typeof saveExamResult === 'function' && typeof isLoggedIn === 'function' && isLoggedIn()) {
+                saveExamResult(trackId, quizState.correct, total, passed);
+                
+                if (passed && !isTagQuiz) {
+                    saveCertification(trackId, true, quizState.correct).then(() => {
+                        // Update progress UI after certification saved
+                        if (typeof updateProgressUI === 'function') {
+                            updateProgressUI();
+                        }
+                    });
+                }
+            }
+            
+            if (passed) {
                 document.getElementById('quiz-success').classList.remove('hidden');
                 
                 if (!isTagQuiz) {
@@ -1139,5 +1170,8 @@
         document.addEventListener('DOMContentLoaded', init);
 
     </script>
+    
+    <!-- Firebase Auth Integration -->
+    <script src="js/auth.js"></script>
 </body>
 </html>
