@@ -815,9 +815,13 @@
         function updateBadges() {
             const tracks = ['strategy', 'intel', 'ai', 'comp'];
             tracks.forEach(t => {
-                if (localStorage.getItem(`cert_${t}`) === 'true') {
-                    const badge = document.getElementById(`badge-${t}`);
-                    if (badge) badge.style.display = 'inline-flex';
+                const badge = document.getElementById(`badge-${t}`);
+                if (badge) {
+                    if (localStorage.getItem(`cert_${t}`) === 'true') {
+                        badge.style.display = 'inline-flex';
+                    } else {
+                        badge.style.display = 'none';
+                    }
                 }
             });
         }
