@@ -1,0 +1,26 @@
+{
+  "name": "dce-sales-strategy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvonste2/dce-sales-strategy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cvonste2/dce-sales-strategy/issues"
+  },
+  "homepage": "https://github.com/cvonste2/dce-sales-strategy#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
+}
