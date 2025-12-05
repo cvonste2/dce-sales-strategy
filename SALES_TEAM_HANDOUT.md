@@ -150,22 +150,59 @@ Two powerful tools built specifically for **you** — the Germanedge sales and p
 
 ---
 
+## Sign In & Track Your Progress
+
+### Why Sign In?
+
+When you sign in, your progress is **saved to the cloud**:
+
+- ✅ Certification badges persist across devices
+- ✅ Exam results are tracked
+- ✅ Progress bar shows your completion status
+- ✅ No more re-taking exams you've already passed
+
+### How to Sign In
+
+1. Click **"Sign In"** in the top-right corner
+2. Choose your provider:
+   - **Microsoft** (recommended for work accounts)
+   - **Google**
+   - **Apple**
+3. Authorize the app
+4. Done! Your profile picture appears in the header
+
+### Your Profile Dropdown
+
+Click your profile picture to see:
+
+| Feature | Description |
+|---------|-------------|
+| **Progress Bar** | Shows X/4 tracks certified |
+| **Certifications** | Green checkmarks for completed tracks |
+| **Clear Results** | Reset all progress (use carefully!) |
+| **Sign Out** | Log out of your account |
+
+---
+
 ## How to Access
 
-### Option 1: Local (Offline)
-Open `index.html` or `learning.html` directly in your browser.
+### Option 1: Online (Recommended)
+Access via GitHub Pages: **[https://cvonste2.github.io/dce-sales-strategy/](https://cvonste2.github.io/dce-sales-strategy/)**
 
-### Option 2: Online (If Deployed)
-Access via the GitHub Pages URL (ask your admin for the link).
+### Option 2: Local (Offline)
+Open `index.html` or `learning.html` directly in your browser.
+> Note: Sign-in features require an internet connection.
 
 ---
 
 ## Get Started Now
 
-1. **Bookmark both pages** in your browser
-2. **Spend 15 minutes** in the Learning Academy before your next call
-3. **Earn your certifications** — Track 1 first, then Track 4 for deal closers
-4. **Use the tag filter** to prep for specific topics (e.g., filter by "SAP" before a competitive deal)
+1. **Sign in** with your Microsoft/Google/Apple account
+2. **Bookmark the page** in your browser
+3. **Spend 15 minutes** in the Learning Academy before your next call
+4. **Earn your certifications** — Track 1 first, then Track 4 for deal closers
+5. **Use the tag filter** to prep for specific topics (e.g., filter by "SAP" before a competitive deal)
+6. **Check your progress** via the profile dropdown
 
 ---
 
@@ -179,4 +216,4 @@ Reach out to your enablement lead or the creator of this hub.
 
 ---
 
-*Version 1.0 | December 2025 | Germanedge DCE Sales Enablement*
+*Version 2.0 | December 2025 | Germanedge DCE Sales Enablement*
